@@ -16,7 +16,10 @@ from __future__ import absolute_import, print_function
 
 from flask import Blueprint, current_app, render_template
 from invenio_circulation.search.api import LoansSearch
+from invenio_records_rest.views import create_error_handlers
+from invenio_rest.views import create_api_errorhandler
 
+from invenio_app_ils.errors import IlsException
 from invenio_app_ils.search.api import DocumentSearch, ItemSearch
 
 blueprint = Blueprint(

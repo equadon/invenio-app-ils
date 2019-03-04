@@ -1,44 +1,43 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Container, Message } from 'semantic-ui-react';
+import { SemanticToastContainer, toast } from 'react-semantic-toasts';
+import 'react-semantic-toasts/styles/react-semantic-alert.css';
 import _isEmpty from 'lodash/isEmpty';
 
 export class Error extends Component {
-  _messageFromStatus = (errorMessage, status) => {
-    let message;
+  _sendNotification = error => {
+    const status = error.response.status;
+    const message = error.response.data.message;
+    let icon = 'exclamation circle';
+
     switch (status) {
-      case 401:
-        message = 'You are not authenticated. Please login first.';
+      case 400:
         break;
       case 403:
-        message = 'You are not authorized to perform this action.';
-        break;
-      case 404:
-        message = 'The requested URL has not been found.';
+        icon = 'ban';
         break;
       default:
-        message = errorMessage;
+        break;
     }
-    return message;
+
+    setTimeout(() => {
+      toast({
+        type: 'error',
+        icon: icon,
+        title: status + ' ' + error.response.statusText,
+        animation: 'bounce',
+        description: <p>{message}</p>,
+        time: 0,
+      });
+    }, 10);
   };
 
   render() {
     const error = this.props.error;
     if (!_isEmpty(error)) {
-      const message = this._messageFromStatus(
-        error.message,
-        error.response ? error.response.status : undefined
-      );
-      return (
-        <Container>
-          <Message
-            compact
-            icon="exclamation"
-            header="Oups, request to REST API failed!"
-            content={message}
-          />
-        </Container>
-      );
+      this._sendNotification(error);
+      return <p>Error!</p>;
     } else {
       return this.props.children;
     }

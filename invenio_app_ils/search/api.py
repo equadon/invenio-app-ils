@@ -7,6 +7,7 @@
 
 """Search utilities."""
 
+from invenio_circulation.errors import PropertyRequired
 from invenio_search.api import RecordsSearch
 
 
@@ -37,7 +38,7 @@ class ItemSearch(RecordsSearch):
         if document_pid:
             search = search.filter("term", document_pid=document_pid)
         else:
-            raise ValueError("Must specify document_pid param")
+            raise PropertyRequired(description="document_pid is required")
 
         if filter_states:
             search = search.filter("terms", state=filter_states)
