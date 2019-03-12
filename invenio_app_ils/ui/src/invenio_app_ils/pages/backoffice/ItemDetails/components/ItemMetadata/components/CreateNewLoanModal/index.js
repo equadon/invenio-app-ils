@@ -3,8 +3,9 @@ import { createNewLoanForItem, resetNewLoanState } from './state/actions';
 import CreateNewLoanModalComponent from './CreateNewLoanModal';
 
 const mapStateToProps = state => ({
-  isLoading: state.itemDetails.newLoanCreate.isLoading,
   data: state.itemDetails.newLoanCreate.data,
+  error: state.itemDetails.newLoanCreate.error,
+  isLoading: state.itemDetails.newLoanCreate.isLoading,
   hasError: state.itemDetails.newLoanCreate.hasError,
 });
 const mapDispatchToProps = dispatch => ({

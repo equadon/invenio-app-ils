@@ -4,8 +4,9 @@ import { withRouter } from 'react-router-dom';
 import DocumentDetailsComponent from './DocumentDetails';
 
 const mapStateToProps = state => ({
-  isLoading: state.documentDetails.isLoading,
   data: state.documentDetails.data,
+  error: state.documentDetails.error,
+  isLoading: state.documentDetails.isLoading,
   hasError: state.documentDetails.hasError,
 });
 

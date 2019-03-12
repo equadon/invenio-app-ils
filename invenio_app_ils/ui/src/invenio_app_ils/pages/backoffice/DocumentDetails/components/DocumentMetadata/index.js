@@ -5,6 +5,8 @@ import DocumentMetadataComponent from './DocumentMetadata';
 import { fetchDocumentDetails } from '../../state/actions';
 
 const mapStateToProps = state => ({
+  data: state.documentDetails.data,
+  error: state.documentDetails.error,
   documentDetails: state.documentDetails.data,
 });
 

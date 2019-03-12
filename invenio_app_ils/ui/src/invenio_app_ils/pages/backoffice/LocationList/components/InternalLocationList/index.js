@@ -3,6 +3,7 @@ import { fetchInternalLocations } from './state/actions';
 import InternalLocationListComponent from './InternalLocationList';
 
 const mapStateToProps = state => ({
+  error: state.internalLocations.error,
   data: state.internalLocations.data,
   isLoading: state.internalLocations.isLoading,
   hasError: state.internalLocations.hasError,
