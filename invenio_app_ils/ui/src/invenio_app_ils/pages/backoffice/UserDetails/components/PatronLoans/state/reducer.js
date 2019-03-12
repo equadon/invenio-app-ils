@@ -7,9 +7,10 @@ import {
 } from './types';
 
 export const initialState = {
+  data: { hits: [], total: 0 },
+  error: {},
   isLoading: true,
   hasError: false,
-  data: { hits: [], total: 0 },
   sortBy: 'transaction_date',
   sortOrder: 'asc',
 };
@@ -21,15 +22,15 @@ export default (state = initialState, action) => {
     case SUCCESS:
       return {
         ...state,
-        isLoading: false,
         data: action.payload,
+        isLoading: false,
         hasError: false,
       };
     case HAS_ERROR:
       return {
         ...state,
+        error: action.payload,
         isLoading: false,
-        data: action.payload,
         hasError: true,
       };
     case CHANGE_SORT_BY:

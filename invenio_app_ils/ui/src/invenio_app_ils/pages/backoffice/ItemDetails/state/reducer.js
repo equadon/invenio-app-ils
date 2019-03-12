@@ -3,9 +3,10 @@ import createLoanReducer from '../components/ItemMetadata/components/CreateNewLo
 import { initialState as newLoanCreateInitialState } from '../components/ItemMetadata/components/CreateNewLoanModal/state/reducer';
 
 export const initialState = {
+  data: { hits: [], total: 0 },
+  error: {},
   isLoading: true,
   hasError: false,
-  data: { hits: [], total: 0 },
   ...newLoanCreateInitialState,
 };
 
@@ -16,15 +17,15 @@ export default (state = initialState, action) => {
     case SUCCESS:
       return {
         ...state,
-        isLoading: false,
         data: action.payload,
+        isLoading: false,
         hasError: false,
       };
     case HAS_ERROR:
       return {
         ...state,
+        error: action.payload,
         isLoading: false,
-        data: action.payload,
         hasError: true,
       };
     default:

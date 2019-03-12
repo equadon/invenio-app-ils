@@ -14,15 +14,15 @@ export default (state = initialState, action) => {
     case SUCCESS:
       return {
         ...state,
-        isLoading: false,
         data: action.payload,
+        isLoading: false,
         hasError: false,
       };
     case HAS_ERROR:
       return {
         ...state,
-        isLoading: false,
         error: action.payload,
+        isLoading: false,
         hasError: true,
       };
     default:

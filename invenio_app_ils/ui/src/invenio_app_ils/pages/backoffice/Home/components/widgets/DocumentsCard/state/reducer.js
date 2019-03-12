@@ -1,9 +1,10 @@
 import { IS_LOADING, SUCCESS, HAS_ERROR } from './types';
 
 export const initialState = {
+  data: 0,
+  error: {},
   isLoading: true,
   hasError: false,
-  data: 0,
 };
 
 export default (state = initialState, action) => {
@@ -13,15 +14,15 @@ export default (state = initialState, action) => {
     case SUCCESS:
       return {
         ...state,
-        isLoading: false,
         data: action.payload,
+        isLoading: false,
         hasError: false,
       };
     case HAS_ERROR:
       return {
         ...state,
+        error: action.payload,
         isLoading: false,
-        data: action.payload,
         hasError: true,
       };
     default:
