@@ -14,14 +14,14 @@ import {
   UserDetailsContainer,
 } from '../pages/backoffice';
 import './BackOffice.scss';
-// import { SemanticToastContainer } from 'react-semantic-toasts';
+import { SemanticToastContainer } from 'react-semantic-toasts';
 
 export class BackOffice extends Component {
   render() {
     return (
       <div>
         <Header />
-        {/* <SemanticToastContainer /> */}
+        <SemanticToastContainer />
         <div className="container">
           {/* home */}
           <Route exact path={BackOfficeURLS.home} component={Home} />

@@ -144,31 +144,5 @@ describe('Loan details tests', () => {
           done();
         });
     });
-
-    it('should dispatch an error action when oan action fails', done => {
-      mockPostAction.mockRejectedValue([500, 'Error']);
-
-      const expectedActions = [
-        {
-          type: types.ACTION_HAS_ERROR,
-          payload: [500, 'Error'],
-        },
-      ];
-
-      return store
-        .dispatch(actions.performLoanAction('123', loan, 'wrongUrlForAction'))
-        .then(() => {
-          expect(mockPostAction).toHaveBeenCalledWith(
-            'wrongUrlForAction',
-            '123',
-            loan,
-            1,
-            3
-          );
-          const actions = store.getActions();
-          expect(actions[1]).toEqual(expectedActions[0]);
-          done();
-        });
-    });
   });
 });
