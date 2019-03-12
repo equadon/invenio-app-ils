@@ -35,7 +35,7 @@ describe('Create new loan request for item reducer', () => {
     };
     expect(reducer(initialState, action)).toEqual({
       ...initialState,
-      newLoanCreate: { isLoading: false, data: 'Error', hasError: true },
+      newLoanCreate: { isLoading: false, error: 'Error', hasError: true },
     });
   });
 });

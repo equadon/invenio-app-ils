@@ -18,7 +18,6 @@ export class AuthenticationGuard extends Component {
       authenticationService.login(window.location.pathname);
       return null;
     }
-
     if (sessionManager.authenticated && !sessionManager.hasRoles(roles)) {
       console.error(
         `User has no permission to access the page ${window.location.pathname}`
