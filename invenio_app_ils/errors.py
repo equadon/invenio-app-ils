@@ -8,7 +8,6 @@
 """ILS exceptions."""
 
 import json
-from enum import Enum
 
 from flask import current_app
 from invenio_rest.errors import RESTException

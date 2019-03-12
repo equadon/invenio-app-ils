@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Container, Message } from 'semantic-ui-react';
-import { SemanticToastContainer, toast } from 'react-semantic-toasts';
-import 'react-semantic-toasts/styles/react-semantic-alert.css';
+// import { toast } from 'react-semantic-toasts';
+// import 'react-semantic-toasts/styles/react-semantic-alert.css';
 import _isEmpty from 'lodash/isEmpty';
 
 export class Error extends Component {
@@ -21,22 +20,22 @@ export class Error extends Component {
         break;
     }
 
-    setTimeout(() => {
-      toast({
-        type: 'error',
-        icon: icon,
-        title: status + ' ' + error.response.statusText,
-        animation: 'bounce',
-        description: <p>{message}</p>,
-        time: 0,
-      });
-    }, 10);
+    // setTimeout(() => {
+    //   toast({
+    //     type: 'error',
+    //     icon: icon,
+    //     title: status + ' ' + error.response.statusText,
+    //     animation: 'bounce',
+    //     description: <p>{message}</p>,
+    //     time: 0,
+    //   });
+    // }, 10);
   };
 
   render() {
     const error = this.props.error;
     if (!_isEmpty(error)) {
-      this._sendNotification(error);
+      // this._sendNotification(error);
       return <p>Error!</p>;
     } else {
       return this.props.children;

@@ -37,14 +37,12 @@ export const performLoanAction = (pid, loan, url) => {
       type: ACTION_IS_LOADING,
     });
     const stateUserSession = getState().userSession;
+    // NOTE: for some reason stateUserSession is undefined, the '1' entries in
+    // the post action represent stateUserSession.userPid and
+    // stateUserSession.locationPid respectivelly
+
     await loanApi
-      .postAction(
-        url,
-        pid,
-        loan,
-        stateUserSession.userPid,
-        stateUserSession.locationPid
-      )
+      .postAction(url, pid, loan, '1', '1')
       .then(details => {
         dispatch({
           type: ACTION_SUCCESS,

@@ -8,6 +8,7 @@
 """Item related resolvers."""
 
 import jsonresolver
+from invenio_pidstore.errors import PersistentIdentifierError
 from werkzeug.routing import Rule
 
 from ..api import InternalLocation, Item
@@ -24,9 +25,14 @@ def jsonresolver_loader(url_map):
 
     def get_internal_location(internal_location_pid):
         """Return the Internal Location record."""
-        internal_location = InternalLocation.get_record_by_pid(
-            internal_location_pid
-        )
+        internal_location = {}
+        try:
+            internal_location = InternalLocation.get_record_by_pid(
+                internal_location_pid
+            )
+        except PersistentIdentifierError as ex:
+            current_app.logger.exception(ex)
+            raise ex
 
         return internal_location
 

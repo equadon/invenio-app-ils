@@ -16,10 +16,7 @@ from __future__ import absolute_import, print_function
 
 from flask import Blueprint, current_app, render_template
 from invenio_circulation.search.api import LoansSearch
-from invenio_records_rest.views import create_error_handlers
-from invenio_rest.views import create_api_errorhandler
 
-from invenio_app_ils.errors import IlsException
 from invenio_app_ils.search.api import DocumentSearch, ItemSearch
 
 blueprint = Blueprint(
@@ -39,17 +36,20 @@ def _get_documents_ui_config():
                    'aggs': []}}}
     documents_index = DocumentSearch.Meta.index
 
-    documents_sort = current_app.config.get('RECORDS_REST_SORT_OPTIONS', {}).get(
-        documents_index, {})
+    documents_sort = current_app.config.get(
+        'RECORDS_REST_SORT_OPTIONS', {}
+    ).get(documents_index, {})
+
     documents_sort_ui = [{
         'field': field,
         'title': documents_sort[field]['title'],
         'order': documents_sort[field]['order']
     } for field in documents_sort.keys()]
 
-    ui_config['documents']['search']['sortBy']['values'] = sorted(documents_sort_ui,
-                                                              key=lambda s: s[
-                                                                  'order'])
+    ui_config['documents']['search']['sortBy']['values'] = sorted(
+        documents_sort_ui, key=lambda s: s['order']
+    )
+
     if 'mostrecent' in documents_sort:
         ui_config['documents']['search']['sortBy']['onEmptyQuery'] = 'mostrecent'
 

@@ -8,6 +8,7 @@
 """Item related resolvers."""
 
 import jsonresolver
+from invenio_pidstore.errors import PersistentIdentifierError
 from werkzeug.routing import Rule
 
 from ..api import Document, Item
@@ -24,9 +25,13 @@ def jsonresolver_loader(url_map):
 
     def get_document(document_pid):
         """Return the Document record."""
-        document = Document.get_record_by_pid(document_pid)
-        # delete `circulation` field, not needed when resolving from Item
-        del document["circulation"]
+        document = {}
+        try:
+            document = Document.get_record_by_pid(document_pid)
+            # delete `circulation` field, not needed when resolving from Item
+            del document["circulation"]
+        except PersistentIdentifierError as ex:
+            current_app.logger.exception(ex)
 
         return document
 

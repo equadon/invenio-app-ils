@@ -6,12 +6,10 @@ import App from './App';
 import store from './store';
 import 'semantic-ui-css/semantic.min.css';
 import './index.scss';
-import { SemanticToastContainer } from 'react-semantic-toasts';
 
 ReactDOM.render(
   <Provider store={store}>
     <App />
-    <SemanticToastContainer />
   </Provider>,
   document.getElementById('app')
 );

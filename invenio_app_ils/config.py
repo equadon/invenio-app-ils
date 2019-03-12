@@ -207,8 +207,8 @@ JSONSCHEMAS_HOST = "127.0.0.1:5000"
 # ====
 REST_ENABLE_CORS = True
 # change this only while developing
-CORS_SEND_WILDCARD = True
-CORS_SUPPORTS_CREDENTIALS = False
+CORS_SEND_WILDCARD = False
+CORS_SUPPORTS_CREDENTIALS = True
 
 # Flask configuration
 # ===================
