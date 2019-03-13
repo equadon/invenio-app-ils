@@ -32,6 +32,7 @@ import {
   idleLoansReducer,
   renewedLoansReducer,
 } from './pages/backoffice/Home/reducer';
+import { notificationsReducer } from './common/components/Notifications';
 
 const rootReducer = combineReducers({
   documentDetails: documentDetailsReducer,
@@ -54,6 +55,7 @@ const rootReducer = combineReducers({
   latestRenewedLoans: renewedLoansReducer,
   itemsSearchInput: itemsSearchByBarcodeReducer,
   patronItemsCheckout: patronItemCheckoutReducer,
+  notifications: notificationsReducer,
 });
 
 const composeEnhancers = composeWithDevTools({
