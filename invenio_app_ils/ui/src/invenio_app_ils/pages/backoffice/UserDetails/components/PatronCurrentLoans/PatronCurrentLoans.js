@@ -16,14 +16,8 @@ import _isEmpty from 'lodash/isEmpty';
 export default class PatronCurrentLoans extends Component {
   constructor(props) {
     super(props);
-    this.fetchPatronCurrentLoans = props.fetchPatronCurrentLoans;
     this.showDetailsUrl = viewLoanDetailsUrl;
     this.seeAllUrl = loanSearchQueryUrl;
-  }
-
-  componentDidMount() {
-    const patron_pid = this.props.patron ? this.props.patron : null;
-    this.fetchPatronCurrentLoans(patron_pid);
   }
 
   _showDetailsHandler = loan_pid =>

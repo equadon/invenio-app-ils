@@ -73,7 +73,9 @@ export default class LoanMetadata extends Component {
                 <Table.Row>
                   <Table.Cell width={4}>Transaction date</Table.Cell>
                   <Table.Cell width={12}>
-                    {toShortDateTime(data.transaction_date)}
+                    {data.transaction_date
+                      ? toShortDateTime(data.transaction_date)
+                      : '?'}
                   </Table.Cell>
                 </Table.Row>
                 <Table.Row>

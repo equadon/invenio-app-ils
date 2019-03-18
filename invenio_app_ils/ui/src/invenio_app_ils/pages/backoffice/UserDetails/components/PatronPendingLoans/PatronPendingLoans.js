@@ -16,15 +16,15 @@ import { fromISO, toShortDate } from '../../../../../common/api/date';
 export default class PatronPendingLoans extends Component {
   constructor(props) {
     super(props);
-    this.fetchPatronPendingLoans = props.fetchPatronPendingLoans;
+    // this.fetchPatronPendingLoans = props.fetchPatronPendingLoans;
     this.showDetailsUrl = viewLoanDetailsUrl;
     this.seeAllUrl = loanSearchQueryUrl;
   }
 
-  componentDidMount() {
-    const patron_pid = this.props.patron ? this.props.patron : null;
-    this.fetchPatronPendingLoans(patron_pid);
-  }
+  // componentDidMount() {
+  //   const patron_pid = this.props.patron ? this.props.patron : null;
+  //   this.fetchPatronPendingLoans(patron_pid);
+  // }
 
   _showDetailsHandler = loan_pid =>
     this.props.history.push(this.showDetailsUrl(loan_pid));

@@ -7,15 +7,21 @@ export default class UserDetailsContainer extends Component {
   constructor(props) {
     super(props);
     this.fetchUserDetails = this.props.fetchUserDetails;
+    this.fetchPatronPendingLoans = this.props.fetchPatronPendingLoans;
+    this.fetchPatronCurrentLoans = this.props.fetchPatronCurrentLoans;
   }
 
   componentDidMount() {
     this.unlisten = this.props.history.listen(location => {
       if (location.state && location.state.userPid) {
         this.fetchUserDetails(location.state.userPid);
+        this.fetchPatronPendingLoans(location.state.userPid);
+        this.fetchPatronCurrentLoans(location.state.userPid);
       }
     });
     this.fetchUserDetails(this.props.match.params.userPid);
+    this.fetchPatronPendingLoans(this.props.match.params.userPid);
+    this.fetchPatronCurrentLoans(this.props.match.params.userPid);
   }
 
   componentWillUnmount() {

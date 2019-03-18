@@ -7,13 +7,7 @@ import './AvailableItems.scss';
 export default class AvailableItems extends Component {
   constructor(props) {
     super(props);
-    this.fetchAvailableItems = props.fetchAvailableItems;
     this.assignItemToLoan = props.assignItemToLoan;
-  }
-
-  componentDidMount() {
-    const { document_pid } = this.props.loan;
-    this.fetchAvailableItems(document_pid);
   }
 
   _renderAvailableItems = availableItems => {

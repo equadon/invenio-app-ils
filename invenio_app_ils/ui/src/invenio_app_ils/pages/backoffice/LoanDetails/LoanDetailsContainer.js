@@ -7,15 +7,18 @@ export default class LoanDetailsContainer extends Component {
   constructor(props) {
     super(props);
     this.fetchLoanDetails = this.props.fetchLoanDetails;
+    this.fetchAvailableItems = this.props.fetchAvailableItems;
   }
 
   componentDidMount() {
     this.unlisten = this.props.history.listen(location => {
       if (location.state && location.state.loanPid) {
         this.fetchLoanDetails(location.state.loanPid);
+        this.fetchAvailableItems(location.state.loanPid);
       }
     });
     this.fetchLoanDetails(this.props.match.params.loanPid);
+    this.fetchAvailableItems(this.props.match.params.loanPid);
   }
 
   componentWillUnmount() {
