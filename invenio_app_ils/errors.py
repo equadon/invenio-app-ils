@@ -9,7 +9,7 @@
 
 import json
 
-from flask import current_app
+from flask import g
 from invenio_rest.errors import RESTException
 
 
@@ -18,73 +18,81 @@ class IlsException(RESTException):
 
     code = 400
 
+    def __init__(self, **kwargs):
+        """Initialize exception."""
+        super(IlsException, self).__init__(**kwargs)
+
     @property
     def name(self):
         """The status name."""
         return type(self).__name__
 
-    def __init__(self, **kwargs):
-        """Initialize exception."""
-        super(IlsException, self).__init__(**kwargs)
+    def get_body(self, environ=None):
+        """Get the request body."""
+        body = dict(
+            status=self.code,
+            message=self.get_description(environ),
+            error_module="ILS",
+            error_class=self.name
+        )
 
-    def get_response(self, environ=None, **kwargs):
-        """Intercept response to add info and log the error."""
-        resp = super(IlsException, self).get_response(environ=environ)
-        data = json.loads(resp.data.decode('utf-8'))
-        data["error_module"] = "ILS"
-        data["error_class"] = self.name
-        resp.data = json.dumps(data)
-        current_app.logger.exception(self)
-        return resp
+        errors = self.get_errors()
+        if self.errors:
+            body['errors'] = errors
+
+        if self.code and (self.code >= 500) and hasattr(g, 'sentry_event_id'):
+            body['error_id'] = str(g.sentry_event_id)
+
+        return json.dumps(body)
 
 
-class UnauthorizedSearch(IlsException):
+class UnauthorizedSearchError(IlsException):
     """The user performing the search is not authorized."""
 
     code = 403
     description = "Search `{query}` not allowed by `patron_pid:{pid}`"
 
     def __init__(self, query, patron_pid, **kwargs):
-        """Initialize UnauthorizedSearch exception.
+        """Initialize UnauthorizedSearchError exception.
 
         :param query: Unauthorized search query.
         :param patron_pid: Patron that performed the unauthorized search.
         """
-        super(UnauthorizedSearch, self).__init__(**kwargs)
+        super(UnauthorizedSearchError, self).__init__(**kwargs)
         self.description = self.description.format(query=query, pid=patron_pid)
 
 
-class InvalidSearchQuery(IlsException):
+class SearchQueryError(IlsException):
     """Invalid query syntax."""
 
     description = "Invalid query syntax: '{query}'"
 
     def __init__(self, query, **kwargs):
-        """Initialize UnauthorizedSearch exception.
+        """Initialize UnauthorizedSearchError exception.
 
         :param query: Invalid search query.
         """
-        super(InvalidSearchQuery, self).__init__(**kwargs)
+        super(SearchQueryError, self).__init__(**kwargs)
         self.description = self.description.format(query=query)
 
 
-class PatronNotFound(IlsException):
+class PatronNotFoundError(IlsException):
     """A patron could not be found."""
 
     code = 404
     description = "Patron with PID `{patron_pid}` was not found."
 
     def __init__(self, patron_pid, **kwargs):
-        """Initialize PatronNotFound exception."""
-        super(PatronNotFound, self).__init__(**kwargs)
+        """Initialize PatronNotFoundError exception."""
+        super(PatronNotFoundError, self).__init__(**kwargs)
         self.description = self.description.format(patron_pid=patron_pid)
 
 
-class PatronHasLoanOnItem(IlsException):
+class PatronHasLoanOnItemError(IlsException):
     """A patron already has an active loan or a loan request on an item."""
 
-    description = ("Patron `patron_pid:{patron_pid}` already has an active loan"
-                   " or a loan request on item `item_pid{item_pid}`")
+    description = ("Patron `patron_pid:{patron_pid}` already has an active "
+                   "loan or a loan request on item `item_pid:{item_pid}`")
 
     def __init__(self, patron_pid, item_pid, **kwargs):
         """Initialize PatronHasActiveLoanOnItem exception.
@@ -92,12 +100,12 @@ class PatronHasLoanOnItem(IlsException):
         :param loan_params: Loan request parameters.
         :param prop: Missing property from loan request.
         """
-        super(PatronHasLoanOnItem, self).__init__(**kwargs)
+        super(PatronHasLoanOnItemError, self).__init__(**kwargs)
         self.description = self.description.format(
             patron_pid=patron_pid, item_pid=item_pid)
 
 
-class NotImplementedIls(IlsException):
+class NotImplementedConfigruationError(IlsException):
     """Exception raised when function is not implemented."""
 
     description = (
@@ -107,5 +115,9 @@ class NotImplementedIls(IlsException):
 
     def __init__(self, config_variable=None, **kwargs):
         """Initialize exception."""
-        super(NotImplementedIls, self).__init__(**kwargs)
+        super(NotImplementedConfigruationError, self).__init__(**kwargs)
         self.description = "{} '{}'".format(self.description, config_variable)
+
+
+class MissingRequiredParameterError(IlsException):
+    """Exception raised when required parameter is missing."""

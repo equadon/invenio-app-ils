@@ -14,7 +14,7 @@ from flask_login import current_user
 from flask_principal import UserNeed
 from invenio_access import action_factory
 from invenio_access.permissions import Permission, authenticated_user
-from invenio_circulation.errors import InvalidPermission
+from invenio_circulation.errors import InvalidPermissionError
 from invenio_records_rest.utils import deny_all
 
 backoffice_access_action = action_factory("ils-backoffice-access")
@@ -27,7 +27,7 @@ def check_permission(action, permission):
     """
     if permission is not None and not permission.can():
         if current_user.is_authenticated:
-            raise InvalidPermission(action=action, permission=permission)
+            raise InvalidPermissionError(action=action, permission=permission)
         abort(401)
 
 

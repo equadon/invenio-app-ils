@@ -14,7 +14,7 @@ from flask import current_app, g, request
 from invenio_circulation.search.api import LoansSearch, search_by_pid
 from invenio_search.api import DefaultFilter
 
-from invenio_app_ils.errors import InvalidSearchQuery, UnauthorizedSearch
+from invenio_app_ils.errors import SearchQueryError, UnauthorizedSearchError
 from invenio_app_ils.permissions import backoffice_permission
 
 
@@ -90,11 +90,11 @@ def circulation_search_factory(self, search, query_parser=None):
             # check for patron_pid query value
             match = re.match(r"patron_pid:(?P<pid>\d)", query_string)
             if match and match.group('pid') != str(g.identity.id):
-                raise UnauthorizedSearch(query_string, g.identity.id)
+                raise UnauthorizedSearchError(query_string, g.identity.id)
     try:
         search = search.query(query)
     except SyntaxError:
-        raise InvalidSearchQuery(query_string)
+        raise SearchQueryError(query_string)
 
     search_index = search._index[0]
     search, urlkwargs = default_facets_factory(search, search_index)

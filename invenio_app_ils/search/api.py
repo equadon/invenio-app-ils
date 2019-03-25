@@ -7,8 +7,9 @@
 
 """Search utilities."""
 
-from invenio_circulation.errors import PropertyRequired
 from invenio_search.api import RecordsSearch
+
+from invenio_app_ils.errors import MissingRequiredParameterError
 
 
 class DocumentSearch(RecordsSearch):
@@ -38,7 +39,9 @@ class ItemSearch(RecordsSearch):
         if document_pid:
             search = search.filter("term", document_pid=document_pid)
         else:
-            raise PropertyRequired(description="document_pid is required")
+            raise MissingRequiredParameterError(
+                description="document_pid is required"
+            )
 
         if filter_states:
             search = search.filter("terms", state=filter_states)
@@ -49,7 +52,10 @@ class ItemSearch(RecordsSearch):
 
     def get_unavailable_items_by_document_pid(self, document_pid):
         """Retrieve items that are unavailable for a loan."""
-        return self.search_by_document_pid(document_pid, exclude_states=["LOANABLE"])
+        return self.search_by_document_pid(
+            document_pid,
+            exclude_states=["LOANABLE"]
+        )
 
 
 class LocationSearch(RecordsSearch):
