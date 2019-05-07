@@ -8,6 +8,7 @@ import { BackOfficeRoutes } from '../../../../../routes/urls';
 import { SeeAllButton } from '../../../components/buttons';
 import { formatter } from '../../../../../common/components/ResultsTable/formatters';
 import pick from 'lodash/pick';
+import { ESSelector } from '../../../../../common/components/ESSelector';
 
 export default class DocumentItems extends Component {
   constructor(props) {
@@ -56,15 +57,29 @@ export default class DocumentItems extends Component {
   _render_table(data) {
     const rows = this.prepareData(data);
     rows.totalHits = data.total;
+    const itemSelection = data.hits.map(item => ({
+      id: item.metadata.item_pid,
+      title: item.metadata.medium,
+    }));
     return (
-      <ResultsTable
-        rows={rows}
-        title={'Attached items'}
-        name={'attached items'}
-        rowActionClickHandler={this._showDetailsHandler}
-        seeAllComponent={this._seeAllButton()}
-        showMaxRows={this.props.showMaxItems}
-      />
+      <>
+        <ESSelector
+          multiple
+          selections={itemSelection}
+          query={itemApi.list}
+          title="Select Items"
+          triggerText="Add item"
+          onSave={value => console.log('onSave()', value)}
+        />
+        <ResultsTable
+          rows={rows}
+          title={'Attached items'}
+          name={'attached items'}
+          rowActionClickHandler={this._showDetailsHandler}
+          seeAllComponent={this._seeAllButton()}
+          showMaxRows={this.props.showMaxItems}
+        />
+      </>
     );
   }
 

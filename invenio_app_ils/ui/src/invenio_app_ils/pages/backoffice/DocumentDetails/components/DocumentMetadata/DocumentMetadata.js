@@ -5,8 +5,12 @@ import PropTypes from 'prop-types';
 import _isEmpty from 'lodash/isEmpty';
 import { MetadataTable } from '../../../components/MetadataTable';
 import { EditButton } from '../../../components/buttons';
-import { document as documentApi } from '../../../../../common/api';
+import {
+  document as documentApi,
+  keyword as keywordApi,
+} from '../../../../../common/api';
 import { BackOfficeRoutes, openRecordEditor } from '../../../../../routes/urls';
+import { ESSelector } from '../../../../../common/components/ESSelector';
 
 export default class DocumentMetadata extends Component {
   _renderKeywords(keywords) {
@@ -58,6 +62,10 @@ export default class DocumentMetadata extends Component {
         </Grid.Column>
       </Grid.Row>
     );
+    const keywordSelection = document.metadata.keywords.map(keyword => ({
+      id: keyword.keyword_pid,
+      title: keyword.name,
+    }));
 
     return (
       <Segment className="document-metadata">
@@ -66,6 +74,20 @@ export default class DocumentMetadata extends Component {
           <Grid.Row>
             <Grid.Column>
               <MetadataTable rows={rows} />
+              <ESSelector
+                multiple
+                selections={keywordSelection}
+                query={keywordApi.list}
+                title="Select Keywords"
+                triggerText="Add keyword"
+                onSave={value => console.log('onSave()', value)}
+              />
+              <ESSelector
+                query={documentApi.list}
+                title="Select Document"
+                triggerText="Select document"
+                onSave={value => console.log('onSave()', value)}
+              />
             </Grid.Column>
             <Grid.Column>
               <Container>
