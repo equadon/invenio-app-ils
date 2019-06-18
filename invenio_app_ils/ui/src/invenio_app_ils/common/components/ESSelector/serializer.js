@@ -9,71 +9,71 @@ export const serializeError = error => ({
 });
 
 export const serializeDocument = metadata => ({
-  id: metadata.document_pid,
-  key: metadata.document_pid,
+  id: metadata.pid,
+  key: metadata.pid,
   title: metadata.title,
   description: metadata.authors
     ? `Authors: ${metadata.authors.join(', ')}`
     : 'Document',
-  extra: formatPid(metadata.document_pid),
+  extra: formatPid(metadata.pid),
   metadata: metadata,
 });
 
 export const serializeEItem = metadata => ({
-  id: metadata.eitem_pid,
-  key: metadata.eitem_pid,
+  id: metadata.pid,
+  key: metadata.pid,
   title: metadata.document.title,
   description: `Open access: ${metadata.open_access ? 'Yes' : 'No'}`,
-  extra: formatPid(metadata.eitem_pid),
+  extra: formatPid(metadata.pid),
   metadata: metadata,
 });
 
 export const serializeInternalLocation = metadata => ({
-  id: metadata.internal_location_pid,
-  key: metadata.internal_location_pid,
+  id: metadata.pid,
+  key: metadata.pid,
   title: metadata.name,
   description: metadata.location ? `Location: ${metadata.location.name}` : null,
-  extra: formatPid(metadata.internal_location_pid),
+  extra: formatPid(metadata.pid),
   metadata: metadata,
 });
 
 export const serializeItem = metadata => ({
-  id: metadata.item_pid,
-  key: metadata.item_pid,
+  id: metadata.pid,
+  key: metadata.pid,
   title: metadata.medium,
   description: metadata.shelf ? `Shelf: ${metadata.shelf}` : null,
-  extra: formatPid(metadata.item_pid),
+  extra: formatPid(metadata.pid),
   metadata: metadata,
 });
 
 export const serializeKeyword = metadata => ({
-  id: metadata.keyword_pid,
-  key: metadata.keyword_pid,
+  id: metadata.pid,
+  key: metadata.pid,
   title: metadata.name,
   description: metadata.provenance
     ? `Provenance: ${metadata.provenance}`
     : null,
-  extra: formatPid(metadata.keyword_pid),
+  extra: formatPid(metadata.pid),
   metadata: metadata,
 });
 
 export const serializeLoan = metadata => ({
-  id: metadata.loan_pid,
-  key: metadata.loan_pid,
+  id: metadata.pid,
+  key: metadata.pid,
   title: metadata.state,
   description: metadata.document_pid
     ? `Document PID: ${metadata.document_pid}`
     : null,
-  extra: formatPid(metadata.loan_pid),
+  extra: formatPid(metadata.pid),
   metadata: metadata,
 });
 
 export const serializeLocation = metadata => ({
-  id: metadata.location_pid,
-  key: metadata.location_pid,
+  id: metadata.pid,
+  key: metadata.pid,
   title: metadata.name,
   description: metadata.address ? `Address: ${metadata.address}` : null,
-  extra: formatPid(metadata.location_pid),
+  extra: formatPid(metadata.pid),
   metadata: metadata,
 });
 
@@ -87,13 +87,13 @@ export const serializePatron = metadata => ({
 });
 
 export const serializeSeries = metadata => ({
-  id: metadata.series_pid,
-  key: metadata.series_pid,
+  id: metadata.pid,
+  key: metadata.pid,
   title: metadata.title,
   description: metadata.mode_of_issuance
     ? `Mode of Issuance: ${metadata.mode_of_issuance}`
     : null,
-  extra: `ID: ${metadata.series_pid}`,
+  extra: `ID: ${metadata.pid}`,
   metadata: metadata,
 });
 

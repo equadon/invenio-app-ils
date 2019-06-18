@@ -15,14 +15,16 @@ export default class LoanActions extends Component {
       actions = omit(actions, 'checkout');
     }
     return Object.keys(actions).map(action => {
-      const loanAction = (cancelReason = null) =>
+      const cancelAction = (cancelReason = null) =>
         this.performLoanAction(pid, loan, actions[action], cancelReason);
+      const loanAction = () =>
+        this.performLoanAction(pid, loan, actions[action]);
       return (
         <List.Item key={action}>
           {action === 'cancel' ? (
             <CancelLoanModal
               loan={this.props.loanDetails}
-              action={loanAction}
+              action={cancelAction}
             />
           ) : (
             <Button primary onClick={loanAction}>
@@ -35,7 +37,7 @@ export default class LoanActions extends Component {
   }
 
   render() {
-    const { availableActions, loan_pid: pid } = this.props.loanDetails;
+    const { availableActions, pid } = this.props.loanDetails;
     const {
       document_pid,
       patron_pid,

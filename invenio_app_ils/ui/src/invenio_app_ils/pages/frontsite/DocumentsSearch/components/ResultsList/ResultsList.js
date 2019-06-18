@@ -13,7 +13,7 @@ export class ResultsList extends Component {
 
   prepareData(rows) {
     return rows.map(row => ({
-      ID: row.metadata.document_pid,
+      ID: row.metadata.pid,
       Title: row.metadata.title,
       Authors: row.metadata.authors[0],
       Publishers: row.metadata.publishers[0],

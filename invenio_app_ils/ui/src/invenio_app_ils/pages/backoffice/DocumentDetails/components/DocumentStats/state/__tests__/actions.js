@@ -38,11 +38,9 @@ describe('Document stats fetch tests', () => {
     };
     store.dispatch(actions.fetchDocumentStats(ARGS)).then(done => {
       expect(mockLoanList).toHaveBeenCalledWith(
-        `(document_pid:${
-          ARGS.documentPid
-        } AND state:(ITEM_RETURNED) AND start_date:{${ARGS.fromDate} TO ${
-          ARGS.toDate
-        }})`
+        `(pid:${ARGS.documentPid} AND state:(ITEM_RETURNED) AND start_date:{${
+          ARGS.fromDate
+        } TO ${ARGS.toDate}})`
       );
       expect(store.getActions()[0]).toEqual(expectedAction);
       done();
@@ -56,11 +54,9 @@ describe('Document stats fetch tests', () => {
 
     store.dispatch(actions.fetchDocumentStats(ARGS)).then(done => {
       expect(mockLoanList).toHaveBeenCalledWith(
-        `(document_pid:${
-          ARGS.documentPid
-        } AND state:(ITEM_RETURNED) AND start_date:{${ARGS.fromDate} TO ${
-          ARGS.toDate
-        }})`
+        `(pid:${ARGS.documentPid} AND state:(ITEM_RETURNED) AND start_date:{${
+          ARGS.fromDate
+        } TO ${ARGS.toDate}})`
       );
       expect(store.getActions()[1]).toEqual(expectedAction);
       done();
@@ -76,11 +72,9 @@ describe('Document stats fetch tests', () => {
 
     store.dispatch(actions.fetchDocumentStats(ARGS)).then(done => {
       expect(mockLoanList).toHaveBeenCalledWith(
-        `(document_pid:${
-          ARGS.documentPid
-        } AND state:(ITEM_RETURNED) AND start_date:{${ARGS.fromDate} TO ${
-          ARGS.toDate
-        }})`
+        `(pid:${ARGS.documentPid} AND state:(ITEM_RETURNED) AND start_date:{${
+          ARGS.fromDate
+        } TO ${ARGS.toDate}})`
       );
       expect(store.getActions()[1]).toEqual(expectedAction);
       done();

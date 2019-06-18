@@ -152,7 +152,7 @@ class InternalLocationGenerator(Generator):
             "name": "Building {}".format(randint(1, 10)),
             "notes": lorem.sentence(),
             "physical_location": lorem.sentence(),
-            Location.pid_field: location_pid_value
+            Location.foreign_pid_field: location_pid_value
         } for pid in range(1, size+1)]
 
         self.holder.internal_locations['objs'] = objs
@@ -213,8 +213,8 @@ class ItemGenerator(Generator):
         doc_pids = self.holder.pids('documents', Document.pid_field)
         objs = [{
             Item.pid_field: str(pid),
-            Document.pid_field: random.choice(doc_pids),
-            InternalLocation.pid_field: random.choice(iloc_pids),
+            Document.foreign_pid_field: random.choice(doc_pids),
+            InternalLocation.foreign_pid_field: random.choice(iloc_pids),
             "legacy_id": "{}".format(randint(100000, 999999)),
             "legacy_library_id": "{}".format(randint(5, 50)),
             "barcode": "{}".format(randint(10000000, 99999999)),
@@ -252,7 +252,7 @@ class EItemGenerator(Generator):
 
         objs = [{
             EItem.pid_field: str(pid),
-            Document.pid_field: random.choice(doc_pids),
+            Document.foreign_pid_field: random.choice(doc_pids),
             "description": "{}".format(lorem.text()),
             "internal_notes": "{}".format(lorem.text()),
             "urls": ["https://home.cern/science/physics/dark-matter",
@@ -388,7 +388,7 @@ class LoanGenerator(Generator):
 
             loan = {
                 Loan.pid_field: str(pid),
-                Document.pid_field: random.choice(doc_pids),
+                Document.foreign_pid_field: random.choice(doc_pids),
                 "extension_count": randint(0, 3),
                 "patron_pid": "{}".format(patron_id),
                 "pickup_location_pid": "{}".format(loc_pid),
@@ -402,9 +402,9 @@ class LoanGenerator(Generator):
             }
 
             if status == "PENDING":
-                loan[Item.pid_field] = ""
+                loan[Item.foreign_pid_field] = ""
             else:
-                loan[Item.pid_field] = "{}".format(item[Item.pid_field])
+                loan[Item.foreign_pid_field] = "{}".format(item[Item.pid_field])
                 items_on_loans.append(item[Item.pid_field])
 
             self.holder.loans['objs'].append(loan)
@@ -588,10 +588,10 @@ def data(n_docs, n_items, n_eitems, n_loans, n_keywords, n_intlocs, n_series):
     rec_loans = loans_generator.persist()
 
     # Related records
-    click.echo('Creating related records...')
-    related_generator = RelatedRecordsGenerator(holder, minter)
-    related_generator.generate(rec_docs, rec_series)
-    related_generator.persist()
+    # click.echo('Creating related records...')
+    # related_generator = RelatedRecordsGenerator(holder, minter)
+    # related_generator.generate(rec_docs, rec_series)
+    # related_generator.persist()
 
     # index locations
     indexer.bulk_index([str(r.id) for r in rec_intlocs])

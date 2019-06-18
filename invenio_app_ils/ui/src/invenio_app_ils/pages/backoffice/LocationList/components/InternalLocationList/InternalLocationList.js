@@ -32,7 +32,7 @@ export default class InternalLocationList extends Component {
       {
         refType: 'Item',
         onRefClick: this.handleOnRefClick,
-        getRefData: () => itemApi.list(`internal_location_pid:${ilocPid}`),
+        getRefData: () => itemApi.list(`pid:${ilocPid}`),
       },
     ];
   }
@@ -59,7 +59,7 @@ export default class InternalLocationList extends Component {
   prepareData(data) {
     const rows = data.hits.map(row => {
       let serialized = formatter.internalLocation.toTable(row);
-      serialized['Actions'] = this.rowActions(row.internal_location_pid);
+      serialized['Actions'] = this.rowActions(row.pid);
       return omit(serialized, ['Created', 'Updated', 'Link']);
     });
     rows.totalHits = data.total;

@@ -196,7 +196,7 @@ def index_item_after_loan_indexed(loan):
 @shared_task(ignore_result=True)
 def index_document_after_loan_indexed(loan):
     """Index document to re-compute circulation information."""
-    if not loan.get(Document.pid_field, None):
+    if not loan.get(Document.foreign_pid_field, None):
         msg = "ils-indexer: Document PID not found in loan " \
               "{0}".format(loan[Loan.pid_field])
         current_app.logger.warning(msg)
@@ -209,7 +209,7 @@ def index_document_after_loan_indexed(loan):
         dest_rec_type='Document')
 
     log_func(msg=MSG_ORIGIN)
-    item_pid = loan[Document.pid_field]
+    item_pid = loan[Document.foreign_pid_field]
     _index_record_by_pid(Document, item_pid, log_func)
 
 

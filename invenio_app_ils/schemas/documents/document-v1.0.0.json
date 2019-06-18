@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Document",
   "type": "object",
-  "required": ["$schema", "document_pid"],
+  "required": ["$schema", "pid", "pid_type"],
   "properties": {
     "$schema": {
       "type": "string"
@@ -65,9 +65,13 @@
         }
       }
     },
-    "document_pid": {
+    "pid": {
       "type": "string",
       "title": "Document ID"
+    },
+    "pid_type": {
+      "type": "string",
+      "title": "Document PID type"
     },
     "keyword_pids": {
       "type": "array",

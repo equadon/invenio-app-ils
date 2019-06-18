@@ -2,14 +2,18 @@
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Schema EItem",
   "type": "object",
-  "required": ["$schema", "eitem_pid", "document_pid", "document"],
+  "required": ["$schema", "pid", "pid_type", "document_pid", "document"],
   "properties": {
     "$schema": {
       "type": "string"
     },
-    "eitem_pid": {
+    "pid": {
       "type": "string",
       "title": "The persistent identifier of this EItem"
+    },
+    "pid_type": {
+      "type": "string",
+      "title": "PID type"
     },
     "document_pid": {
       "type": "string",

@@ -39,7 +39,7 @@ export default class SeriesMetadata extends Component {
     return (
       <List horizontal>
         {keywords.map(keyword => (
-          <List.Item key={keyword.keyword_pid}>
+          <List.Item key={keyword.pid}>
             <Link
               to={BackOfficeRoutes.seriesListWithQuery(
                 seriesApi
@@ -61,20 +61,18 @@ export default class SeriesMetadata extends Component {
       <Grid.Row>
         <Grid.Column width={13} verticalAlign={'middle'}>
           <Header as="h1">
-            Series #{series.series_pid} - {series.metadata.title}
+            Series #{series.pid} - {series.metadata.title}
           </Header>
         </Grid.Column>
         <Grid.Column width={3} textAlign={'right'}>
           <EditButton
-            clickHandler={() =>
-              openRecordEditor(seriesApi.url, series.series_pid)
-            }
+            clickHandler={() => openRecordEditor(seriesApi.url, series.pid)}
           />
           <DeleteRecordModal
             deleteHeader={`Are you sure you want to delete the Series record
-            with ID ${series.series_pid}?`}
-            refProps={this.createRefProps(series.series_pid)}
-            onDelete={() => this.deleteSeries(series.series_pid)}
+            with ID ${series.pid}?`}
+            refProps={this.createRefProps(series.pid)}
+            onDelete={() => this.deleteSeries(series.pid)}
           />
         </Grid.Column>
       </Grid.Row>

@@ -2,14 +2,18 @@
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Schema for Internal Location",
   "type": "object",
-  "required": ["$schema", "internal_location_pid", "location", "location_pid"],
+  "required": ["$schema", "pid", "pid_type", "location", "location_pid"],
   "properties": {
     "$schema": {
       "type": "string"
     },
-    "internal_location_pid": {
+    "pid": {
       "type": "string",
       "title": "The persistent identifier of this Internal Location"
+    },
+    "pid_type": {
+      "type": "string",
+      "title": "PID type"
     },
     "location_pid": {
       "type": "string",

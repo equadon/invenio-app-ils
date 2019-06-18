@@ -7,6 +7,12 @@
         "$schema": {
           "type": "keyword"
         },
+        "pid": {
+          "type": "keyword"
+        },
+        "pid_type": {
+          "type": "keyword"
+        },
         "name": {
           "type": "keyword"
         },

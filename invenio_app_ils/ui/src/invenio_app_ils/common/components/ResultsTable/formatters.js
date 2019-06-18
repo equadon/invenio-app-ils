@@ -5,7 +5,7 @@ import { RelationTypes } from '../ESSelector/ESRelatedSelector';
 
 function formatLoanToTableView(loan) {
   return {
-    ID: loan.loan_pid ? loan.loan_pid : loan.id,
+    ID: loan.pid ? loan.pid : loan.id,
     Created: toShortDateTime(fromISO(loan.created)),
     Updated: toShortDateTime(fromISO(loan.updated)),
     'Patron ID': loan.metadata.patron_pid,
@@ -26,7 +26,7 @@ function formatLoanToTableView(loan) {
 
 function formatDocumentToTableView(document, seriesPid = null) {
   let serialized = {
-    ID: document.document_pid ? document.document_pid : document.id,
+    ID: document.pid ? document.pid : document.id,
     Created: toShortDate(fromISO(document.created)),
     Updated: toShortDate(fromISO(document.updated)),
   };
@@ -50,7 +50,7 @@ function formatDocumentToTableView(document, seriesPid = null) {
 
 function formatItemToTableView(item) {
   return {
-    ID: item.item_pid ? item.item_pid : item.id,
+    ID: item.pid ? item.pid : item.id,
     Created: toShortDate(fromISO(item.created)),
     Updated: toShortDate(fromISO(item.updated)),
     Barcode: item.metadata.barcode,
@@ -72,7 +72,7 @@ function formatItemToTableView(item) {
 
 function formatEItemToTableView(eitem) {
   return {
-    ID: eitem.eitem_pid ? eitem.eitem_pid : eitem.id,
+    ID: eitem.pid ? eitem.pid : eitem.id,
     'Document ID': eitem.metadata.document_pid,
     'Open access': eitem.metadata.open_access ? 'Yes' : 'No',
     Created: toShortDate(fromISO(eitem.created)),
@@ -84,7 +84,7 @@ function formatEItemToTableView(eitem) {
 
 function formatLocationToTableView(location) {
   return {
-    ID: location.location_pid ? location.location_pid : location.id,
+    ID: location.pid ? location.pid : location.id,
     Created: toShortDate(fromISO(location.created)),
     Updated: toShortDate(fromISO(location.updated)),
     Link: location.links.self,
@@ -107,7 +107,7 @@ function formatInternalLocationToTableView(internalLoc) {
       'Physical location': internalLoc.metadata.physical_location,
       'Location e-mail': internalLoc.metadata.location.email,
       'Location name': internalLoc.metadata.location.name,
-      'Location id': internalLoc.metadata.location.location_pid,
+      'Location id': internalLoc.metadata.location.pid,
     });
   }
   return entry;
@@ -115,7 +115,7 @@ function formatInternalLocationToTableView(internalLoc) {
 
 function formatSeriesToTableView(series) {
   let serialized = {
-    ID: series.series_pid ? series.series_pid : series.id,
+    ID: series.pid ? series.pid : series.id,
     Created: toShortDate(fromISO(series.created)),
     Updated: toShortDate(fromISO(series.updated)),
   };

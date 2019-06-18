@@ -36,7 +36,7 @@ export default class DocumentMetadata extends Component {
     );
 
   requestLoan = () => {
-    const documentPid = this.document.document_pid;
+    const documentPid = this.document.pid;
     this.props.requestLoanForDocument(documentPid);
   };
 
@@ -75,7 +75,7 @@ export default class DocumentMetadata extends Component {
               <List.Item
                 as="a"
                 key={`Key${index}`}
-                onClick={this.goToSeriesList(serie.series_pid)}
+                onClick={this.goToSeriesList(serie.pid)}
               >
                 {serie.title}
               </List.Item>
@@ -99,7 +99,7 @@ export default class DocumentMetadata extends Component {
               <List.Item
                 as="a"
                 key={`Key${index}`}
-                onClick={this.goToSeriesList(serie.series_pid)}
+                onClick={this.goToSeriesList(serie.pid)}
               >
                 {serie.title}
               </List.Item>

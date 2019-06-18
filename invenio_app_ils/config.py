@@ -935,7 +935,7 @@ RECORDS_EDITOR_UI_CONFIG = {
                 ],
                 "properties": {
                     "$schema": {"hidden": True},
-                    "item_pid": {"hidden": True},
+                    "pid": {"hidden": True},
                     "document": {"hidden": True},
                     "internal_location": {"hidden": True},
                     "circulation_status": {"hidden": True},
@@ -953,7 +953,7 @@ RECORDS_EDITOR_UI_CONFIG = {
                 "alwaysShow": ["title", "abstracts", "authors", "series_objs"],
                 "properties": {
                     "$schema": {"hidden": True},
-                    "document_pid": {"hidden": True},
+                    "pid": {"hidden": True},
                     "circulation": {"hidden": True},
                     "keywords": {"hidden": True},
                     "series": {"hidden": True},
@@ -977,7 +977,7 @@ RECORDS_EDITOR_UI_CONFIG = {
                 ],
                 "properties": {
                     "$schema": {"hidden": True},
-                    "location_pid": {"hidden": True}
+                    "pid": {"hidden": True}
                 },
             },
         },
@@ -998,7 +998,7 @@ RECORDS_EDITOR_UI_CONFIG = {
                 ],
                 "properties": {
                     "$schema": {"hidden": True},
-                    "internal_location_pid": {"hidden": True},
+                    "pid": {"hidden": True},
                     "location": {"hidden": True},
                 },
             },
@@ -1019,7 +1019,7 @@ RECORDS_EDITOR_UI_CONFIG = {
                 ],
                 "properties": {
                     "$schema": {"hidden": True},
-                    "series_pid": {"hidden": True},
+                    "pid": {"hidden": True},
                     "keywords": {"hidden": True},
                 },
             },
@@ -1041,7 +1041,7 @@ RECORDS_EDITOR_UI_CONFIG = {
                 ],
                 "properties": {
                     "$schema": {"hidden": True},
-                    "eitem_pid": {"hidden": True},
+                    "pid": {"hidden": True},
                     "document": {"hidden": True},
                 },
             },

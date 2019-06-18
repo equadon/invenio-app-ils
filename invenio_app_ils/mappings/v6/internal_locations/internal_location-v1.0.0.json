@@ -7,7 +7,10 @@
         "$schema": {
           "type": "keyword"
         },
-        "internal_location_pid": {
+        "pid": {
+          "type": "keyword"
+        },
+        "pid_type": {
           "type": "keyword"
         },
         "location": {

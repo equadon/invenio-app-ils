@@ -34,7 +34,6 @@ exports[`DocumentItems tests should render item 1`] = `
         Object {
           "ID": "1",
           "created": "2018-01-01T10:05:00.000Z",
-          "item_pid": "item1",
           "metadata": Object {
             "barcode": "44444",
             "document_pid": "doc1",
@@ -43,15 +42,15 @@ exports[`DocumentItems tests should render item 1`] = `
                 "name": "Somewhere",
               },
             },
-            "item_pid": "item1",
+            "pid": "item1",
             "shelf": "P",
           },
+          "pid": "item1",
           "updated": "2018-01-01T10:05:00.000Z",
         },
         Object {
           "created": "2018-01-01T10:05:00.000Z",
           "id": "2",
-          "item_pid": "item2",
           "metadata": Object {
             "barcode": "44444",
             "document_pid": "doc2",
@@ -60,9 +59,10 @@ exports[`DocumentItems tests should render item 1`] = `
                 "name": "Somewhere",
               },
             },
-            "item_pid": "item2",
+            "pid": "item2",
             "shelf": "P",
           },
+          "pid": "item2",
           "updated": "2018-01-01T10:05:00.000Z",
         },
       ],
@@ -71,10 +71,10 @@ exports[`DocumentItems tests should render item 1`] = `
   }
   document={
     Object {
-      "document_pid": 111,
       "metadata": Object {
-        "document_pid": 111,
+        "pid": 111,
       },
+      "pid": 111,
     }
   }
   fetchDocumentItems={[Function]}
@@ -628,10 +628,10 @@ exports[`DocumentItems tests should render show a message with no items 1`] = `
   }
   document={
     Object {
-      "document_pid": 111,
       "metadata": Object {
-        "document_pid": 111,
+        "pid": 111,
       },
+      "pid": 111,
     }
   }
   fetchDocumentItems={[Function]}
@@ -745,7 +745,7 @@ exports[`DocumentItems tests should render the see all button when showing only 
                 "name": "Somewhere",
               },
             },
-            "item_pid": "item1",
+            "pid": "item1",
             "shelf": "P",
           },
           "updated": "2018-01-01T10:05:00.000Z",
@@ -761,7 +761,7 @@ exports[`DocumentItems tests should render the see all button when showing only 
                 "name": "Somewhere",
               },
             },
-            "item_pid": "item2",
+            "pid": "item2",
             "shelf": "P",
           },
           "updated": "2018-01-01T10:05:00.000Z",
@@ -772,10 +772,10 @@ exports[`DocumentItems tests should render the see all button when showing only 
   }
   document={
     Object {
-      "document_pid": 111,
       "metadata": Object {
-        "document_pid": 111,
+        "pid": 111,
       },
+      "pid": 111,
     }
   }
   fetchDocumentItems={[Function]}

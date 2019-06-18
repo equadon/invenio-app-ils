@@ -7,6 +7,12 @@
         "$schema": {
           "type": "keyword"
         },
+        "pid": {
+          "type": "keyword"
+        },
+        "pid_type": {
+          "type": "keyword"
+        },
         "title": {
           "type": "keyword"
         },
@@ -28,7 +34,7 @@
         "keywords": {
           "type": "object",
           "properties": {
-            "keyword_pid": {
+            "pid": {
               "type": "keyword"
             },
             "name": {
@@ -42,7 +48,7 @@
         "series": {
           "type": "object",
           "properties": {
-            "series_pid": {
+            "pid": {
               "type": "keyword"
             },
             "issn": {
@@ -87,7 +93,7 @@
             "eitems": {
               "type": "object",
               "properties": {
-                "eitem_pid": {
+                "pid": {
                   "type": "keyword"
                 },
                 "description": {

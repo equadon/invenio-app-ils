@@ -37,11 +37,15 @@ from ..pidstore.pids import (  # isort:skip
     INTERNAL_LOCATION_PID_TYPE,
     KEYWORD_PID_TYPE,
     SERIES_PID_TYPE,
+    PATRON_PID_TYPE,
 )
 
 
 class IlsRecord(Record):
     """Ils record class."""
+
+    pid_field = "pid"
+    foreign_pid_field = None
 
     @property
     def pid(self):
@@ -76,6 +80,7 @@ class IlsRecord(Record):
     def create(cls, data, id_=None, **kwargs):
         """Create Document record."""
         data["$schema"] = current_jsonschemas.path_to_url(cls._schema)
+        data["pid_type"] = cls._pid_type
         getattr(cls, 'validate_create', lambda x: x)(data)
         return super(IlsRecord, cls).create(data, id_=id_, **kwargs)
 
@@ -123,7 +128,8 @@ class IlsRecordWithRelations(IlsRecord):
 class Document(IlsRecordWithRelations):
     """Document record class."""
 
-    pid_field = "document_pid"
+    pid_field = "pid"
+    foreign_pid_field = "document_pid"
     _pid_type = DOCUMENT_PID_TYPE
     _schema = "documents/document-v1.0.0.json"
     _circulation_resolver_path = (
@@ -210,20 +216,20 @@ class Document(IlsRecordWithRelations):
 
     def add_keyword(self, keyword):
         """Add a new keyword to the document."""
-        if keyword["keyword_pid"] not in self["keyword_pids"]:
-            self["keyword_pids"].append(keyword["keyword_pid"])
+        if keyword["pid"] not in self["keyword_pids"]:
+            self["keyword_pids"].append(keyword["pid"])
 
     def remove_keyword(self, keyword):
         """Remove a keyword from the document.
 
         :returns: True if keyword was removed
         """
-        if keyword["keyword_pid"] not in self["keyword_pids"]:
+        if keyword["pid"] not in self["keyword_pids"]:
             raise DocumentKeywordNotFoundError(
-                self["document_pid"], keyword["keyword_pid"]
+                self["pid"], keyword["pid"]
             )
 
-        self["keyword_pids"].remove(keyword["keyword_pid"])
+        self["keyword_pids"].remove(keyword["pid"])
         return True
 
 
@@ -234,13 +240,14 @@ class _Item(IlsRecord):
     def get_document_pid(cls, item_pid):
         """Retrieve the referenced document PID of the given item PID."""
         item = cls.get_record_by_pid(item_pid)
-        return item.get(Document.pid_field)
+        return item.get(Document.foreign_pid_field)
 
 
 class Item(_Item):
     """Item record class."""
 
-    pid_field = "item_pid"
+    pid_field = "pid"
+    foreign_pid_field = "item_pid"
     _pid_type = ITEM_PID_TYPE
     _schema = "items/item-v1.0.0.json"
     _loan_resolver_path = (
@@ -314,7 +321,7 @@ class Item(_Item):
         if loan_search_res.count():
             raise RecordHasReferencesError(
                 record_type='Item',
-                record_id=self[Item.pid_field],
+                record_id=self[Item.foreign_pid_field],
                 ref_type='Loan',
                 ref_ids=sorted([res[Loan.pid_field]
                                 for res in loan_search_res.scan()])
@@ -325,7 +332,7 @@ class Item(_Item):
 class EItem(_Item):
     """EItem record class."""
 
-    pid_field = "eitem_pid"
+    pid_field = "pid"
     _pid_type = EITEM_PID_TYPE
     _schema = "eitems/eitem-v1.0.0.json"
     _document_resolver_path = (
@@ -348,7 +355,8 @@ class EItem(_Item):
 class Location(IlsRecord):
     """Location record class."""
 
-    pid_field = "location_pid"
+    pid_field = "pid"
+    foreign_pid_field = "location_pid"
     _pid_type = LOCATION_PID_TYPE
     _schema = "locations/location-v1.0.0.json"
 
@@ -381,7 +389,8 @@ class Location(IlsRecord):
 class InternalLocation(IlsRecord):
     """Internal Location record class."""
 
-    pid_field = "internal_location_pid"
+    pid_field = "pid"
+    foreign_pid_field = "internal_location_pid"
     _pid_type = INTERNAL_LOCATION_PID_TYPE
     _schema = "internal_locations/internal_location-v1.0.0.json"
     _location_resolver_path = (
@@ -422,7 +431,8 @@ class InternalLocation(IlsRecord):
 class Keyword(IlsRecord):
     """Keyword record class."""
 
-    pid_field = "keyword_pid"
+    pid_field = "pid"
+    foreign_pid_field = "keyword_pid"
     _pid_type = KEYWORD_PID_TYPE
     _schema = "keywords/keyword-v1.0.0.json"
 
@@ -453,6 +463,7 @@ class Patron:
 
     _index = "patrons-patron-v1.0.0"
     _doc_type = "patron-v1.0.0"
+    _pid_type = PATRON_PID_TYPE
 
     def __init__(self, id, revision_id=None):
         """Create a `Patron` instance.
@@ -471,6 +482,7 @@ class Patron:
         """Return python representation of Patron meatadata."""
         return dict(
             id=self.id,
+            pid_type=self._pid_type,
             name=self.profile.full_name if self.profile else "",
             email=self.user.email,
         )
@@ -479,7 +491,8 @@ class Patron:
 class Series(IlsRecordWithRelations):
     """Series record class."""
 
-    pid_field = "series_pid"
+    pid_field = "pid"
+    foreign_pid_field = "series_pid"
     _pid_type = SERIES_PID_TYPE
     _schema = "series/series-v1.0.0.json"
 

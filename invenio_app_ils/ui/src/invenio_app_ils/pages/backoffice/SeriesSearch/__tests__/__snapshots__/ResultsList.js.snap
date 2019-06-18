@@ -19,10 +19,10 @@ exports[`SeriesSearch ResultsList tests should render a list of results 1`] = `
           "authors": Array [
             "Author1",
           ],
-          "series_pid": "3",
+          "pid": "3",
           "title": "This is a title",
         },
-        "series_pid": "3",
+        "pid": "3",
         "updated": "2018-01-01T10:05:00.000Z",
       },
     ]

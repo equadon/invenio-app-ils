@@ -7,7 +7,10 @@
         "$schema": {
           "type": "keyword"
         },
-        "location_pid": {
+        "pid": {
+          "type": "keyword"
+        },
+        "pid_type": {
           "type": "keyword"
         },
         "legacy_id": {

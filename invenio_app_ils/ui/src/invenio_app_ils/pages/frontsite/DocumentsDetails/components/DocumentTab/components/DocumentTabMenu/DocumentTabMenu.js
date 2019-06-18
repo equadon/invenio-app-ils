@@ -18,7 +18,7 @@ export default class DocumentTabMenu extends Component {
         render: () => (
           <Tab.Pane>
             {documentData.keywords.map(keyword => (
-              <p key={keyword.keyword_pid}>{keyword.name}</p>
+              <p key={keyword.pid}>{keyword.name}</p>
             ))}
           </Tab.Pane>
         ),

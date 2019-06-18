@@ -85,12 +85,12 @@ def test_patron_has_loan_on_item(app):
 def test_document_keyword_not_found_error(app):
     """Test DocumentKeywordNotFoundError."""
     document_pid = "1"
-    keyword_pid = "2"
+    pid = "2"
     msg = "Document PID '{}' has no keyword with PID '{}'"
     with pytest.raises(DocumentKeywordNotFoundError) as ex:
-        raise DocumentKeywordNotFoundError(document_pid, keyword_pid)
+        raise DocumentKeywordNotFoundError(document_pid, pid)
     assert ex.value.code == DocumentKeywordNotFoundError.code
-    assert ex.value.description == msg.format(document_pid, keyword_pid)
+    assert ex.value.description == msg.format(document_pid, pid)
 
 
 def test_record_has_references_error(app):

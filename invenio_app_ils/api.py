@@ -20,7 +20,7 @@ def get_item_pids_by_document_pid(document_pid):
     """Retrieve Items PIDs given a Document PID."""
     search = ItemSearch().search_by_document_pid(document_pid)
     for item in search.scan():
-        yield item["item_pid"]
+        yield item["pid"]
 
 
 def can_item_circulate(item_pid):

@@ -43,7 +43,7 @@ from invenio_app_ils.pidstore.pids import (  # isort:skip
 def item_record(app):
     """Fixture to return an Item payload."""
     return {
-        "item_pid": "itemid-1",
+        "pid": "itemid-1",
         "document_pid": "docid-1",
         "document": {"$ref": document_ref_builder(app, "itemid-1")},
         "barcode": "123456789-1",
@@ -204,15 +204,15 @@ def related_record(testdata):
     docs = testdata["documents"]
     series = testdata["series"]
 
-    doc1 = Document.get_record_by_pid(docs[0]["document_pid"])
-    doc2 = Document.get_record_by_pid(docs[1]["document_pid"])
-    doc3 = Document.get_record_by_pid(docs[2]["document_pid"])
-    doc4 = Document.get_record_by_pid(docs[3]["document_pid"])
-    ser5 = Series.get_record_by_pid(series[0]["series_pid"])
-    doc6 = Document.get_record_by_pid(docs[4]["document_pid"])
-    doc7 = Document.get_record_by_pid(docs[5]["document_pid"])
-    doc8 = Document.get_record_by_pid(docs[6]["document_pid"])
-    doc9 = Document.get_record_by_pid(docs[7]["document_pid"])
+    doc1 = Document.get_record_by_pid(docs[0]["pid"])
+    doc2 = Document.get_record_by_pid(docs[1]["pid"])
+    doc3 = Document.get_record_by_pid(docs[2]["pid"])
+    doc4 = Document.get_record_by_pid(docs[3]["pid"])
+    ser5 = Series.get_record_by_pid(series[0]["pid"])
+    doc6 = Document.get_record_by_pid(docs[4]["pid"])
+    doc7 = Document.get_record_by_pid(docs[5]["pid"])
+    doc8 = Document.get_record_by_pid(docs[6]["pid"])
+    doc9 = Document.get_record_by_pid(docs[7]["pid"])
 
     doc1.related.add_edition(doc2)
     doc1.related.add_edition(doc3)

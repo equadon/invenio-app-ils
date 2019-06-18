@@ -15,12 +15,12 @@ describe('SeriesSearch ResultsList tests', () => {
       id: 3,
       created: stringDate,
       updated: stringDate,
-      series_pid: '3',
+      pid: '3',
       metadata: {
         authors: ['Author1'],
         title: 'This is a title',
         abstracts: 'This is an abstract',
-        series_pid: '3',
+        pid: '3',
       },
     },
   ];
@@ -46,7 +46,7 @@ describe('SeriesSearch ResultsList tests', () => {
     const resultRows = component
       .find('TableRow')
       .filterWhere(
-        element => element.prop('data-test') === firstResult.metadata.series_pid
+        element => element.prop('data-test') === firstResult.metadata.pid
       );
     expect(resultRows).toHaveLength(1);
 
@@ -54,8 +54,7 @@ describe('SeriesSearch ResultsList tests', () => {
       .find('TableCell')
       .filterWhere(
         element =>
-          element.prop('data-test') ===
-          'Title-' + firstResult.metadata.series_pid
+          element.prop('data-test') === 'Title-' + firstResult.metadata.pid
       );
     expect(mappedStatusElements).toHaveLength(1);
 
@@ -70,7 +69,7 @@ describe('SeriesSearch ResultsList tests', () => {
         viewDetailsClickHandler={mockedClickHandler}
       />
     );
-    const firstId = results[0].series_pid;
+    const firstId = results[0].pid;
     const button = component
       .find('TableRow')
       .filterWhere(element => element.prop('data-test') === firstId)

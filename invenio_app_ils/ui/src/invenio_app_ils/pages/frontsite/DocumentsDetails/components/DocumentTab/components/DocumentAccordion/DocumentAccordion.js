@@ -39,7 +39,7 @@ export default class DocumentAccordion extends Component {
         </Accordion.Title>
         <Accordion.Content active={activeIndex === 1}>
           {documentData.keywords.map(keyword => (
-            <p key={keyword.keyword_pid}>{keyword.name}</p>
+            <p key={keyword.pid}>{keyword.name}</p>
           ))}
         </Accordion.Content>
 
