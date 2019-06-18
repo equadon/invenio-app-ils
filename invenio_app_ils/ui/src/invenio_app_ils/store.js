@@ -47,6 +47,7 @@ import {
   mostRecentDocumentsReducer,
 } from './pages/frontsite/Home/reducer';
 import { documentsDetailsReducer } from './pages/frontsite/DocumentsDetails/reducer';
+import relatedRecordsReducer from './common/components/RelatedRecords/state/reducer';
 
 const rootReducer = combineReducers({
   deleteRecordModal: deleteRecordModalReducer,
@@ -79,6 +80,7 @@ const rootReducer = combineReducers({
   esSelector: esSelectorReducer,
   seriesDetails: seriesDetailsReducer,
   seriesDocuments: seriesDocumentsReducer,
+  relatedRecords: relatedRecordsReducer,
 });
 
 const composeEnhancers = composeWithDevTools({
