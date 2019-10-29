@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Field, getIn } from 'formik';
+import { FastField, Field, getIn } from 'formik';
 import { Form } from 'semantic-ui-react';
 
 export class SelectField extends Component {
   constructor(props) {
     super(props);
 
-    const { fieldPath, label, multiple, ...uiProps } = props;
+    const { fieldPath, label, multiple, optimized, ...uiProps } = props;
     this.fieldPath = fieldPath;
     this.label = label;
     this.multiple = multiple;
+    this.optimized = optimized;
     this.uiProps = uiProps;
   }
 
@@ -28,6 +29,7 @@ export class SelectField extends Component {
     const {
       form: { values, setFieldValue, handleBlur, errors },
     } = props;
+    const defaultValue = getIn(this.props, 'options.0.value', '');
     return (
       <Form.Dropdown
         fluid
@@ -40,7 +42,7 @@ export class SelectField extends Component {
           setFieldValue(this.fieldPath, data.value);
         }}
         onBlur={handleBlur}
-        value={getIn(values, this.fieldPath, this.multiple ? [] : '')}
+        value={getIn(values, this.fieldPath, this.multiple ? [] : defaultValue)}
         error={this.renderError(errors, this.fieldPath)}
         {...this.uiProps}
       />
@@ -48,8 +50,12 @@ export class SelectField extends Component {
   };
 
   render() {
+    const FormikField = this.props.optimized ? FastField : Field;
     return (
-      <Field name={this.props.fieldPath} component={this.renderFormField} />
+      <FormikField
+        name={this.props.fieldPath}
+        component={this.renderFormField}
+      />
     );
   }
 }
@@ -57,8 +63,10 @@ export class SelectField extends Component {
 SelectField.propTypes = {
   fieldPath: PropTypes.string.isRequired,
   multiple: PropTypes.bool,
+  optimized: PropTypes.bool,
 };
 
 SelectField.defaultProps = {
   multiple: false,
+  optimized: true,
 };

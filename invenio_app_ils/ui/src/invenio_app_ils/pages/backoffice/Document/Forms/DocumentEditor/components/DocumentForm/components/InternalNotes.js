@@ -2,16 +2,18 @@ import React, { Component } from 'react';
 import {
   AccordionField,
   ArrayField,
+  StringField,
   TextField,
   GroupField,
   DeleteActionButton,
 } from '../../../../../../../../forms';
 
-export class AlternativeAbstracts extends Component {
+export class InternalNotes extends Component {
   renderFormField({ arrayPath, indexPath, ...arrayHelpers }) {
     return (
       <GroupField
         basic
+        border
         action={
           <DeleteActionButton
             onClick={() => arrayHelpers.remove(indexPath)}
@@ -19,10 +21,21 @@ export class AlternativeAbstracts extends Component {
         }
       >
         <TextField
-          label="Abstract"
-          fieldPath={`${arrayPath}.${indexPath}`}
-          width={14}
+          required
+          label="Note"
+          fieldPath={`${arrayPath}.${indexPath}.value`}
+          rows={5}
         />
+        <GroupField widths="equal">
+          <StringField
+            label="Refers to field"
+            fieldPath={`${arrayPath}.${indexPath}.field`}
+          />
+          <StringField
+            label="Created by"
+            fieldPath={`${arrayPath}.${indexPath}.user`}
+          />
+        </GroupField>
       </GroupField>
     );
   }
@@ -30,14 +43,14 @@ export class AlternativeAbstracts extends Component {
   render() {
     return (
       <AccordionField
-        label="Alternative abstracts"
-        fieldPath="alternative_abstracts"
+        label="Internal notes"
+        fieldPath="internal_notes"
         content={(
           <ArrayField
-            fieldPath="alternative_abstracts"
+            fieldPath="internal_notes"
             defaultNewValue=""
             renderArrayItem={this.renderFormField}
-            addButtonLabel="Add new abstract"
+            addButtonLabel="Add new note"
           />
         )}
       />

@@ -2,15 +2,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { getIn } from 'formik';
-import { Form } from 'semantic-ui-react';
 import pick from 'lodash/pick';
-import IsoLanguages from 'iso-639-1';
 import {
   ArrayField,
   BaseForm,
   SelectField,
   StringField,
   TextField,
+  LanguagesField,
+  GroupField,
+  DeleteActionButton,
 } from '../../../../../../../forms';
 import { series as seriesApi } from '../../../../../../../common/api/series/series';
 import { BackOfficeRoutes } from '../../../../../../../routes/urls';
@@ -23,8 +24,8 @@ export class SeriesForm extends Component {
     this.successSubmitMessage = props.successSubmitMessage;
     this.title = props.title;
     this.pid = props.pid;
-    this.languageCodes = this.getLanguageCodes();
   }
+
   prepareData = data => {
     return pick(data, [
       'title',
@@ -51,28 +52,19 @@ export class SeriesForm extends Component {
     );
   };
 
-  getLanguageCodes = () => {
-    return IsoLanguages.getAllCodes().map((code, index) => ({
-      text: code,
-      value: code,
-    }));
-  };
-
   renderAuthorsField = ({ arrayPath, indexPath, ...arrayHelpers }) => {
     return (
-      <StringField
-        fieldPath={`${arrayPath}.${indexPath}`}
-        action={
-          <Form.Button
-            color="red"
-            icon="trash"
-            type="button"
-            onClick={() => {
-              arrayHelpers.remove(indexPath);
-            }}
-          ></Form.Button>
-        }
-      />
+      <GroupField basic>
+        <StringField
+          fieldPath={`${arrayPath}.${indexPath}`}
+          action={
+            <DeleteActionButton
+              icon="trash"
+              onClick={() => arrayHelpers.remove(indexPath) }
+            />
+          }
+        />
+      </GroupField>
     );
   };
 
@@ -114,15 +106,9 @@ export class SeriesForm extends Component {
           label="Authors"
           defaultNewValue=""
           renderArrayItem={this.renderAuthorsField}
+          addButtonLabel="Add new author"
         />
-        <SelectField
-          multiple
-          search
-          label="Languages"
-          fieldPath="languages"
-          options={this.languageCodes}
-          upward={false}
-        />
+        <LanguagesField multiple fieldPath="languages" />
         <StringField label="Edition" fieldPath="edition" />
         <StringField label="ISSN" fieldPath="issn" />
       </BaseForm>

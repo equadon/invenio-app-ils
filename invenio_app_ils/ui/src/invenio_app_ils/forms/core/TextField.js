@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Field, getIn } from 'formik';
+import { FastField, Field, getIn } from 'formik';
 import { Form } from 'semantic-ui-react';
 
-export class BooleanField extends Component {
+export class TextField extends Component {
   constructor(props) {
     super(props);
 
-    const { fieldPath, label, ...uiProps } = props;
+    const { fieldPath, optimized, ...uiProps } = props;
     this.fieldPath = fieldPath;
-    this.label = label;
+    this.optimized = optimized;
     this.uiProps = uiProps;
   }
 
-  renderError(errors, name, direction = 'left') {
+  renderError(errors, name, direction = 'above') {
     const error = errors[name];
     return error
       ? {
@@ -28,32 +28,33 @@ export class BooleanField extends Component {
       form: { values, handleChange, handleBlur, errors },
     } = props;
     return (
-      <Form.Group inline>
-        <label>{this.label}</label>
-        <Form.Checkbox
+      <Form.Field>
+        <Form.TextArea
           id={this.fieldPath}
           name={this.fieldPath}
           onChange={handleChange}
           onBlur={handleBlur}
-          checked={getIn(values, this.fieldPath, '') || false}
+          value={getIn(values, this.fieldPath, '')}
           error={this.renderError(errors, this.fieldPath)}
           {...this.uiProps}
-        ></Form.Checkbox>
-      </Form.Group>
+        ></Form.TextArea>
+      </Form.Field>
     );
   };
+
   render() {
+    const FormikField = this.props.optimized ? FastField : Field;
     return (
-      <Field name={this.fieldPath} component={this.renderFormField}></Field>
+      <FormikField name={this.fieldPath} component={this.renderFormField} />
     );
   }
 }
 
-BooleanField.propTypes = {
+TextField.propTypes = {
   fieldPath: PropTypes.string.isRequired,
-  label: PropTypes.string,
+  optimized: PropTypes.bool,
 };
 
-BooleanField.defaultProps = {
-  label: '',
+TextField.defaultProps = {
+  optimized: true,
 };

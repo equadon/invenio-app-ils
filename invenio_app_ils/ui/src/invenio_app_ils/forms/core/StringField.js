@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Field, getIn } from 'formik';
+import { FastField, Field, getIn } from 'formik';
 import { Form } from 'semantic-ui-react';
 
 export class StringField extends Component {
   constructor(props) {
     super(props);
-
-    const { fieldPath, inline, ...uiProps } = props;
+    const { fieldPath, inline, optimized, ...uiProps } = props;
     this.fieldPath = fieldPath;
     this.inline = inline;
+    this.optimized = optimized;
     this.uiProps = uiProps;
   }
 
@@ -25,31 +25,29 @@ export class StringField extends Component {
 
   renderFormField = props => {
     const {
-      form: { values, handleChange, handleBlur, errors },
+      form: { values, handleChange, handleBlur, errors, status },
     } = props;
 
     return (
       <Form.Field inline={this.inline}>
         <Form.Input
-          required={this.required}
+          fluid
           id={this.fieldPath}
           name={this.fieldPath}
           onChange={handleChange}
           onBlur={handleBlur}
-          label={this.label}
-          placeholder={this.placeholder}
           value={getIn(values, this.fieldPath, '')}
-          error={this.renderError(errors, this.fieldPath)}
-          fluid
+          error={this.renderError(status || errors, this.fieldPath)}
           {...this.uiProps}
-        ></Form.Input>
+        />
       </Form.Field>
     );
   };
 
   render() {
+    const FormikField = this.props.optimized ? FastField : Field;
     return (
-      <Field name={this.fieldPath} component={this.renderFormField}></Field>
+      <FormikField name={this.fieldPath} component={this.renderFormField} />
     );
   }
 }
@@ -57,8 +55,10 @@ export class StringField extends Component {
 StringField.propTypes = {
   fieldPath: PropTypes.string.isRequired,
   inline: PropTypes.bool,
+  optimized: PropTypes.bool,
 };
 
 StringField.defaultProps = {
   inline: false,
+  optimized: true,
 };

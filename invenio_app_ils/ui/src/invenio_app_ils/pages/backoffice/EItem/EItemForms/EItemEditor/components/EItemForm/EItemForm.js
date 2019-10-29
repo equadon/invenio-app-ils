@@ -7,6 +7,7 @@ import {
   BooleanField,
   TextField,
   SelectorField,
+  UrlsField,
 } from '../../../../../../../forms';
 import { eitem as eitemApi } from '../../../../../../../common/api/eitems/eitem';
 import { BackOfficeRoutes } from '../../../../../../../routes/urls';
@@ -14,12 +15,11 @@ import { goTo } from '../../../../../../../history';
 import eitemSubmitSerializer from './eitemSubmitSerializer';
 import { document as documentApi } from '../../../../../../../common/api';
 import { serializeDocument } from '../../../../../../../common/components/ESSelector/serializer';
-import { UrlsField } from './components';
 
 export class EItemForm extends Component {
   constructor(props) {
     super(props);
-    this.formInitialData = props.data;
+    this.data = props.data;
     this.successSubmitMessage = props.successSubmitMessage;
     this.title = props.title;
     this.pid = props.pid;
@@ -55,8 +55,8 @@ export class EItemForm extends Component {
     return (
       <BaseForm
         initialValues={
-          this.formInitialData
-            ? this.prepareData(this.formInitialData.metadata)
+          this.data
+            ? this.prepareData(this.data.metadata)
             : {}
         }
         editApiMethod={this.update}
@@ -88,7 +88,7 @@ export class EItemForm extends Component {
 }
 
 EItemForm.propTypes = {
-  formInitialData: PropTypes.object,
+  data: PropTypes.object,
   successSubmitMessage: PropTypes.string,
   title: PropTypes.string,
   pid: PropTypes.string,

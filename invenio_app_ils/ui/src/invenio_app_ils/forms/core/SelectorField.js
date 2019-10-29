@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Field } from 'formik';
+import { FastField, Field } from 'formik';
 import { Form, Card, Icon, Label } from 'semantic-ui-react';
 import { ESSelector } from '../../common/components/ESSelector';
 import isEmpty from 'lodash/isEmpty';
@@ -17,6 +17,8 @@ export class SelectorField extends Component {
       label,
       required,
       multiple,
+      optimized,
+      placeholder,
       serializer,
       renderGroup,
       renderSelection,
@@ -29,9 +31,11 @@ export class SelectorField extends Component {
     this.label = label;
     this.required = required;
     this.multiple = multiple;
+    this.optimized = optimized;
     this.renderGroup = renderGroup || this.defaultRenderGroup;
     this.renderSelection = renderSelection || this.defaultRenderSelection;
     this.serializer = serializer;
+    this.placeholder = placeholder;
     this.selectorProps = selectorProps;
 
     this.state = {
@@ -104,6 +108,7 @@ export class SelectorField extends Component {
     }
     const hasFieldError = this.hasFieldError(errors, this.errorPath, value);
     const error = errors[this.errorPath];
+    const placeholder = !this.multiple && selections.length > 0 ? selections[0].title : this.placeholder;
     return (
       <Form.Field required={this.required} error={hasFieldError}>
         {this.label && <label htmlFor={this.fieldPath}>{this.label}</label>}
@@ -123,6 +128,7 @@ export class SelectorField extends Component {
             this.onSelectionsUpdate(selections, setFieldValue)
           }
           serializer={this.serializer}
+          placeholder={placeholder}
           {...this.selectorProps}
         />
       </Form.Field>
@@ -130,8 +136,9 @@ export class SelectorField extends Component {
   };
 
   render() {
+    const FormikField = this.props.optimized ? FastField : Field;
     return (
-      <Field name={this.fieldPath} component={this.renderFormField}></Field>
+      <FormikField name={this.fieldPath} component={this.renderFormField} />
     );
   }
 }
@@ -142,6 +149,7 @@ SelectorField.propTypes = {
   errorPath: PropTypes.string.isRequired,
   fieldPath: PropTypes.string.isRequired,
   label: PropTypes.string,
+  optimized: PropTypes.bool,
   serializer: PropTypes.func.isRequired,
   renderGroup: PropTypes.func,
   renderSelection: PropTypes.func,
@@ -151,4 +159,5 @@ SelectorField.propTypes = {
 SelectorField.defaultProps = {
   emptyHeader: 'Nothing selected',
   emptyDescription: 'Please select a value before saving.',
+  optimized: true,
 };

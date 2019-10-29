@@ -9,6 +9,7 @@ import {
   SelectField,
   GroupField,
   SelectorField,
+  AccordionField,
 } from '../../../../../../../forms';
 import { item as itemApi } from '../../../../../../../common/api/items/item';
 import { BackOfficeRoutes } from '../../../../../../../routes/urls';
@@ -27,7 +28,7 @@ import {
 export class ItemForm extends Component {
   constructor(props) {
     super(props);
-    this.formInitialData = props.data;
+    this.data = props.data;
     this.successSubmitMessage = props.successSubmitMessage;
     this.title = props.title;
     this.pid = props.pid;
@@ -71,8 +72,8 @@ export class ItemForm extends Component {
     return (
       <BaseForm
         initialValues={
-          this.formInitialData
-            ? this.prepareData(this.formInitialData.metadata)
+          this.data
+            ? this.prepareData(this.data.metadata)
             : {}
         }
         editApiMethod={this.update}
@@ -90,6 +91,13 @@ export class ItemForm extends Component {
           label="Circulation restriction"
           fieldPath="circulation_restriction"
           options={this.config.circulationRestrictions}
+        />
+        <SelectField
+          required
+          search
+          label="Status"
+          fieldPath="status"
+          options={this.config.statuses}
         />
         <TextField label="Description" fieldPath="description" rows={5} />
         <SelectorField
@@ -115,44 +123,47 @@ export class ItemForm extends Component {
           serializer={serializeInternalLocation}
         />
         <TextField label="Internal Notes" fieldPath="internal_notes" rows={5} />
-        <GroupField title="ISBN" widths="equal" fieldPath="isbn">
-          <StringField required label="Value" fieldPath="isbn.value" />
-          <TextField
-            label="Description"
-            fieldPath="isbn.description"
-            rows={2}
-          />
-        </GroupField>
-        <StringField label="Legacy ID" fieldPath="legacy_id" />
-        <StringField label="Legacy library ID" fieldPath="legacy_library_id" />
-        <SelectField
-          required
-          search
-          label="Medium"
-          fieldPath="medium"
-          options={this.config.mediums}
+        <AccordionField
+          label="ISBN"
+          fieldPath="isbn"
+          content={(
+            <GroupField border widths="equal" fieldPath="isbn">
+              <StringField required label="Value" fieldPath="isbn.value" />
+              <TextField
+                label="Description"
+                fieldPath="isbn.description"
+                rows={2}
+              />
+            </GroupField>
+          )}
         />
-        <StringField label="Number of pages" fieldPath="number_of_pages" />
+        <GroupField widths="equal">
+          <StringField label="Legacy ID" fieldPath="legacy_id" />
+          <StringField label="Legacy library ID" fieldPath="legacy_library_id" />
+        </GroupField>
+        <GroupField widths="equal">
+          <SelectField
+            required
+            search
+            label="Medium"
+            fieldPath="medium"
+            options={this.config.mediums}
+          />
+          <StringField label="Number of pages" fieldPath="number_of_pages" />
+        </GroupField>
         <TextField
           label="Physical description"
           fieldPath="physical_description"
           rows={3}
         />
         <StringField label="Shelf" fieldPath="shelf" />
-        <SelectField
-          required
-          search
-          label="Status"
-          fieldPath="status"
-          options={this.config.statuses}
-        />
       </BaseForm>
     );
   }
 }
 
 ItemForm.propTypes = {
-  formInitialData: PropTypes.object,
+  data: PropTypes.object,
   successSubmitMessage: PropTypes.string,
   title: PropTypes.string,
   pid: PropTypes.string,
