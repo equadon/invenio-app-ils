@@ -80,9 +80,7 @@ export class ObjectListField extends Component {
   };
 
   render() {
-    return (
-      <Field name={this.fieldPath} component={this.renderFormField} />
-    );
+    return <Field name={this.fieldPath} component={this.renderFormField} />;
   }
 }
 
@@ -90,5 +88,3 @@ ObjectListField.propTypes = {
   fieldPath: PropTypes.string.isRequired,
   renderItem: PropTypes.func.isRequired,
 };
-
-ObjectListField.defaultProps = {};

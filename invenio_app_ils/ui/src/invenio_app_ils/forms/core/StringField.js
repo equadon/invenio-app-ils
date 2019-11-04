@@ -4,15 +4,6 @@ import { FastField, Field, getIn } from 'formik';
 import { Form } from 'semantic-ui-react';
 
 export class StringField extends Component {
-  constructor(props) {
-    super(props);
-    const { fieldPath, inline, optimized, ...uiProps } = props;
-    this.fieldPath = fieldPath;
-    this.inline = inline;
-    this.optimized = optimized;
-    this.uiProps = uiProps;
-  }
-
   renderError(errors, name, direction = 'above') {
     const error = errors[name];
     return error
@@ -24,21 +15,22 @@ export class StringField extends Component {
   }
 
   renderFormField = props => {
+    const { fieldPath, inline, optimized, ...uiProps } = this.props;
     const {
       form: { values, handleChange, handleBlur, errors, status },
     } = props;
 
     return (
-      <Form.Field inline={this.inline}>
+      <Form.Field inline={inline}>
         <Form.Input
           fluid
-          id={this.fieldPath}
-          name={this.fieldPath}
+          id={fieldPath}
+          name={fieldPath}
           onChange={handleChange}
           onBlur={handleBlur}
-          value={getIn(values, this.fieldPath, '')}
-          error={this.renderError(status || errors, this.fieldPath)}
-          {...this.uiProps}
+          value={getIn(values, fieldPath, '')}
+          error={this.renderError(status || errors, fieldPath)}
+          {...uiProps}
         />
       </Form.Field>
     );
@@ -47,7 +39,10 @@ export class StringField extends Component {
   render() {
     const FormikField = this.props.optimized ? FastField : Field;
     return (
-      <FormikField name={this.fieldPath} component={this.renderFormField} />
+      <FormikField
+        name={this.props.fieldPath}
+        component={this.renderFormField}
+      />
     );
   }
 }
