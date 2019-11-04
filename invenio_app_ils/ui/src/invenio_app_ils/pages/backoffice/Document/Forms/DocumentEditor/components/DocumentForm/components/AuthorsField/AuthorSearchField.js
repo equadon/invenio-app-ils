@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Search, Form } from 'semantic-ui-react';
+import { Search, Form, Button } from 'semantic-ui-react';
 import debounce from 'lodash/debounce';
 import escapeRegExp from 'lodash/escapeRegExp';
+import { GroupField } from '../../../../../../../../../forms';
 
 export class AuthorSearchField extends React.Component {
   initialState = {
@@ -56,22 +57,37 @@ export class AuthorSearchField extends React.Component {
     this.search(value);
   };
 
+  onNewAuthor = () => {
+    if (this.props.onResultSelect) {
+      this.props.onResultSelect({
+        index: this.props.authors.length,
+      });
+    }
+  };
+
   render() {
     return (
-      <Form.Field>
-        <label>Authors</label>
-        <Search
-          fluid
-          input={{ icon: 'search', iconPosition: 'left' }}
-          loading={this.state.isLoading}
-          minCharacters={1}
-          results={this.state.results}
-          onFocus={this.onFocus}
-          onResultSelect={this.onResultSelect}
-          onSearchChange={this.onSearchChange}
-          value={this.state.value}
+      <>
+        <Form.Field>
+          <label>Authors</label>
+          <Search
+            fluid
+            input={{ icon: 'search', iconPosition: 'left' }}
+            loading={this.state.isLoading}
+            minCharacters={1}
+            results={this.state.results}
+            onFocus={this.onFocus}
+            onResultSelect={this.onResultSelect}
+            onSearchChange={this.onSearchChange}
+            value={this.state.value}
+          />
+        </Form.Field>
+        <Form.Button
+          type="button"
+          content="New author"
+          onClick={this.onNewAuthor}
         />
-      </Form.Field>
+      </>
     );
   }
 }
