@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Search, Form, Button } from 'semantic-ui-react';
+import { Search, Form } from 'semantic-ui-react';
 import debounce from 'lodash/debounce';
 import escapeRegExp from 'lodash/escapeRegExp';
-import { GroupField } from '../../../../../../../../../forms';
 
 export class AuthorSearchField extends React.Component {
   initialState = {

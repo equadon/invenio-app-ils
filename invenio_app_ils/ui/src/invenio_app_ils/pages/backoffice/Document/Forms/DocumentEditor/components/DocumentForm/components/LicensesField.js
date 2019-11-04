@@ -1,5 +1,11 @@
 import React from 'react';
-import { AccordionField, ArrayField, DeleteActionButton, GroupField, StringField } from '../../../../../../../../forms';
+import {
+  AccordionField,
+  ArrayField,
+  DeleteActionButton,
+  GroupField,
+  StringField,
+} from '../../../../../../../../forms';
 
 export class LicensesField extends React.Component {
   renderLicense = ({ arrayPath, indexPath, ...arrayHelpers }) => {
@@ -14,23 +20,17 @@ export class LicensesField extends React.Component {
         }
       >
         <GroupField widths="equal">
-          <StringField
-            fieldPath={`${objectPath}.funder`}
-            label="Funder"
-          />
+          <StringField fieldPath={`${objectPath}.funder`} label="Funder" />
           <StringField
             fieldPath={`${objectPath}.statement`}
             label="Statement"
           />
-          <StringField
-            fieldPath={`${objectPath}.url`}
-            label="URL"
-          />
+          <StringField fieldPath={`${objectPath}.url`} label="URL" />
         </GroupField>
         <AccordionField
           label="Identifier"
           fieldPath={`${objectPath}.identifier`}
-          content={(
+          content={
             <GroupField widths="equal">
               <StringField
                 required
@@ -42,7 +42,7 @@ export class LicensesField extends React.Component {
                 label="Value"
               />
             </GroupField>
-          )}
+          }
         />
       </GroupField>
     );
@@ -53,7 +53,7 @@ export class LicensesField extends React.Component {
       <AccordionField
         label="Licenses"
         fieldPath="licenses"
-        content={(
+        content={
           <ArrayField
             fieldPath="licenses"
             defaultNewValue={{
@@ -68,7 +68,7 @@ export class LicensesField extends React.Component {
             renderArrayItem={this.renderLicense}
             addButtonLabel="Add license"
           />
-        )}
+        }
       />
     );
   }

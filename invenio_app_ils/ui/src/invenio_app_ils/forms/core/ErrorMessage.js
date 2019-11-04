@@ -10,6 +10,6 @@ export class ErrorMessage extends React.Component {
   };
 
   render() {
-    return <Field name="error-message" component={this.renderFormField} />
+    return <Field name="error-message" component={this.renderFormField} />;
   }
 }

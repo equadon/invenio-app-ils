@@ -56,7 +56,7 @@ export class Copyrights extends Component {
       <AccordionField
         label="Copyrights"
         fieldPath="copyrights"
-        content={(
+        content={
           <ArrayField
             fieldPath="copyrights"
             defaultNewValue={{
@@ -69,7 +69,7 @@ export class Copyrights extends Component {
             renderArrayItem={this.renderFormField}
             addButtonLabel="Add new copyright"
           />
-        )}
+        }
       />
     );
   }

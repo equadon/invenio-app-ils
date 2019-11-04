@@ -15,9 +15,7 @@ export class AlternativeTitles extends Component {
         border
         widths="equal"
         action={
-          <DeleteActionButton
-            onClick={() => arrayHelpers.remove(indexPath)}
-          />
+          <DeleteActionButton onClick={() => arrayHelpers.remove(indexPath)} />
         }
       >
         <StringField
@@ -39,14 +37,14 @@ export class AlternativeTitles extends Component {
       <AccordionField
         label="Alternative titles"
         fieldPath="alternative_titles"
-        content={(
+        content={
           <ArrayField
             fieldPath="alternative_titles"
             defaultNewValue={{ value: '', source: '', language: '' }}
             renderArrayItem={this.renderFormField}
             addButtonLabel="Add new title"
           />
-        )}
+        }
       />
     );
   }

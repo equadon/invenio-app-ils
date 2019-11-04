@@ -16,11 +16,7 @@ export class GroupField extends React.Component {
   renderBasicField = (action, classNames, children) => {
     return (
       <div className={classNames.join(' ')}>
-        {action && (
-          <div className="group-action">
-            {action}
-          </div>
-        )}
+        {action && <div className="group-action">{action}</div>}
         {children}
       </div>
     );
@@ -47,15 +43,8 @@ export class GroupField extends React.Component {
       return this.renderBasicField(action, classNames, children);
     } else {
       return (
-        <Form.Group
-          className={classNames.join(' ')}
-          {...uiProps}
-        >
-          {action && (
-            <div className="group-action">
-              {action}
-            </div>
-          )}
+        <Form.Group className={classNames.join(' ')} {...uiProps}>
+          {action && <div className="group-action">{action}</div>}
           {children}
         </Form.Group>
       );

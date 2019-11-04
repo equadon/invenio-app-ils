@@ -21,7 +21,9 @@ export class BaseForm extends Component {
 
   submitSerializer = values => {
     const { _submitButton, ...rawValues } = values;
-    const serializedValues = this.props.submitSerializer ? this.props.submitSerializer(rawValues) : { ...rawValues };
+    const serializedValues = this.props.submitSerializer
+      ? this.props.submitSerializer(rawValues)
+      : { ...rawValues };
     return [serializedValues, _submitButton];
   };
 
@@ -84,7 +86,8 @@ export class BaseForm extends Component {
             disabled={isSubmitting}
             type="button"
             onClick={(event, button) =>
-              this.submitForm(event, button.name, submitForm, values)}
+              this.submitForm(event, button.name, submitForm, values)
+            }
             {...props}
           />
         ))}
@@ -109,12 +112,16 @@ export class BaseForm extends Component {
           validationSchema={this.validationSchema}
           render={({ isSubmitting, handleSubmit, submitForm, values }) => (
             <Form
-              onSubmit={event => this.submitForm(event, 'submit', submitForm, values)}
+              onSubmit={event =>
+                this.submitForm(event, 'submit', submitForm, values)
+              }
               loading={isSubmitting}
             >
               <ErrorMessage />
               {this.props.children}
-              {buttons ? this.renderButtons(isSubmitting, submitForm, values) : (
+              {buttons ? (
+                this.renderButtons(isSubmitting, submitForm, values)
+              ) : (
                 <Button
                   color="green"
                   disabled={isSubmitting}
@@ -146,5 +153,5 @@ BaseForm.propTypes = {
     PropTypes.shape({
       name: PropTypes.string.isRequired,
     })
-  )
+  ),
 };

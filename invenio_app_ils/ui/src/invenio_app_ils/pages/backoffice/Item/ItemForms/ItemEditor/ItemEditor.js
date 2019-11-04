@@ -11,8 +11,8 @@ export class ItemEditor extends Component {
         metadata: {
           document: doc.metadata,
           document_pid: doc.metadata.pid,
-        }
-      }
+        },
+      };
     } else {
       return null;
     }

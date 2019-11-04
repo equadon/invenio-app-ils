@@ -108,7 +108,10 @@ export class SelectorField extends Component {
     }
     const hasFieldError = this.hasFieldError(errors, this.errorPath, value);
     const error = errors[this.errorPath];
-    const placeholder = !this.multiple && selections.length > 0 ? selections[0].title : this.placeholder;
+    const placeholder =
+      !this.multiple && selections.length > 0
+        ? selections[0].title
+        : this.placeholder;
     return (
       <Form.Field required={this.required} error={hasFieldError}>
         {this.label && <label htmlFor={this.fieldPath}>{this.label}</label>}

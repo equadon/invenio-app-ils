@@ -49,4 +49,4 @@ SubForm.propTypes = {
 SubForm.defaultPrpos = {
   submitButtonText: 'Save',
   removeButtonText: 'Remove',
-}
+};

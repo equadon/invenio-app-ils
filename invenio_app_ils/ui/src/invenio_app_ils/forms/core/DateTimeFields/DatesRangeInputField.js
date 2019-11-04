@@ -1,9 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { CalendarInputField } from './CalendarInputField';
-import {
-  DatesRangeInput,
-} from 'semantic-ui-calendar-react';
+import { DatesRangeInput } from 'semantic-ui-calendar-react';
 
 export class DatesRangeInputField extends React.Component {
   renderFormField = props => {

@@ -15,9 +15,7 @@ export class InternalNotes extends Component {
         basic
         border
         action={
-          <DeleteActionButton
-            onClick={() => arrayHelpers.remove(indexPath)}
-          />
+          <DeleteActionButton onClick={() => arrayHelpers.remove(indexPath)} />
         }
       >
         <TextField
@@ -45,14 +43,14 @@ export class InternalNotes extends Component {
       <AccordionField
         label="Internal notes"
         fieldPath="internal_notes"
-        content={(
+        content={
           <ArrayField
             fieldPath="internal_notes"
             defaultNewValue=""
             renderArrayItem={this.renderFormField}
             addButtonLabel="Add new note"
           />
-        )}
+        }
       />
     );
   }

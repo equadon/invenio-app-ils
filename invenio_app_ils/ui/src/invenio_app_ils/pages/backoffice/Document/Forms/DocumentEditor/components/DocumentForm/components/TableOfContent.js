@@ -29,14 +29,14 @@ export class TableOfContent extends Component {
       <AccordionField
         label="Table of content"
         fieldPath="table_of_content"
-        content={(
+        content={
           <ArrayField
             fieldPath="table_of_content"
             defaultNewValue=""
             renderArrayItem={this.renderFormField}
             addButtonLabel="Add new chapter"
           />
-        )}
+        }
       />
     );
   }

@@ -72,9 +72,7 @@ export class AccordionField extends Component {
   };
 
   render() {
-    return (
-      <Field name={this.fieldPath} component={this.renderAccordion} />
-    );
+    return <Field name={this.fieldPath} component={this.renderAccordion} />;
   }
 }
 

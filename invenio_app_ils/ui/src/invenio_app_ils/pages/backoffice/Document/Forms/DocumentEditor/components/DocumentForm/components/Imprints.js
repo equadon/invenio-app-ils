@@ -47,7 +47,7 @@ export class Imprints extends Component {
       <AccordionField
         label="Imprints"
         fieldPath="imprints"
-        content={(
+        content={
           <ArrayField
             fieldPath="imprints"
             defaultNewValue={{
@@ -59,7 +59,7 @@ export class Imprints extends Component {
             renderArrayItem={this.renderFormField}
             addButtonLabel="Add new imprint"
           />
-        )}
+        }
       />
     );
   }

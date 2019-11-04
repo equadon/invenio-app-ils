@@ -1,5 +1,11 @@
 import React from 'react';
-import { GroupField, StringField, AccordionField, IdentifiersField, YearInputField } from '../../../../../../../../forms';
+import {
+  GroupField,
+  StringField,
+  AccordionField,
+  IdentifiersField,
+  YearInputField,
+} from '../../../../../../../../forms';
 
 export class ConferenceInfoField extends React.Component {
   render() {
@@ -7,7 +13,7 @@ export class ConferenceInfoField extends React.Component {
       <AccordionField
         label="Conference Info"
         fieldPath="conference_info"
-        content={(
+        content={
           <>
             <StringField
               required
@@ -30,24 +36,15 @@ export class ConferenceInfoField extends React.Component {
                 fieldPath="conference_info.acronym"
                 label="Acronym"
               />
-              <StringField
-                fieldPath="conference_info.series"
-                label="Series"
-              />
+              <StringField fieldPath="conference_info.series" label="Series" />
             </GroupField>
             <GroupField widths="equal">
-              <StringField
-                fieldPath="conference_info.dates"
-                label="Dates"
-              />
-              <YearInputField
-                fieldPath="conference_info.year"
-                label="Year"
-              />
+              <StringField fieldPath="conference_info.dates" label="Dates" />
+              <YearInputField fieldPath="conference_info.year" label="Year" />
             </GroupField>
             <IdentifiersField fieldPath="conference_info.identifiers" />
           </>
-        )}
+        }
       />
     );
   }

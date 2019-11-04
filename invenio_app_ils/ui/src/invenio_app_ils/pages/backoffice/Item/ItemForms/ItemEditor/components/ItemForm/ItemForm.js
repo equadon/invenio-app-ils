@@ -71,11 +71,7 @@ export class ItemForm extends Component {
   render() {
     return (
       <BaseForm
-        initialValues={
-          this.data
-            ? this.prepareData(this.data.metadata)
-            : {}
-        }
+        initialValues={this.data ? this.prepareData(this.data.metadata) : {}}
         editApiMethod={this.update}
         createApiMethod={this.create}
         successCallback={this.successCallback}
@@ -126,7 +122,7 @@ export class ItemForm extends Component {
         <AccordionField
           label="ISBN"
           fieldPath="isbn"
-          content={(
+          content={
             <GroupField border widths="equal" fieldPath="isbn">
               <StringField required label="Value" fieldPath="isbn.value" />
               <TextField
@@ -135,11 +131,14 @@ export class ItemForm extends Component {
                 rows={2}
               />
             </GroupField>
-          )}
+          }
         />
         <GroupField widths="equal">
           <StringField label="Legacy ID" fieldPath="legacy_id" />
-          <StringField label="Legacy library ID" fieldPath="legacy_library_id" />
+          <StringField
+            label="Legacy library ID"
+            fieldPath="legacy_library_id"
+          />
         </GroupField>
         <GroupField widths="equal">
           <SelectField

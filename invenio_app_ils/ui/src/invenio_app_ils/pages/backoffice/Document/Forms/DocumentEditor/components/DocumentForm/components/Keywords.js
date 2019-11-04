@@ -11,18 +11,12 @@ export class Keywords extends Component {
       <AccordionField
         label="Keywords"
         fieldPath="keywords"
-        content={(
+        content={
           <GroupField widths="equal">
-            <StringField
-              label="Source"
-              fieldPath="keywords.source"
-            />
-            <StringField
-              label="Value"
-              fieldPath="keywords.value"
-            />
+            <StringField label="Source" fieldPath="keywords.source" />
+            <StringField label="Value" fieldPath="keywords.value" />
           </GroupField>
-        )}
+        }
       />
     );
   }

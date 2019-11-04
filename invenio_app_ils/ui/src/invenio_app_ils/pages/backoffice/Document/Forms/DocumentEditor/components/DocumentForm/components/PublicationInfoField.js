@@ -1,5 +1,13 @@
 import React from 'react';
-import { AccordionField, ArrayField, DeleteActionButton, GroupField, StringField, TextField, YearInputField } from '../../../../../../../../forms';
+import {
+  AccordionField,
+  ArrayField,
+  DeleteActionButton,
+  GroupField,
+  StringField,
+  TextField,
+  YearInputField,
+} from '../../../../../../../../forms';
 
 export class PublicationInfoField extends React.Component {
   renderPublication = ({ arrayPath, indexPath, ...arrayHelpers }) => {
@@ -12,10 +20,7 @@ export class PublicationInfoField extends React.Component {
           <DeleteActionButton onClick={() => arrayHelpers.remove(indexPath)} />
         }
       >
-        <StringField
-          fieldPath={`${objectPath}.artid`}
-          label="Article ID"
-        />
+        <StringField fieldPath={`${objectPath}.artid`} label="Article ID" />
         <GroupField widths="equal">
           <StringField
             fieldPath={`${objectPath}.journal_title`}
@@ -31,14 +36,8 @@ export class PublicationInfoField extends React.Component {
           />
         </GroupField>
         <GroupField widths="equal">
-          <StringField
-            fieldPath={`${objectPath}.pages`}
-            label="Pages"
-          />
-          <YearInputField
-            fieldPath={`${objectPath}.year`}
-            label="Year"
-          />
+          <StringField fieldPath={`${objectPath}.pages`} label="Pages" />
+          <YearInputField fieldPath={`${objectPath}.year`} label="Year" />
         </GroupField>
         <TextField fieldPath={`${objectPath}.note`} label="Note" />
       </GroupField>
@@ -50,14 +49,14 @@ export class PublicationInfoField extends React.Component {
       <AccordionField
         label="Publication Info"
         fieldPath="publication_info"
-        content={(
+        content={
           <ArrayField
             fieldPath="publication_info"
             defaultNewValue={{
               artid: '',
               journal_issue: '',
               journal_record: {
-                '$ref': '',
+                $ref: '',
               },
               journal_title: '',
               journal_volume: '',
@@ -68,7 +67,7 @@ export class PublicationInfoField extends React.Component {
             renderArrayItem={this.renderPublication}
             addButtonLabel="Add publication"
           />
-        )}
+        }
       />
     );
   }

@@ -13,10 +13,7 @@ export class UrlsField extends Component {
           <DeleteActionButton onClick={() => arrayHelpers.remove(indexPath)} />
         }
       >
-        <StringField
-          label="Url"
-          fieldPath={`${objectPath}.value`}
-        />
+        <StringField label="Url" fieldPath={`${objectPath}.value`} />
         <StringField
           label="Description"
           fieldPath={`${objectPath}.description`}
@@ -30,14 +27,14 @@ export class UrlsField extends Component {
       <AccordionField
         label="Urls"
         fieldPath="urls"
-        content={(
+        content={
           <ArrayField
             fieldPath="urls"
             defaultNewValue={{ value: '', description: '' }}
             renderArrayItem={this.renderFormField}
             addButtonLabel="Add new url"
           />
-        )}
+        }
       />
     );
   }

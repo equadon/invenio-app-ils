@@ -20,7 +20,7 @@ export class CalendarInputField extends React.Component {
       form: props.form,
       onChange: onChange,
       value: value,
-    }
+    };
 
     return this.props.component(newProps);
   };

@@ -3,7 +3,13 @@ import { Link } from 'react-router-dom';
 import { getIn } from 'formik';
 import { Container, Header, Segment } from 'semantic-ui-react';
 import { sessionManager } from '../../../../authentication/services';
-import { BaseForm, StringField, TextField, YearInputField, GroupField } from '../../../../forms';
+import {
+  BaseForm,
+  StringField,
+  TextField,
+  YearInputField,
+  GroupField,
+} from '../../../../forms';
 import * as Yup from 'yup';
 import { FrontSiteRoutes } from '../../../../routes/urls';
 import { documentRequest as documentRequestApi } from '../../../../common/api';

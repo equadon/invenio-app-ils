@@ -37,7 +37,7 @@ export class TagsField extends Component {
       <AccordionField
         label="Tags"
         fieldPath="tags"
-        content={(
+        content={
           <>
             <Form.Field>
               <Segment>
@@ -85,17 +85,14 @@ export class TagsField extends Component {
               />
             </Form.Field>
           </>
-        )}
+        }
       />
     );
   };
 
   render() {
     return (
-      <FieldArray
-        name={this.fieldPath}
-        component={this.renderTagsField}
-      />
+      <FieldArray name={this.fieldPath} component={this.renderTagsField} />
     );
   }
 }

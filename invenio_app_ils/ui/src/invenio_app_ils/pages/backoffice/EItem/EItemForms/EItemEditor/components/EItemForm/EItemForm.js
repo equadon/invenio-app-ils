@@ -54,11 +54,7 @@ export class EItemForm extends Component {
   render() {
     return (
       <BaseForm
-        initialValues={
-          this.data
-            ? this.prepareData(this.data.metadata)
-            : {}
-        }
+        initialValues={this.data ? this.prepareData(this.data.metadata) : {}}
         editApiMethod={this.update}
         createApiMethod={this.create}
         successCallback={this.successCallback}

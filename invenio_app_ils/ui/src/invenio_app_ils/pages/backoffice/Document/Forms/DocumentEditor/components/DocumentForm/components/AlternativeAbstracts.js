@@ -13,9 +13,7 @@ export class AlternativeAbstracts extends Component {
       <GroupField
         basic
         action={
-          <DeleteActionButton
-            onClick={() => arrayHelpers.remove(indexPath)}
-          />
+          <DeleteActionButton onClick={() => arrayHelpers.remove(indexPath)} />
         }
       >
         <TextField
@@ -32,14 +30,14 @@ export class AlternativeAbstracts extends Component {
       <AccordionField
         label="Alternative abstracts"
         fieldPath="alternative_abstracts"
-        content={(
+        content={
           <ArrayField
             fieldPath="alternative_abstracts"
             defaultNewValue=""
             renderArrayItem={this.renderFormField}
             addButtonLabel="Add new abstract"
           />
-        )}
+        }
       />
     );
   }

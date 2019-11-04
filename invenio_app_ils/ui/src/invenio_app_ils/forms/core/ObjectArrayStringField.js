@@ -71,14 +71,14 @@ export class ObjectArrayStringField extends Component {
       <AccordionField
         label={this.label}
         fieldPath={this.fieldPath}
-        content={(
+        content={
           <ArrayField
             fieldPath={this.fieldPath}
             defaultNewValue={this.defaultNewValue}
             renderArrayItem={this.renderFormField}
             addButtonLabel={this.addButtonLabel}
           />
-        )}
+        }
       />
     );
   }
