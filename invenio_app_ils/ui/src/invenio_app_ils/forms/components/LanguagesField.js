@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import IsoLanguages from 'iso-639-1';
 import { SelectField } from '../core';
 
 export class LanguagesField extends Component {
@@ -11,7 +10,8 @@ export class LanguagesField extends Component {
   }
 
   getLanguageCodes = () => {
-    return IsoLanguages.getAllCodes().map((code, index) => ({
+    // TODO: Use vocabularies API
+    return ['en', 'fr'].map((code, index) => ({
       text: code,
       value: code,
     }));
