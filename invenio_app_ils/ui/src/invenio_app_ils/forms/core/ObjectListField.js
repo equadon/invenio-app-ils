@@ -6,17 +6,18 @@ import { Form, List, Icon } from 'semantic-ui-react';
 export class ObjectListField extends Component {
   state = {
     activeIndex: null,
-    showForm: false,
   };
 
-  onItemClick = index => {
-    const activeIndex = this.state.activeIndex;
-    const showForm = index === activeIndex ? !this.state.showForm : true;
-
-    this.setState({ activeIndex: index, showForm });
+  onItemClick = (item, index) => {
+    if (index === this.state.activeIndex) {
+      index = null;
+      item = null;
+    }
+    this.setState({ activeIndex: index });
+    if (this.props.onItemChange) {
+      this.props.onItemChange(item, index);
+    }
   };
-
-  setShowForm = showForm => this.setState({ showForm });
 
   getListItemIcon = (index, errors) => {
     for (const errorPath in errors) {
@@ -33,7 +34,7 @@ export class ObjectListField extends Component {
       form: { errors, values },
     } = props;
     const items = getIn(values, fieldPath, []);
-    const { activeIndex, showForm } = this.state;
+    const { activeIndex } = this.state;
 
     return (
       <Form.Field className="object-list-field">
@@ -43,8 +44,8 @@ export class ObjectListField extends Component {
             <List.Item
               key={index}
               as="a"
-              active={showForm && activeIndex === index}
-              onClick={() => this.onItemClick(index)}
+              active={activeIndex === index}
+              onClick={() => this.onItemClick(item, index)}
             >
               <List.Content>
                 {this.getListItemIcon(index, errors)}
@@ -55,8 +56,8 @@ export class ObjectListField extends Component {
 
           <List.Item
             as="a"
-            active={showForm && activeIndex === items.length}
-            onClick={() => this.onItemClick(items.length)}
+            active={activeIndex === items.length}
+            onClick={() => this.onItemClick(null, items.length)}
           >
             <List.Content>
               <Icon name="add" />
@@ -64,7 +65,6 @@ export class ObjectListField extends Component {
             </List.Content>
           </List.Item>
         </List>
-        {showForm && this.props.renderItem(activeIndex, this.setShowForm)}
       </Form.Field>
     );
   };
@@ -78,5 +78,5 @@ export class ObjectListField extends Component {
 
 ObjectListField.propTypes = {
   fieldPath: PropTypes.string.isRequired,
-  renderItem: PropTypes.func.isRequired,
+  onItemChange: PropTypes.func,
 };

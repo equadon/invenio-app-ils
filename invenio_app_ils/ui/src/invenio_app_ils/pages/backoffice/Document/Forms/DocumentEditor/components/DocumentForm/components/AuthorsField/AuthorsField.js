@@ -11,60 +11,70 @@ import {
 
 export class AuthorsField extends React.Component {
   state = {
+    activeIndex: null,
     showForm: false,
   };
 
-  onRemove = (values, index, setFieldValue, setShowForm) => {
-    setShowForm(false);
+  onRemove = (values, index, setFieldValue) => {
+    this.setState({ showForm: false });
     setFieldValue('authors', values.authors.filter((_, i) => i !== index));
   };
 
-  onSubmit = (values, index, setFieldValue, setShowForm) => {
+  onSubmit = (values, index, setFieldValue) => {
     for (const key in values.authors) {
       setFieldValue(`authors.${key}`, values.authors[key]);
     }
-    setShowForm(false);
+  };
+
+  onAuthorChange = (author, index) => {
+    this.setState({ activeIndex: index, showForm: index !== null });
+  };
+
+  renderSubForm = (values, errors, setFieldValue) => {
+    const activeIndex = this.state.activeIndex;
+    const authors = cloneDeep(values.authors);
+    const initialValues = {
+      authors: {
+        [activeIndex]: getIn(authors, activeIndex, {}),
+      },
+    };
+
+    return (
+      <GroupField border grouped>
+        <SubForm
+          basePath={`authors.${activeIndex}`}
+          initialValues={initialValues}
+          initialErrors={errors}
+          initialStatus={errors}
+          removeButtonText="Remove author"
+          submitButtonText="Save author"
+          onSubmit={(values, actions) =>
+            this.onSubmit(values, activeIndex, setFieldValue)
+          }
+          onRemove={() => this.onRemove(values, activeIndex, setFieldValue)}
+          render={(basePath, errors) => (
+            <AuthorForm basePath={basePath} errors={errors} />
+          )}
+        />
+      </GroupField>
+    );
   };
 
   renderFormField = props => {
     const {
       form: { values, setFieldValue, errors },
     } = props;
-    const authorValues = cloneDeep(values.authors);
+    const { showForm } = this.state;
 
     return (
-      <ObjectListField
-        fieldPath={this.props.fieldPath}
-        keyField="full_name"
-        renderItem={(index, setShowForm) => {
-          const initialValues = {
-            authors: {
-              [index]: getIn(authorValues, index, {}),
-            },
-          };
-          return (
-            <GroupField border grouped>
-              <SubForm
-                basePath={`authors.${index}`}
-                initialValues={initialValues}
-                initialErrors={errors}
-                initialStatus={errors}
-                removeButtonText="Remove author"
-                submitButtonText="Save author"
-                onSubmit={(values, actions) =>
-                  this.onSubmit(values, index, setFieldValue, setShowForm)
-                }
-                onRemove={() =>
-                  this.onRemove(values, index, setFieldValue, setShowForm)
-                }
-                render={(basePath, errors) => (
-                  <AuthorForm basePath={basePath} errors={errors} />
-                )}
-              />
-            </GroupField>
-          );
-        }}
-      />
+      <>
+        <ObjectListField
+          fieldPath={this.props.fieldPath}
+          keyField="full_name"
+          onItemChange={this.onAuthorChange}
+        />
+        {showForm && this.renderSubForm(values, errors, setFieldValue)}
+      </>
     );
   };
 
