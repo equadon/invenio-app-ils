@@ -67,27 +67,26 @@ export class AuthorSearchField extends React.Component {
 
   render() {
     return (
-      <>
-        <Form.Field>
-          <label>Authors</label>
-          <Search
-            fluid
-            input={{ icon: 'search', iconPosition: 'left' }}
-            loading={this.state.isLoading}
-            minCharacters={1}
-            results={this.state.results}
-            onFocus={this.onFocus}
-            onResultSelect={this.onResultSelect}
-            onSearchChange={this.onSearchChange}
-            value={this.state.value}
-          />
-        </Form.Field>
+      <Form.Field>
+        <label>Authors</label>
         <Form.Button
           type="button"
           content="New author"
+          icon="add"
           onClick={this.onNewAuthor}
         />
-      </>
+        <Search
+          fluid
+          input={{ icon: 'search', iconPosition: 'left' }}
+          loading={this.state.isLoading}
+          minCharacters={1}
+          results={this.state.results}
+          onFocus={this.onFocus}
+          onResultSelect={this.onResultSelect}
+          onSearchChange={this.onSearchChange}
+          value={this.state.value}
+        />
+      </Form.Field>
     );
   }
 }

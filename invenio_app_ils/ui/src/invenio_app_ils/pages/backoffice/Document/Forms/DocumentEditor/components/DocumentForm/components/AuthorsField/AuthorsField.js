@@ -36,7 +36,11 @@ export class AuthorsField extends React.Component {
   };
 
   onAuthorChange = index => {
-    this.setState({ activeIndex: index, showForm: index !== null });
+    const { activeIndex } = this.state;
+    this.setState({ showForm: false }, () => {
+      const showForm = activeIndex === index ? false : index !== null;
+      this.setState({ activeIndex: index, showForm: showForm });
+    });
   };
 
   renderSubForm = (values, errors, setFieldValue) => {
