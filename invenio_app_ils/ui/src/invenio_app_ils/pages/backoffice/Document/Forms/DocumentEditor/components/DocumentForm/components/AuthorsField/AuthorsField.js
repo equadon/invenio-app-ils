@@ -23,6 +23,7 @@ export class AuthorsField extends React.Component {
   };
 
   onSubmit = (values, index, setFieldValue) => {
+    this.setState({ showForm: false });
     for (const key in values.authors) {
       setFieldValue(`authors.${key}`, values.authors[key]);
     }
@@ -93,7 +94,6 @@ export class AuthorsField extends React.Component {
       form: { values, setFieldValue, errors },
     } = props;
     const { showForm } = this.state;
-    console.log('showForm', this.state);
 
     return (
       <>

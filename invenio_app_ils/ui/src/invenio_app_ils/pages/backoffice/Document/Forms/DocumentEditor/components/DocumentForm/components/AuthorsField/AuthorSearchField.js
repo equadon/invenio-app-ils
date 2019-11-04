@@ -10,34 +10,37 @@ export class AuthorSearchField extends React.Component {
     value: '',
     results: [],
   };
-
-  constructor(props) {
-    super(props);
-    this.state = this.initialState;
-
-    // Optimization - prepare search results once
-    this.preparedAuthors = props.authors.map((author, index) => ({
-      key: author.full_name,
-      index: index,
-      title: author.full_name,
-      description: author.type,
-    }));
-  }
+  state = this.initialState;
 
   search = debounce(async query => {
     if (query.length < 1) {
-      this.setState({ results: [] });
+      this.setState({ isLoading: false, results: [] });
       return null;
     }
 
     const reTitle = new RegExp(escapeRegExp(query), 'i');
-    const isMatch = result => reTitle.test(result.title);
+    const isMatch = result => reTitle.test(result);
 
     this.setState({
       isLoading: false,
-      results: this.preparedAuthors.filter(isMatch),
+      results: this.props.authors.reduce((results, author, index) => {
+        if (isMatch(author.full_name)) {
+          results.push({
+            key: author.full_name,
+            index: index,
+            title: author.full_name,
+            description: author.type,
+          });
+        }
+        return results;
+      }, []),
     });
   }, 300);
+
+  onFocus = () => {
+    // Trigger a search to update in case an author was modified
+    this.onSearchChange(null, { value: this.state.value });
+  };
 
   onResultSelect = (e, { result }) => {
     if (this.props.onResultSelect) {
@@ -46,7 +49,7 @@ export class AuthorSearchField extends React.Component {
   };
 
   onSearchChange = (e, { value }) => {
-    this.setState({ isLoading: false, value: value });
+    this.setState({ isLoading: true, value: value, results: [] });
     if (this.props.onSearchChange) {
       this.props.onSearchChange(value);
     }
@@ -63,6 +66,7 @@ export class AuthorSearchField extends React.Component {
           loading={this.state.isLoading}
           minCharacters={1}
           results={this.state.results}
+          onFocus={this.onFocus}
           onResultSelect={this.onResultSelect}
           onSearchChange={this.onSearchChange}
           value={this.state.value}
