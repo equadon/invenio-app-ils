@@ -1,29 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { AccordionField, ArrayField, StringField } from '../core';
-import _nth from 'lodash/nth';
 import { GroupField } from './GroupField';
 import { DeleteActionButton } from '../components';
 
 export class ObjectArrayStringField extends Component {
-  constructor(props) {
-    super(props);
-    this.label = props.label;
-    this.fieldPath = props.fieldPath;
-    /**
-     * map = [
-     * {key: 'schema', text: 'Schema', required: true}
-     * ]
-     */
-    this.objectKeysArray = props.objectKeysArray;
-    this.defaultNewValue = props.defaultNewValue;
-    this.addButtonLabel = props.addButtonLabel;
-    this.basic = props.basic;
-  }
-
   renderFormField = ({ arrayPath, indexPath, ...arrayHelpers }) => {
     const objectPath = `${arrayPath}.${indexPath}`;
-    const lastObjectKeyItem = _nth(this.objectKeysArray, -1);
     return (
       <GroupField
         border
@@ -35,48 +18,42 @@ export class ObjectArrayStringField extends Component {
           />
         }
       >
-        {this.objectKeysArray.slice(0, -1).map(keyObj => (
+        {this.props.objectKeysArray.map(keyObj => (
           <StringField
+            inline
             key={keyObj.key}
             label={keyObj.text}
             fieldPath={`${objectPath}.${keyObj.key}`}
-            inline={true}
             required={keyObj.required || false}
           />
         ))}
-        <StringField
-          label={lastObjectKeyItem.text}
-          fieldPath={`${objectPath}.${lastObjectKeyItem.key}`}
-          inline={true}
-          required={lastObjectKeyItem.required || false}
-        />
       </GroupField>
     );
   };
 
-  renderWithourAccordion = () => (
+  renderWithoutAccordion = () => (
     <ArrayField
-      label={this.label}
-      fieldPath={this.fieldPath}
-      defaultNewValue={this.defaultNewValue}
-      renderArrayItem={this.renderFormField}
-      addButtonLabel={this.addButtonLabel}
+      label={this.props.label}
+      fieldPath={this.props.fieldPath}
+      defaultNewValue={this.props.defaultNewValue}
+      renderArrayItem={this.props.renderFormField}
+      addButtonLabel={this.props.addButtonLabel}
     />
   );
 
   render() {
-    return this.basic ? (
-      this.renderWithourAccordion()
+    return this.props.basic ? (
+      this.renderWithoutAccordion()
     ) : (
       <AccordionField
-        label={this.label}
-        fieldPath={this.fieldPath}
+        label={this.props.label}
+        fieldPath={this.props.fieldPath}
         content={
           <ArrayField
-            fieldPath={this.fieldPath}
-            defaultNewValue={this.defaultNewValue}
+            fieldPath={this.props.fieldPath}
+            defaultNewValue={this.props.defaultNewValue}
             renderArrayItem={this.renderFormField}
-            addButtonLabel={this.addButtonLabel}
+            addButtonLabel={this.props.addButtonLabel}
           />
         }
       />

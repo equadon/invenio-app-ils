@@ -32,23 +32,24 @@ export class GroupField extends React.Component {
       ...uiProps
     } = this.props;
     const errors = getIn(props, 'form.errors');
-    const classNames = ['form-group-new'];
+    const classNames = ['form-group'];
     if (border) {
       classNames.push('border');
     }
     if (fieldPath && this.hasGroupErrors(errors)) {
       classNames.push('error');
     }
+
     if (basic) {
       return this.renderBasicField(action, classNames, children);
-    } else {
-      return (
-        <Form.Group className={classNames.join(' ')} {...uiProps}>
-          {action && <div className="group-action">{action}</div>}
-          {children}
-        </Form.Group>
-      );
     }
+
+    return (
+      <Form.Group className={classNames.join(' ')} {...uiProps}>
+        {action && <div className="group-action">{action}</div>}
+        {children}
+      </Form.Group>
+    );
   };
 
   render() {

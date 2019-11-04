@@ -28,12 +28,12 @@ export class BaseForm extends Component {
   };
 
   onSubmit = async (values, actions) => {
-    const [submittingValues, submitButton] = this.submitSerializer(values);
+    const [submitValues, submitButton] = this.submitSerializer(values);
     try {
       actions.setSubmitting(true);
       const response = this.pid
-        ? await this.editApiMethod(this.pid, submittingValues)
-        : await this.createApiMethod(submittingValues);
+        ? await this.editApiMethod(this.pid, submitValues)
+        : await this.createApiMethod(submitValues);
 
       setTimeout(() => {
         this.props.sendSuccessNotification(
@@ -123,7 +123,7 @@ export class BaseForm extends Component {
                 this.renderButtons(isSubmitting, submitForm, values)
               ) : (
                 <Button
-                  color="green"
+                  primary
                   disabled={isSubmitting}
                   name="submit"
                   type="submit"

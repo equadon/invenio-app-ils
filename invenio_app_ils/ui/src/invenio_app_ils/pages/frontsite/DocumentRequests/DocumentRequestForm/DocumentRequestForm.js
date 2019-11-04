@@ -43,7 +43,7 @@ export default class DocumentRequestForm extends Component {
     };
   };
 
-  onSubmitSuccess = (response, submitButton) => {
+  onSubmitSuccess = () => {
     goTo(FrontSiteRoutes.patronProfile);
   };
 

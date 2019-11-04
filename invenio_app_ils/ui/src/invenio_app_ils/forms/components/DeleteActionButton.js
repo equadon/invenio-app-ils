@@ -6,25 +6,19 @@ export class DeleteActionButton extends React.Component {
   render() {
     return (
       <Button icon basic onClick={this.props.onClick} type="button">
-        <Icon
-          color={this.props.color}
-          name={this.props.icon}
-          size={this.props.size}
-        />
+        <Icon name={this.props.icon} size={this.props.size} />
       </Button>
     );
   }
 }
 
 DeleteActionButton.propTypes = {
-  color: PropTypes.string,
   icon: PropTypes.string,
   onClick: PropTypes.func.isRequired,
   size: PropTypes.string,
 };
 
 DeleteActionButton.defaultProps = {
-  color: 'red',
   icon: 'delete',
   size: 'large',
 };

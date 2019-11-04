@@ -60,7 +60,7 @@ export class SeriesForm extends Component {
           action={
             <DeleteActionButton
               icon="trash"
-              onClick={() => arrayHelpers.remove(indexPath) }
+              onClick={() => arrayHelpers.remove(indexPath)}
             />
           }
         />

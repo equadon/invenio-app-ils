@@ -13,9 +13,8 @@ export class ItemEditor extends Component {
           document_pid: doc.metadata.pid,
         },
       };
-    } else {
-      return null;
     }
+    return null;
   }
 
   componentDidMount() {

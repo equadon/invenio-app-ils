@@ -26,14 +26,7 @@ import {
 } from '../../../../../../../common/components/ESSelector/serializer';
 
 export class ItemForm extends Component {
-  constructor(props) {
-    super(props);
-    this.data = props.data;
-    this.successSubmitMessage = props.successSubmitMessage;
-    this.title = props.title;
-    this.pid = props.pid;
-    this.config = invenioConfig.items;
-  }
+  config = invenioConfig.items;
 
   prepareData = data => {
     return pick(data, [
@@ -71,13 +64,15 @@ export class ItemForm extends Component {
   render() {
     return (
       <BaseForm
-        initialValues={this.data ? this.prepareData(this.data.metadata) : {}}
+        initialValues={
+          this.props.data ? this.prepareData(this.props.data.metadata) : {}
+        }
         editApiMethod={this.update}
         createApiMethod={this.create}
         successCallback={this.successCallback}
-        successSubmitMessage={this.successSubmitMessage}
-        title={this.title}
-        pid={this.pid ? this.pid : undefined}
+        successSubmitMessage={this.props.successSubmitMessage}
+        title={this.props.title}
+        pid={this.props.pid}
         submitSerializer={itemSubmitSerializer}
       >
         <StringField required label="Barcode" fieldPath="barcode" />

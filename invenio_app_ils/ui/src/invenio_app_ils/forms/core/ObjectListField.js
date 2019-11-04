@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Field, getIn } from 'formik';
 import { Form, List, Icon } from 'semantic-ui-react';
+import { ErrorIcon } from './ErrorIcon';
 
 export class ObjectListField extends Component {
   state = {
@@ -22,7 +23,7 @@ export class ObjectListField extends Component {
   getListItemIcon = (index, errors) => {
     for (const errorPath in errors) {
       if (errorPath.startsWith(`${this.props.fieldPath}.${index}`)) {
-        return <Icon name="warning sign" color="red" />;
+        return <ErrorIcon />;
       }
     }
     return <Icon name="list" />;

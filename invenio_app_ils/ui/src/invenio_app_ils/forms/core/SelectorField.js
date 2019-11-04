@@ -53,7 +53,7 @@ export class SelectorField extends Component {
         <Card.Content>
           <Card.Header as="a" onClick={() => removeSelection(selection)}>
             {selection.title}
-            <Icon color="red" name="delete" />
+            <Icon name="delete" />
           </Card.Header>
           <Card.Meta>{selection.extra}</Card.Meta>
           <Card.Description>{selection.description}</Card.Description>

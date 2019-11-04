@@ -97,7 +97,7 @@ export class DocumentForm extends Component {
         successCallback={this.successCallback}
         successSubmitMessage={this.successSubmitMessage}
         title={this.title}
-        pid={this.pid ? this.pid : undefined}
+        pid={this.pid}
         submitSerializer={documentSubmitSerializer}
         buttons={this.buttons}
       >
