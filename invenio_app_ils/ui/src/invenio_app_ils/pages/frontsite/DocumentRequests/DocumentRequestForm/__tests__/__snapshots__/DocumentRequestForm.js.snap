@@ -1585,11 +1585,11 @@ exports[`DocumentRequestForm tests should render the document request form corre
                                       }
                                     >
                                       <FormGroup
-                                        className="form-group-new"
+                                        className="form-group"
                                         widths="equal"
                                       >
                                         <div
-                                          className="equal width fields form-group-new"
+                                          className="equal width fields form-group"
                                         >
                                           <StringField
                                             fieldPath="isbn"
@@ -2321,11 +2321,11 @@ exports[`DocumentRequestForm tests should render the document request form corre
                                       }
                                     >
                                       <FormGroup
-                                        className="form-group-new"
+                                        className="form-group"
                                         widths="equal"
                                       >
                                         <div
-                                          className="equal width fields form-group-new"
+                                          className="equal width fields form-group"
                                         >
                                           <StringField
                                             fieldPath="edition"
@@ -3589,11 +3589,11 @@ exports[`DocumentRequestForm tests should render the document request form corre
                                       }
                                     >
                                       <FormGroup
-                                        className="form-group-new"
+                                        className="form-group"
                                         widths="equal"
                                       >
                                         <div
-                                          className="equal width fields form-group-new"
+                                          className="equal width fields form-group"
                                         >
                                           <StringField
                                             fieldPath="page"
@@ -3869,13 +3869,13 @@ exports[`DocumentRequestForm tests should render the document request form corre
                                             <CalendarInputField
                                               component={[Function]}
                                               fieldPath="publication_year"
-                                              optimized={true}
+                                              optimized={false}
                                             >
-                                              <FormikConnect(FastFieldInner)
+                                              <FormikConnect(FieldInner)
                                                 component={[Function]}
                                                 name="publication_year"
                                               >
-                                                <FastFieldInner
+                                                <FieldInner
                                                   component={[Function]}
                                                   formik={
                                                     Object {
@@ -4226,8 +4226,8 @@ exports[`DocumentRequestForm tests should render the document request form corre
                                                       </InputView>
                                                     </YearInput>
                                                   </Component>
-                                                </FastFieldInner>
-                                              </FormikConnect(FastFieldInner)>
+                                                </FieldInner>
+                                              </FormikConnect(FieldInner)>
                                             </CalendarInputField>
                                           </YearInputField>
                                         </div>
@@ -4239,15 +4239,15 @@ exports[`DocumentRequestForm tests should render the document request form corre
                               <TextField
                                 fieldPath="note"
                                 label="Note"
-                                optimized={true}
+                                optimized={false}
                                 placeholder="Notes for the library"
                                 rows={5}
                               >
-                                <FormikConnect(FastFieldInner)
+                                <FormikConnect(FieldInner)
                                   component={[Function]}
                                   name="note"
                                 >
-                                  <FastFieldInner
+                                  <FieldInner
                                     component={[Function]}
                                     formik={
                                       Object {
@@ -4520,22 +4520,22 @@ exports[`DocumentRequestForm tests should render the document request form corre
                                         </div>
                                       </FormField>
                                     </Component>
-                                  </FastFieldInner>
-                                </FormikConnect(FastFieldInner)>
+                                  </FieldInner>
+                                </FormikConnect(FieldInner)>
                               </TextField>
                               <Button
                                 as="button"
-                                color="green"
                                 content="Submit"
                                 disabled={false}
                                 name="submit"
+                                primary={true}
                                 type="submit"
                               >
                                 <Ref
                                   innerRef={
                                     Object {
                                       "current": <button
-                                        class="ui green button"
+                                        class="ui primary button"
                                         name="submit"
                                         type="submit"
                                       >
@@ -4548,7 +4548,7 @@ exports[`DocumentRequestForm tests should render the document request form corre
                                     innerRef={
                                       Object {
                                         "current": <button
-                                          class="ui green button"
+                                          class="ui primary button"
                                           name="submit"
                                           type="submit"
                                         >
@@ -4558,7 +4558,7 @@ exports[`DocumentRequestForm tests should render the document request form corre
                                     }
                                   >
                                     <button
-                                      className="ui green button"
+                                      className="ui primary button"
                                       name="submit"
                                       onClick={[Function]}
                                       type="submit"
