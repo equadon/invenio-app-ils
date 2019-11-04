@@ -6,50 +6,20 @@ import { ESSelector } from '../../common/components/ESSelector';
 import isEmpty from 'lodash/isEmpty';
 
 export class SelectorField extends Component {
-  constructor(props) {
-    super(props);
-
-    const {
-      fieldPath,
-      errorPath,
-      emptyHeader,
-      emptyDescription,
-      label,
-      required,
-      multiple,
-      optimized,
-      placeholder,
-      serializer,
-      renderGroup,
-      renderSelection,
-      ...selectorProps
-    } = props;
-    this.fieldPath = fieldPath;
-    this.errorPath = errorPath;
-    this.emptyHeader = emptyHeader;
-    this.emptyDescription = emptyDescription;
-    this.label = label;
-    this.required = required;
-    this.multiple = multiple;
-    this.optimized = optimized;
-    this.renderGroup = renderGroup || this.defaultRenderGroup;
-    this.renderSelection = renderSelection || this.defaultRenderSelection;
-    this.serializer = serializer;
-    this.placeholder = placeholder;
-    this.selectorProps = selectorProps;
-
-    this.state = {
-      value: null,
-    };
-  }
+  state = {
+    value: null,
+  };
 
   renderEmpty = () => (
-    <Card header={this.emptyHeader} description={this.emptyDescription} />
+    <Card
+      header={this.props.emptyHeader}
+      description={this.props.emptyDescription}
+    />
   );
 
   defaultRenderSelection = (selection, removeSelection) => {
     return (
-      <Card fluid={!this.multiple} key={selection.id}>
+      <Card fluid={!this.props.multiple} key={selection.id}>
         <Card.Content>
           <Card.Header as="a" onClick={() => removeSelection(selection)}>
             {selection.title}
@@ -78,10 +48,10 @@ export class SelectorField extends Component {
 
   onSelectionsUpdate = (selections, setFieldValue) => {
     this.setState({ value: selections });
-    if (this.multiple) {
+    if (this.props.multiple) {
     } else {
       setFieldValue(
-        this.fieldPath,
+        this.props.fieldPath,
         selections.length > 0 ? selections[0].metadata : {}
       );
     }
@@ -93,46 +63,59 @@ export class SelectorField extends Component {
   }
 
   renderFormField = ({ form: { errors, setFieldValue, values } }) => {
+    const {
+      fieldPath,
+      errorPath,
+      emptyHeader,
+      emptyDescription,
+      label,
+      required,
+      multiple,
+      optimized,
+      placeholder,
+      serializer,
+      renderGroup,
+      renderSelection,
+      ...selectorProps
+    } = this.props;
     const selections = [];
-    const value = values[this.fieldPath];
-    if (this.multiple) {
+    const value = values[fieldPath];
+    if (multiple) {
       for (const record of value) {
         if (!isEmpty(record)) {
-          selections.push(this.serializer({ metadata: record }));
+          selections.push(serializer({ metadata: record }));
         }
       }
     } else {
       if (!isEmpty(value)) {
-        selections.push(this.serializer({ metadata: value }));
+        selections.push(serializer({ metadata: value }));
       }
     }
-    const hasFieldError = this.hasFieldError(errors, this.errorPath, value);
-    const error = errors[this.errorPath];
-    const placeholder =
-      !this.multiple && selections.length > 0
-        ? selections[0].title
-        : this.placeholder;
+    const hasFieldError = this.hasFieldError(errors, errorPath, value);
+    const error = errors[errorPath];
+    const placeholderText =
+      !multiple && selections.length > 0 ? selections[0].title : placeholder;
     return (
-      <Form.Field required={this.required} error={hasFieldError}>
-        {this.label && <label htmlFor={this.fieldPath}>{this.label}</label>}
+      <Form.Field required={required} error={hasFieldError}>
+        {label && <label htmlFor={fieldPath}>{label}</label>}
         {hasFieldError && !isEmpty(error) && (
           <Label prompt pointing="below">
             {error}
           </Label>
         )}
         <ESSelector
-          id={this.fieldPath}
-          name={this.fieldPath}
-          multiple={this.multiple}
+          id={fieldPath}
+          name={fieldPath}
+          multiple={multiple}
           initialSelections={selections}
-          renderSelections={this.renderGroup}
-          renderSelection={this.renderSelection}
+          renderSelections={renderGroup}
+          renderSelection={renderSelection}
           onSelectionsUpdate={selections =>
             this.onSelectionsUpdate(selections, setFieldValue)
           }
-          serializer={this.serializer}
-          placeholder={placeholder}
-          {...this.selectorProps}
+          serializer={serializer}
+          placeholder={placeholderText}
+          {...selectorProps}
         />
       </Form.Field>
     );
@@ -141,7 +124,10 @@ export class SelectorField extends Component {
   render() {
     const FormikField = this.props.optimized ? FastField : Field;
     return (
-      <FormikField name={this.fieldPath} component={this.renderFormField} />
+      <FormikField
+        name={this.props.fieldPath}
+        component={this.renderFormField}
+      />
     );
   }
 }

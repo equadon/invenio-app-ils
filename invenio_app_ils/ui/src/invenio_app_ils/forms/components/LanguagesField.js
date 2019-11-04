@@ -3,19 +3,13 @@ import PropTypes from 'prop-types';
 import { SelectField } from '../core';
 
 export class LanguagesField extends Component {
-  constructor(props) {
-    super(props);
-    this.languageCodes = this.getLanguageCodes();
-    this.fieldPath = props.fieldPath;
-  }
-
-  getLanguageCodes = () => {
+  get languageCodes() {
     // TODO: Use vocabularies API
     return ['en', 'fr'].map((code, index) => ({
       text: code,
       value: code,
     }));
-  };
+  }
 
   render() {
     return (
@@ -23,7 +17,7 @@ export class LanguagesField extends Component {
         search
         multiple={this.props.multiple}
         label={this.props.multiple ? 'Languages' : 'Language'}
-        fieldPath={this.fieldPath}
+        fieldPath={this.props.fieldPath}
         options={this.languageCodes}
         upward={false}
       />

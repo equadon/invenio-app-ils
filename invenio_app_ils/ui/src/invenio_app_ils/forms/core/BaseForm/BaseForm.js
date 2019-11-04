@@ -7,18 +7,6 @@ import { ES_DELAY } from '../../../common/config';
 import { ErrorMessage } from '../ErrorMessage';
 
 export class BaseForm extends Component {
-  constructor(props) {
-    super(props);
-    this.initialValues = props.initialValues;
-    this.successSubmitMessage = props.successSubmitMessage;
-    this.successCallback = props.successCallback;
-    this.createApiMethod = props.createApiMethod;
-    this.editApiMethod = props.editApiMethod;
-    this.title = props.title;
-    this.pid = props.pid;
-    this.validationSchema = props.validationSchema;
-  }
-
   submitSerializer = values => {
     const { _submitButton, ...rawValues } = values;
     const serializedValues = this.props.submitSerializer
@@ -32,16 +20,16 @@ export class BaseForm extends Component {
     try {
       actions.setSubmitting(true);
       const response = this.pid
-        ? await this.editApiMethod(this.pid, submitValues)
+        ? await this.editApiMethod(this.props.pid, submitValues)
         : await this.createApiMethod(submitValues);
 
       setTimeout(() => {
         this.props.sendSuccessNotification(
           'Success!',
-          this.successSubmitMessage
+          this.props.successSubmitMessage
         );
-        if (this.successCallback) {
-          this.successCallback(response, submitButton);
+        if (this.props.successCallback) {
+          this.props.successCallback(response, submitButton);
         }
       }, ES_DELAY);
     } catch (error) {
@@ -96,18 +84,18 @@ export class BaseForm extends Component {
   };
 
   render() {
-    const { buttons } = this.props;
+    const { buttons, initialValues, title } = this.props;
     return (
       <Container>
-        {this.title && (
+        {title && (
           <Grid>
             <Grid.Row centered>
-              <Header>{this.title}</Header>
+              <Header>{title}</Header>
             </Grid.Row>
           </Grid>
         )}
         <Formik
-          initialValues={this.initialValues}
+          initialValues={initialValues}
           onSubmit={this.props.onSubmit || this.onSubmit}
           validationSchema={this.validationSchema}
           render={({ isSubmitting, handleSubmit, submitForm, values }) => (

@@ -4,15 +4,6 @@ import { FastField, Field, getIn } from 'formik';
 import { Form } from 'semantic-ui-react';
 
 export class TextField extends Component {
-  constructor(props) {
-    super(props);
-
-    const { fieldPath, optimized, ...uiProps } = props;
-    this.fieldPath = fieldPath;
-    this.optimized = optimized;
-    this.uiProps = uiProps;
-  }
-
   renderError(errors, name, direction = 'above') {
     const error = errors[name];
     return error
@@ -24,19 +15,20 @@ export class TextField extends Component {
   }
 
   renderFormField = props => {
+    const { fieldPath, optimized, ...uiProps } = this.props;
     const {
       form: { values, handleChange, handleBlur, errors },
     } = props;
     return (
       <Form.Field>
         <Form.TextArea
-          id={this.fieldPath}
-          name={this.fieldPath}
+          id={fieldPath}
+          name={fieldPath}
           onChange={handleChange}
           onBlur={handleBlur}
-          value={getIn(values, this.fieldPath, '')}
-          error={this.renderError(errors, this.fieldPath)}
-          {...this.uiProps}
+          value={getIn(values, fieldPath, '')}
+          error={this.renderError(errors, fieldPath)}
+          {...uiProps}
         ></Form.TextArea>
       </Form.Field>
     );
@@ -45,7 +37,10 @@ export class TextField extends Component {
   render() {
     const FormikField = this.props.optimized ? FastField : Field;
     return (
-      <FormikField name={this.fieldPath} component={this.renderFormField} />
+      <FormikField
+        name={this.props.fieldPath}
+        component={this.renderFormField}
+      />
     );
   }
 }

@@ -4,16 +4,6 @@ import { FastField, Field, getIn } from 'formik';
 import { Form } from 'semantic-ui-react';
 
 export class BooleanField extends Component {
-  constructor(props) {
-    super(props);
-
-    const { fieldPath, label, optimized, ...uiProps } = props;
-    this.fieldPath = fieldPath;
-    this.label = label;
-    this.optimized = optimized;
-    this.uiProps = uiProps;
-  }
-
   renderError(errors, name, direction = 'left') {
     const error = errors[name];
     return error
@@ -25,20 +15,21 @@ export class BooleanField extends Component {
   }
 
   renderFormField = props => {
+    const { fieldPath, label, optimized, ...uiProps } = this.props;
     const {
       form: { values, handleChange, handleBlur, errors },
     } = props;
     return (
       <Form.Group inline>
-        <label htmlFor={this.fieldPath}>{this.label}</label>
+        <label htmlFor={fieldPath}>{label}</label>
         <Form.Checkbox
-          id={this.fieldPath}
-          name={this.fieldPath}
+          id={fieldPath}
+          name={fieldPath}
           onChange={handleChange}
           onBlur={handleBlur}
-          checked={getIn(values, this.fieldPath, '') || false}
-          error={this.renderError(errors, this.fieldPath)}
-          {...this.uiProps}
+          checked={getIn(values, fieldPath, '') || false}
+          error={this.renderError(errors, fieldPath)}
+          {...uiProps}
         ></Form.Checkbox>
       </Form.Group>
     );
@@ -46,7 +37,10 @@ export class BooleanField extends Component {
   render() {
     const FormikField = this.props.optimized ? FastField : Field;
     return (
-      <FormikField name={this.fieldPath} component={this.renderFormField} />
+      <FormikField
+        name={this.props.fieldPath}
+        component={this.renderFormField}
+      />
     );
   }
 }

@@ -3,25 +3,15 @@ import PropTypes from 'prop-types';
 import { ObjectArrayStringField } from '../core';
 
 export class IdentifiersField extends Component {
-  constructor(props) {
-    super(props);
-    this.label = props.label;
-    this.basic = props.basic;
-    this.fieldPath = props.fieldPath;
-    this.objectKeysArray = props.objectKeysArray;
-    this.defaultNewValue = props.defaultNewValue;
-    this.addButtonLabel = props.addButtonLabel;
-  }
-
   render() {
     return (
       <ObjectArrayStringField
-        basic={this.basic}
-        fieldPath={this.fieldPath}
-        label={this.label}
-        objectKeysArray={this.objectKeysArray}
-        defaultNewValue={this.defaultNewValue}
-        addButtonLabel={this.addButtonLabel}
+        basic={this.props.basic}
+        fieldPath={this.props.fieldPath}
+        label={this.props.label}
+        objectKeysArray={this.props.objectKeysArray}
+        defaultNewValue={this.props.defaultNewValue}
+        addButtonLabel={this.props.addButtonLabel}
       />
     );
   }

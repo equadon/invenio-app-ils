@@ -18,14 +18,6 @@ import { BackOfficeRoutes } from '../../../../../../../routes/urls';
 import { goTo } from '../../../../../../../history';
 
 export class SeriesForm extends Component {
-  constructor(props) {
-    super(props);
-    this.formInitialData = props.data;
-    this.successSubmitMessage = props.successSubmitMessage;
-    this.title = props.title;
-    this.pid = props.pid;
-  }
-
   prepareData = data => {
     return pick(data, [
       'title',
@@ -72,16 +64,14 @@ export class SeriesForm extends Component {
     return (
       <BaseForm
         initialValues={
-          this.formInitialData
-            ? this.prepareData(this.formInitialData.metadata)
-            : {}
+          this.props.data ? this.prepareData(this.props.data.metadata) : {}
         }
         editApiMethod={this.updateSeries}
         createApiMethod={this.createSeries}
         successCallback={this.successCallback}
         successSubmitMessage={this.successSubmitMessage}
-        title={this.title}
-        pid={this.pid ? this.pid : undefined}
+        title={this.props.title}
+        pid={this.props.pid}
       >
         <StringField label="Title" fieldPath="title" required />
         <SelectField
@@ -117,7 +107,7 @@ export class SeriesForm extends Component {
 }
 
 SeriesForm.propTypes = {
-  formInitialData: PropTypes.object,
+  data: PropTypes.object,
   successSubmitMessage: PropTypes.string,
   title: PropTypes.string,
   pid: PropTypes.string,
