@@ -159,5 +159,5 @@ SelectorField.propTypes = {
 SelectorField.defaultProps = {
   emptyHeader: 'Nothing selected',
   emptyDescription: 'Please select a value before saving.',
-  optimized: true,
+  optimized: false,
 };

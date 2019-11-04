@@ -10,6 +10,10 @@ import {
 } from '../../../../../../../../../forms';
 
 export class AuthorsField extends React.Component {
+  state = {
+    showForm: false,
+  };
+
   onRemove = (values, index, setFieldValue, setShowForm) => {
     setShowForm(false);
     setFieldValue('authors', values.authors.filter((_, i) => i !== index));

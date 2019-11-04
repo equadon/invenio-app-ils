@@ -43,5 +43,5 @@ CalendarInputField.propTypes = {
 };
 
 CalendarInputField.defaultProps = {
-  optimized: true,
+  optimized: false,
 };

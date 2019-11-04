@@ -68,5 +68,5 @@ SelectField.propTypes = {
 
 SelectField.defaultProps = {
   multiple: false,
-  optimized: true,
+  optimized: false,
 };

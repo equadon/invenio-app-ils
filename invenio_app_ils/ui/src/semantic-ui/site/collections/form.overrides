@@ -87,7 +87,7 @@ fieldset.form-group {
   }
 }
 
-.object-array-field {
+.object-list-field {
   div.ui.list {
     a.item.active {
       color: @orange;

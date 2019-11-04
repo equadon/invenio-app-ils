@@ -9,17 +9,6 @@ export class ObjectListField extends Component {
     showForm: false,
   };
 
-  constructor(props) {
-    super(props);
-
-    const { fieldPath, keyField, renderForm, children, ...uiProps } = props;
-    this.fieldPath = fieldPath;
-    this.children = children;
-    this.keyField = keyField;
-    this.renderForm = renderForm;
-    this.uiProps = uiProps;
-  }
-
   onItemClick = index => {
     const activeIndex = this.state.activeIndex;
     const showForm = index === activeIndex ? !this.state.showForm : true;
@@ -39,14 +28,15 @@ export class ObjectListField extends Component {
   };
 
   renderFormField = props => {
+    const { fieldPath, keyField } = this.props;
     const {
       form: { errors, values },
     } = props;
-    const items = getIn(values, this.fieldPath, []);
+    const items = getIn(values, fieldPath, []);
     const { activeIndex, showForm } = this.state;
 
     return (
-      <Form.Field className="object-array-field">
+      <Form.Field className="object-list-field">
         <label>Authors</label>
         <List horizontal divided relaxed>
           {items.map((item, index) => (
@@ -58,7 +48,7 @@ export class ObjectListField extends Component {
             >
               <List.Content>
                 {this.getListItemIcon(index, errors)}
-                {item[this.keyField]}
+                {item[keyField]}
               </List.Content>
             </List.Item>
           ))}
@@ -80,7 +70,9 @@ export class ObjectListField extends Component {
   };
 
   render() {
-    return <Field name={this.fieldPath} component={this.renderFormField} />;
+    return (
+      <Field name={this.props.fieldPath} component={this.renderFormField} />
+    );
   }
 }
 

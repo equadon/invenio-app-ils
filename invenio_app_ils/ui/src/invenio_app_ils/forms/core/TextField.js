@@ -56,5 +56,5 @@ TextField.propTypes = {
 };
 
 TextField.defaultProps = {
-  optimized: true,
+  optimized: false,
 };

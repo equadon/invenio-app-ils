@@ -59,5 +59,5 @@ BooleanField.propTypes = {
 
 BooleanField.defaultProps = {
   label: '',
-  optimized: true,
+  optimized: false,
 };
