@@ -10,11 +10,6 @@ import {
 } from '../../../../../../../../../forms';
 
 export class AuthorsField extends React.Component {
-  constructor(props) {
-    super(props);
-    this.fieldPath = props.fieldPath;
-  }
-
   onRemove = (values, index, setFieldValue, setShowForm) => {
     setShowForm(false);
     setFieldValue('authors', values.authors.filter((_, i) => i !== index));
@@ -35,7 +30,7 @@ export class AuthorsField extends React.Component {
 
     return (
       <ObjectListField
-        fieldPath={this.fieldPath}
+        fieldPath={this.props.fieldPath}
         keyField="full_name"
         renderItem={(index, setShowForm) => {
           const initialValues = {
@@ -71,7 +66,7 @@ export class AuthorsField extends React.Component {
 
   render() {
     return (
-      <Field name={this.fieldPath} component={this.renderFormField} />
+      <Field name={this.props.fieldPath} component={this.renderFormField} />
     );
   }
 }
@@ -79,5 +74,3 @@ export class AuthorsField extends React.Component {
 AuthorsField.propTypes = {
   fieldPath: PropTypes.string,
 };
-
-AuthorsField.defaultProps = {};

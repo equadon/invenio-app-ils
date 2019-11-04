@@ -1,9 +1,16 @@
 import React from 'react';
-import { ArrayField, StringField, GroupField, AccordionField, IdentifiersField, DeleteActionButton } from '../../../../../../../../../forms';
+import {
+  AccordionField,
+  ArrayField,
+  DeleteActionButton,
+  GroupField,
+  IdentifiersField,
+  StringField,
+} from '../../../../../../../../../forms';
 
 export class AuthorForm extends React.Component {
   renderAffiliation = ({ arrayPath, indexPath, ...arrayHelpers }) => {
-    const objectPath = `${arrayPath}.${indexPath}`;
+    const path = `${arrayPath}.${indexPath}`;
     return (
       <GroupField
         basic
@@ -16,14 +23,10 @@ export class AuthorForm extends React.Component {
           required
           fluid
           label="Affiliation Name"
-          fieldPath={`${objectPath}.name`}
+          fieldPath={`${path}.name`}
         />
         <GroupField grouped widths="equal">
-          <IdentifiersField
-            basic
-            fieldPath={`${objectPath}.identifiers`}
-            label=""
-          />
+          <IdentifiersField basic fieldPath={`${path}.identifiers`} label="" />
         </GroupField>
       </GroupField>
     );
@@ -38,7 +41,7 @@ export class AuthorForm extends React.Component {
           action={
             <DeleteActionButton
               icon="trash"
-              onClick={() => arrayHelpers.remove(indexPath) }
+              onClick={() => arrayHelpers.remove(indexPath)}
             />
           }
         />
@@ -55,7 +58,7 @@ export class AuthorForm extends React.Component {
           action={
             <DeleteActionButton
               icon="trash"
-              onClick={() => arrayHelpers.remove(indexPath) }
+              onClick={() => arrayHelpers.remove(indexPath)}
             />
           }
         />
@@ -78,39 +81,39 @@ export class AuthorForm extends React.Component {
         <AccordionField
           label="Affiliations"
           fieldPath="affiliations"
-          content={(
+          content={
             <ArrayField
               fieldPath={`${basePath}.affiliations`}
               defaultNewValue={{ name: '', identifiers: [] }}
               renderArrayItem={this.renderAffiliation}
               addButtonLabel="Add affiliation"
             />
-          )}
+          }
         />
         <AccordionField
           label="Alternative Names"
           fieldPath="alternative_names"
-          content={(
+          content={
             <ArrayField
               fieldPath={`${basePath}.alternative_names`}
               defaultNewValue=""
               renderArrayItem={this.renderAlternativeName}
               addButtonLabel="Add alternative name"
             />
-          )}
+          }
         />
         <IdentifiersField fieldPath={`${basePath}.identifiers`} />
         <AccordionField
           label="Roles"
           fieldPath={`${basePath}.roles`}
-          content={(
+          content={
             <ArrayField
               fieldPath={`${basePath}.roles`}
               defaultNewValue=""
               renderArrayItem={this.renderRole}
               addButtonLabel="Add role"
             />
-          )}
+          }
         />
       </GroupField>
     );
