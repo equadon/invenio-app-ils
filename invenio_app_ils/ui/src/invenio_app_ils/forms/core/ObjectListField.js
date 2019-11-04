@@ -15,7 +15,7 @@ export class ObjectListField extends Component {
     }
     this.setState({ activeIndex: index });
     if (this.props.onItemChange) {
-      this.props.onItemChange(item, index);
+      this.props.onItemChange(index, item);
     }
   };
 

@@ -55,5 +55,5 @@ StringField.propTypes = {
 
 StringField.defaultProps = {
   inline: false,
-  optimized: false,
+  optimized: true,
 };

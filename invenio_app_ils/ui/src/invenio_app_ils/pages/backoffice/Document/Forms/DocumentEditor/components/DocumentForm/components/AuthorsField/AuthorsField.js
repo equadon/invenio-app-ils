@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Field, getIn } from 'formik';
+import { FastField, Field, getIn } from 'formik';
 import cloneDeep from 'lodash/cloneDeep';
 import { AuthorForm } from './AuthorForm';
 import {
@@ -8,6 +8,8 @@ import {
   GroupField,
   ObjectListField,
 } from '../../../../../../../../../forms';
+import { invenioConfig } from '../../../../../../../../../common/config';
+import { AuthorSearchField } from './AuthorSearchField';
 
 export class AuthorsField extends React.Component {
   state = {
@@ -26,7 +28,13 @@ export class AuthorsField extends React.Component {
     }
   };
 
-  onAuthorChange = (author, index) => {
+  onAuthorSearchChange = value => {
+    if (value.length < 1) {
+      this.setState({ activeIndex: null, showForm: false });
+    }
+  };
+
+  onAuthorChange = index => {
     this.setState({ activeIndex: index, showForm: index !== null });
   };
 
@@ -60,31 +68,53 @@ export class AuthorsField extends React.Component {
     );
   };
 
+  renderAuthors = authors => {
+    if (authors.length > invenioConfig.authors.maxDisplay) {
+      return (
+        <AuthorSearchField
+          authors={authors}
+          onSearchChange={this.onAuthorSearchChange}
+          onResultSelect={result => this.onAuthorChange(result.index)}
+        />
+      );
+    }
+
+    return (
+      <ObjectListField
+        fieldPath={this.props.fieldPath}
+        keyField="full_name"
+        onItemChange={this.onAuthorChange}
+      />
+    );
+  };
+
   renderFormField = props => {
     const {
       form: { values, setFieldValue, errors },
     } = props;
     const { showForm } = this.state;
+    console.log('showForm', this.state);
 
     return (
       <>
-        <ObjectListField
-          fieldPath={this.props.fieldPath}
-          keyField="full_name"
-          onItemChange={this.onAuthorChange}
-        />
+        {this.renderAuthors(values.authors)}
         {showForm && this.renderSubForm(values, errors, setFieldValue)}
       </>
     );
   };
 
   render() {
+    const FormikField = this.props.optimized ? FastField : Field;
     return (
-      <Field name={this.props.fieldPath} component={this.renderFormField} />
+      <FormikField
+        name={this.props.fieldPath}
+        component={this.renderFormField}
+      />
     );
   }
 }
 
 AuthorsField.propTypes = {
   fieldPath: PropTypes.string,
+  optimized: PropTypes.bool,
 };
