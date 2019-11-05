@@ -36,10 +36,17 @@ export class AuthorsField extends React.Component {
   };
 
   onAuthorChange = index => {
-    const { activeIndex } = this.state;
+    const { activeIndex, showForm } = this.state;
+    // Hide then show the form to prevent display issues when switching between
+    // authors.
     this.setState({ showForm: false }, () => {
-      const showForm = activeIndex === index ? false : index !== null;
-      this.setState({ activeIndex: index, showForm: showForm });
+      let showFormUpdated;
+      if (index === activeIndex) {
+        showFormUpdated = !showForm;
+      } else {
+        showFormUpdated = index !== null;
+      }
+      this.setState({ activeIndex: index, showForm: showFormUpdated });
     });
   };
 
