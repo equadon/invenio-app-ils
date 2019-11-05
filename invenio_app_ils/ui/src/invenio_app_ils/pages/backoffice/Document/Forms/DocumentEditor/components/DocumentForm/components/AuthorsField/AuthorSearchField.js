@@ -21,16 +21,20 @@ export class AuthorSearchField extends React.Component {
     const reTitle = new RegExp(escapeRegExp(query), 'i');
     const isMatch = result => reTitle.test(result);
 
+    let numResults = 0;
     this.setState({
       isLoading: false,
       results: this.props.authors.reduce((results, author, index) => {
         if (isMatch(author.full_name)) {
-          results.push({
-            key: author.full_name,
-            index: index,
-            title: author.full_name,
-            description: author.type,
-          });
+          numResults++;
+          if (numResults < this.props.showMaxResults) {
+            results.push({
+              key: author.full_name,
+              index: index,
+              title: author.full_name,
+              description: author.type,
+            });
+          }
         }
         return results;
       }, []),
@@ -92,6 +96,11 @@ export class AuthorSearchField extends React.Component {
 
 AuthorSearchField.propTypes = {
   authors: PropTypes.array.isRequired,
+  showMaxResults: PropTypes.number,
   onSearchChange: PropTypes.func,
   onResultSelect: PropTypes.func,
+};
+
+AuthorSearchField.defaultProps = {
+  showMaxResults: 10,
 };

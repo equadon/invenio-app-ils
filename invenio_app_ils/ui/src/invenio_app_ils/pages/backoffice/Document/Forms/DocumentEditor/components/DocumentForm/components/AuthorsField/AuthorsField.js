@@ -87,6 +87,7 @@ export class AuthorsField extends React.Component {
           authors={authors}
           onSearchChange={this.onAuthorSearchChange}
           onResultSelect={result => this.onAuthorChange(result.index)}
+          showMaxResults={15}
         />
       );
     }
