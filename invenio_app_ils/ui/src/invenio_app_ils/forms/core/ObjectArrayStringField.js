@@ -36,7 +36,7 @@ export class ObjectArrayStringField extends Component {
       label={this.props.label}
       fieldPath={this.props.fieldPath}
       defaultNewValue={this.props.defaultNewValue}
-      renderArrayItem={this.props.renderFormField}
+      renderArrayItem={this.renderFormField}
       addButtonLabel={this.props.addButtonLabel}
     />
   );

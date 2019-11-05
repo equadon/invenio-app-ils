@@ -34,9 +34,7 @@ export class ArrayField extends Component {
           basic
           secondary
           type="button"
-          onClick={() => {
-            arrayHelpers.push(defaultNewValue);
-          }}
+          onClick={() => arrayHelpers.push(defaultNewValue)}
         >
           <Icon name="add" />
           {addButtonLabel}
