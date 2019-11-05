@@ -53,11 +53,15 @@ export class AuthorSearchField extends React.Component {
   };
 
   onSearchChange = (e, { value }) => {
-    this.setState({ isLoading: true, value: value, results: [] });
-    if (this.props.onSearchChange) {
-      this.props.onSearchChange(value);
+    if (value.length >= this.props.minCharacters) {
+      this.setState({ isLoading: true, value: value, results: [] });
+      if (this.props.onSearchChange) {
+        this.props.onSearchChange(value);
+      }
+      this.search(value);
+    } else {
+      this.setState({ value: value, results: [] });
     }
-    this.search(value);
   };
 
   onNewAuthor = () => {
@@ -82,7 +86,7 @@ export class AuthorSearchField extends React.Component {
           fluid
           input={{ icon: 'search', iconPosition: 'left' }}
           loading={this.state.isLoading}
-          minCharacters={1}
+          minCharacters={this.props.minCharacters}
           results={this.state.results}
           onFocus={this.onFocus}
           onResultSelect={this.onResultSelect}
@@ -96,11 +100,13 @@ export class AuthorSearchField extends React.Component {
 
 AuthorSearchField.propTypes = {
   authors: PropTypes.array.isRequired,
+  minCharacters: PropTypes.number,
   showMaxResults: PropTypes.number,
   onSearchChange: PropTypes.func,
   onResultSelect: PropTypes.func,
 };
 
 AuthorSearchField.defaultProps = {
+  minCharacters: 3,
   showMaxResults: 10,
 };

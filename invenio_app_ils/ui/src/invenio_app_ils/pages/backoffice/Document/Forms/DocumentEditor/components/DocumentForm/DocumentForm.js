@@ -116,7 +116,7 @@ export class DocumentForm extends Component {
         <ConferenceInfoField />
         <AlternativeAbstracts />
         <LicensesField fieldPath="licenses" />
-        <TagsField label="Tags" fieldPath="tags" />
+        {/* <TagsField label="Tags" fieldPath="tags" /> */}
         <TableOfContent />
         <UrlsField />
         <Subjects />
