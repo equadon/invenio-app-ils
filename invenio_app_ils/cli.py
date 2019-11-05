@@ -7,6 +7,7 @@
 
 """CLI for Invenio App ILS."""
 
+import json
 import random
 from datetime import timedelta
 from random import randint
@@ -318,12 +319,14 @@ class DocumentGenerator(Generator):
         """Generate."""
         size = self.holder.documents["total"]
         tag_pids = self.holder.pids("tags", "pid")
+        with open('authors.json', 'r') as f:
+            full_authors = json.load(f)
 
         objs = [
             {
                 "pid": str(pid),
                 "title": lorem.sentence(),
-                "authors": random.sample(self.AUTHORS, randint(1, 3)),
+                "authors": full_authors if pid == 1 else random.sample(self.AUTHORS, randint(1, 3)),
                 "abstract": "{}".format(lorem.text()),
                 "document_type": random.choice(self.DOCUMENT_TYPES),
                 "_access": {},
