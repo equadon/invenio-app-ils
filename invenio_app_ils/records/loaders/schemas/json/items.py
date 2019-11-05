@@ -8,7 +8,7 @@
 """Items schema for marshmallow loader."""
 
 from invenio_records_rest.schemas import RecordMetadataSchemaJSONV1
-from marshmallow import Schema, fields
+from marshmallow import Schema, fields, EXCLUDE
 
 
 class ItemSchemaV1(RecordMetadataSchemaJSONV1):
@@ -33,7 +33,6 @@ class EItemUrlsSchema(Schema):
     class Meta:
         """Meta attributes for the schema."""
 
-        from marshmallow import EXCLUDE
         unknown = EXCLUDE
 
     value = fields.URL(required=True)
@@ -46,7 +45,6 @@ class EItemSchemaV1(RecordMetadataSchemaJSONV1):
     class Meta:
         """Meta attributes for the schema."""
 
-        from marshmallow import EXCLUDE
         unknown = EXCLUDE
 
     document_pid = fields.Str(required=True)  # TODO: validate

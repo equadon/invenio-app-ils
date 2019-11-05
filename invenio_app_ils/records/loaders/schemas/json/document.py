@@ -8,7 +8,7 @@
 """Document schema for marshmallow loader."""
 
 from invenio_records_rest.schemas import RecordMetadataSchemaJSONV1
-from marshmallow import Schema, fields
+from marshmallow import Schema, fields, EXCLUDE
 
 
 class IdentifierSchema(Schema):
@@ -17,7 +17,6 @@ class IdentifierSchema(Schema):
     class Meta:
         """Meta attributes for the schema."""
 
-        from marshmallow import EXCLUDE
         unknown = EXCLUDE
 
     material = fields.Str()
@@ -31,7 +30,6 @@ class AffiliationSchema(Schema):
     class Meta:
         """Meta attributes for the schema."""
 
-        from marshmallow import EXCLUDE
         unknown = EXCLUDE
 
     identifiers = fields.List(fields.Nested(IdentifierSchema))
@@ -44,7 +42,6 @@ class AuthorSchema(Schema):
     class Meta:
         """Meta attributes for the schema."""
 
-        from marshmallow import EXCLUDE
         unknown = EXCLUDE
 
     affiliations = fields.List(fields.Nested(AffiliationSchema))
@@ -61,7 +58,6 @@ class UrlSchema(Schema):
     class Meta:
         """Meta attributes for the schema."""
 
-        from marshmallow import EXCLUDE
         unknown = EXCLUDE
 
     description = fields.Str()
@@ -74,7 +70,6 @@ class AlternativeTitleSchema(Schema):
     class Meta:
         """Meta attributes for the schema."""
 
-        from marshmallow import EXCLUDE
         unknown = EXCLUDE
 
     language = fields.Str()
@@ -88,7 +83,6 @@ class ConferenceInfoSchema(Schema):
     class Meta:
         """Meta attributes for the schema."""
 
-        from marshmallow import EXCLUDE
         unknown = EXCLUDE
 
     acronym = fields.Str()
@@ -107,7 +101,6 @@ class CopyrightsSchema(Schema):
     class Meta:
         """Meta attributes for the schema."""
 
-        from marshmallow import EXCLUDE
         unknown = EXCLUDE
 
     holder = fields.Str()
@@ -123,7 +116,6 @@ class ImprintSchema(Schema):
     class Meta:
         """Meta attributes for the schema."""
 
-        from marshmallow import EXCLUDE
         unknown = EXCLUDE
 
     date = fields.Str()
@@ -138,7 +130,6 @@ class InternalNoteSchema(Schema):
     class Meta:
         """Meta attributes for the schema."""
 
-        from marshmallow import EXCLUDE
         unknown = EXCLUDE
 
     field = fields.Str()
@@ -152,7 +143,6 @@ class KeywordSchema(Schema):
     class Meta:
         """Meta attributes for the schema."""
 
-        from marshmallow import EXCLUDE
         unknown = EXCLUDE
 
     source = fields.Str()
@@ -165,7 +155,6 @@ class SubjectSchema(Schema):
     class Meta:
         """Meta attributes for the schema."""
 
-        from marshmallow import EXCLUDE
         unknown = EXCLUDE
 
     scheme = fields.Str(required=True)
@@ -178,7 +167,6 @@ class PublicationInfoSchema(Schema):
     class Meta:
         """Meta attributes for the schema."""
 
-        from marshmallow import EXCLUDE
         unknown = EXCLUDE
 
     artid = fields.Str()
@@ -196,7 +184,6 @@ class LicenseSchema(Schema):
     class Meta:
         """Meta attributes for the schema."""
 
-        from marshmallow import EXCLUDE
         unknown = EXCLUDE
 
     funder = fields.Str()
@@ -211,7 +198,6 @@ class DocumentSchemaV1(RecordMetadataSchemaJSONV1):
     class Meta:
         """Meta attributes for the schema."""
 
-        from marshmallow import EXCLUDE
         unknown = EXCLUDE
 
     abstract = fields.Str()

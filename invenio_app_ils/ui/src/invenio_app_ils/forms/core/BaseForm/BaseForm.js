@@ -19,9 +19,9 @@ export class BaseForm extends Component {
     const [submitValues, submitButton] = this.submitSerializer(values);
     try {
       actions.setSubmitting(true);
-      const response = this.pid
-        ? await this.editApiMethod(this.props.pid, submitValues)
-        : await this.createApiMethod(submitValues);
+      const response = this.props.pid
+        ? await this.props.editApiMethod(this.props.pid, submitValues)
+        : await this.props.createApiMethod(submitValues);
 
       setTimeout(() => {
         this.props.sendSuccessNotification(
