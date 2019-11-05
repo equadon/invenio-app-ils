@@ -61,11 +61,15 @@ export class SeriesForm extends Component {
   };
 
   render() {
+    const initialValues = this.props.data
+      ? this.prepareData(this.props.data.metadata)
+      : {};
     return (
       <BaseForm
-        initialValues={
-          this.props.data ? this.prepareData(this.props.data.metadata) : {}
-        }
+        initialValues={{
+          mode_of_issuance: 'MULTIPART_MONOGRAPH',
+          ...initialValues,
+        }}
         editApiMethod={this.updateSeries}
         createApiMethod={this.createSeries}
         successCallback={this.successCallback}
@@ -75,6 +79,8 @@ export class SeriesForm extends Component {
       >
         <StringField label="Title" fieldPath="title" required />
         <SelectField
+          required
+          search
           label="Mode of issuance"
           fieldPath="mode_of_issuance"
           options={[
@@ -87,8 +93,6 @@ export class SeriesForm extends Component {
               value: 'SERIAL',
             },
           ]}
-          required
-          search
         />
         <TextField label="Abstract" fieldPath="abstract" rows={10} />
         <ArrayField

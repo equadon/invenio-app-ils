@@ -18,8 +18,14 @@ export class SelectField extends Component {
     const {
       form: { values, setFieldValue, handleBlur, errors },
     } = props;
-    const { fieldPath, label, multiple, optimized, ...uiProps } = this.props;
-    const defaultValue = getIn(this.props, 'options.0.value', '');
+    const {
+      defaultValue,
+      fieldPath,
+      label,
+      multiple,
+      optimized,
+      ...uiProps
+    } = this.props;
     return (
       <Form.Dropdown
         fluid
@@ -51,12 +57,14 @@ export class SelectField extends Component {
 }
 
 SelectField.propTypes = {
+  defaultValue: PropTypes.string,
   fieldPath: PropTypes.string.isRequired,
   multiple: PropTypes.bool,
   optimized: PropTypes.bool,
 };
 
 SelectField.defaultProps = {
+  defaultValue: '',
   multiple: false,
   optimized: false,
 };

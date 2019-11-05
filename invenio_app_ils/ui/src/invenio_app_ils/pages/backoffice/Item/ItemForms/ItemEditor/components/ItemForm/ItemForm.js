@@ -62,11 +62,17 @@ export class ItemForm extends Component {
   };
 
   render() {
+    const initialValues = this.props.data
+      ? this.prepareData(this.props.data.metadata)
+      : {};
     return (
       <BaseForm
-        initialValues={
-          this.props.data ? this.prepareData(this.props.data.metadata) : {}
-        }
+        initialValues={{
+          circulation_restriction: 'NO_RESTRICTION',
+          status: 'CAN_CIRCULATE',
+          medium: 'NOT_SPECIFIED',
+          ...initialValues,
+        }}
         editApiMethod={this.update}
         createApiMethod={this.create}
         successCallback={this.successCallback}

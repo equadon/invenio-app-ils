@@ -11,19 +11,39 @@ from invenio_records_rest.schemas import RecordMetadataSchemaJSONV1
 from marshmallow import Schema, fields, EXCLUDE
 
 
+class ISBNSchema(Schema):
+    """ISBN schema."""
+
+    class Meta:
+        """Meta attributes for the schema."""
+
+        unknown = EXCLUDE
+
+    description = fields.Str()
+    value = fields.Str(required=True)
+
+
 class ItemSchemaV1(RecordMetadataSchemaJSONV1):
     """Item schema."""
 
+    class Meta:
+        """Meta attributes for the schema."""
+
+        unknown = EXCLUDE
+
+    barcode = fields.Str()
+    circulation_restriction = fields.Str()  # TODO: this should be an enum
+    description = fields.Str()
     document_pid = fields.Str(required=True)  # TODO: validate
     internal_location_pid = fields.Str(required=True)  # TODO: validate
+    internal_notes = fields.Str()
+    isbn = fields.Nested(ISBNSchema)
     legacy_id = fields.Str()
     legacy_library_id = fields.Str()
-    circulation_restriction = fields.Str()  # TODO: this should be an enum
-    barcode = fields.Str()
-    shelf = fields.Str()
-    description = fields.Str()
-    internal_notes = fields.Str()
     medium = fields.Str()  # TODO: this should be an enum
+    number_of_pages = fields.Int()
+    physical_description = fields.Str()
+    shelf = fields.Str()
     status = fields.Str()  # TODO: this should be an enum
 
 
