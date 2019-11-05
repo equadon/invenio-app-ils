@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Icon } from 'semantic-ui-react';
 import { DateInput } from 'semantic-ui-calendar-react';
 import PropTypes from 'prop-types';
 
@@ -21,9 +20,7 @@ export class DatePicker extends Component {
       <DateInput
         autoComplete="off"
         clearable
-        clearIcon={<Icon name="remove" color="red" />}
         closable
-        dateFormat="YYYY-MM-DD"
         iconPosition="left"
         initialDate={this.props.initialDate}
         minDate={this.props.minDate}
