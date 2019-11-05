@@ -299,96 +299,6 @@ exports[`DocumentRequestForm tests should render the document request form corre
                           render={[Function]}
                           validateOnBlur={true}
                           validateOnChange={true}
-                          validationSchema={
-                            ObjectSchema {
-                              "_blacklist": RefSet {
-                                "list": Set {},
-                                "refs": Map {},
-                              },
-                              "_conditions": Array [],
-                              "_defaultDefault": [Function],
-                              "_deps": Array [],
-                              "_excludedEdges": Array [],
-                              "_exclusive": Object {},
-                              "_mutate": undefined,
-                              "_nodes": Array [
-                                "publication_year",
-                                "title",
-                              ],
-                              "_options": Object {
-                                "abortEarly": true,
-                                "recursive": true,
-                              },
-                              "_type": "object",
-                              "_typeError": [Function],
-                              "_whitelist": RefSet {
-                                "list": Set {},
-                                "refs": Map {},
-                              },
-                              "fields": Object {
-                                "publication_year": NumberSchema {
-                                  "_blacklist": RefSet {
-                                    "list": Set {},
-                                    "refs": Map {},
-                                  },
-                                  "_conditions": Array [],
-                                  "_deps": Array [],
-                                  "_exclusive": Object {
-                                    "integer": false,
-                                  },
-                                  "_mutate": undefined,
-                                  "_options": Object {
-                                    "abortEarly": true,
-                                    "recursive": true,
-                                  },
-                                  "_type": "number",
-                                  "_typeError": [Function],
-                                  "_whitelist": RefSet {
-                                    "list": Set {},
-                                    "refs": Map {},
-                                  },
-                                  "tests": Array [
-                                    [Function],
-                                  ],
-                                  "transforms": Array [
-                                    [Function],
-                                  ],
-                                },
-                                "title": StringSchema {
-                                  "_blacklist": RefSet {
-                                    "list": Set {},
-                                    "refs": Map {},
-                                  },
-                                  "_conditions": Array [],
-                                  "_deps": Array [],
-                                  "_exclusive": Object {
-                                    "required": true,
-                                  },
-                                  "_mutate": undefined,
-                                  "_options": Object {
-                                    "abortEarly": true,
-                                    "recursive": true,
-                                  },
-                                  "_type": "string",
-                                  "_typeError": [Function],
-                                  "_whitelist": RefSet {
-                                    "list": Set {},
-                                    "refs": Map {},
-                                  },
-                                  "tests": Array [
-                                    [Function],
-                                  ],
-                                  "transforms": Array [
-                                    [Function],
-                                  ],
-                                },
-                              },
-                              "tests": Array [],
-                              "transforms": Array [
-                                [Function],
-                              ],
-                            }
-                          }
                         >
                           <Form
                             as="form"
@@ -442,94 +352,7 @@ exports[`DocumentRequestForm tests should render the document request form corre
                                         "validateForm": [Function],
                                         "validateOnBlur": true,
                                         "validateOnChange": true,
-                                        "validationSchema": ObjectSchema {
-                                          "_blacklist": RefSet {
-                                            "list": Set {},
-                                            "refs": Map {},
-                                          },
-                                          "_conditions": Array [],
-                                          "_defaultDefault": [Function],
-                                          "_deps": Array [],
-                                          "_excludedEdges": Array [],
-                                          "_exclusive": Object {},
-                                          "_mutate": undefined,
-                                          "_nodes": Array [
-                                            "publication_year",
-                                            "title",
-                                          ],
-                                          "_options": Object {
-                                            "abortEarly": true,
-                                            "recursive": true,
-                                          },
-                                          "_type": "object",
-                                          "_typeError": [Function],
-                                          "_whitelist": RefSet {
-                                            "list": Set {},
-                                            "refs": Map {},
-                                          },
-                                          "fields": Object {
-                                            "publication_year": NumberSchema {
-                                              "_blacklist": RefSet {
-                                                "list": Set {},
-                                                "refs": Map {},
-                                              },
-                                              "_conditions": Array [],
-                                              "_deps": Array [],
-                                              "_exclusive": Object {
-                                                "integer": false,
-                                              },
-                                              "_mutate": undefined,
-                                              "_options": Object {
-                                                "abortEarly": true,
-                                                "recursive": true,
-                                              },
-                                              "_type": "number",
-                                              "_typeError": [Function],
-                                              "_whitelist": RefSet {
-                                                "list": Set {},
-                                                "refs": Map {},
-                                              },
-                                              "tests": Array [
-                                                [Function],
-                                              ],
-                                              "transforms": Array [
-                                                [Function],
-                                              ],
-                                            },
-                                            "title": StringSchema {
-                                              "_blacklist": RefSet {
-                                                "list": Set {},
-                                                "refs": Map {},
-                                              },
-                                              "_conditions": Array [],
-                                              "_deps": Array [],
-                                              "_exclusive": Object {
-                                                "required": true,
-                                              },
-                                              "_mutate": undefined,
-                                              "_options": Object {
-                                                "abortEarly": true,
-                                                "recursive": true,
-                                              },
-                                              "_type": "string",
-                                              "_typeError": [Function],
-                                              "_whitelist": RefSet {
-                                                "list": Set {},
-                                                "refs": Map {},
-                                              },
-                                              "tests": Array [
-                                                [Function],
-                                              ],
-                                              "transforms": Array [
-                                                [Function],
-                                              ],
-                                            },
-                                          },
-                                          "tests": Array [],
-                                          "transforms": Array [
-                                            [Function],
-                                          ],
-                                        },
+                                        "validationSchema": undefined,
                                         "values": Object {
                                           "title": "",
                                         },
@@ -640,94 +463,7 @@ exports[`DocumentRequestForm tests should render the document request form corre
                                         "validateForm": [Function],
                                         "validateOnBlur": true,
                                         "validateOnChange": true,
-                                        "validationSchema": ObjectSchema {
-                                          "_blacklist": RefSet {
-                                            "list": Set {},
-                                            "refs": Map {},
-                                          },
-                                          "_conditions": Array [],
-                                          "_defaultDefault": [Function],
-                                          "_deps": Array [],
-                                          "_excludedEdges": Array [],
-                                          "_exclusive": Object {},
-                                          "_mutate": undefined,
-                                          "_nodes": Array [
-                                            "publication_year",
-                                            "title",
-                                          ],
-                                          "_options": Object {
-                                            "abortEarly": true,
-                                            "recursive": true,
-                                          },
-                                          "_type": "object",
-                                          "_typeError": [Function],
-                                          "_whitelist": RefSet {
-                                            "list": Set {},
-                                            "refs": Map {},
-                                          },
-                                          "fields": Object {
-                                            "publication_year": NumberSchema {
-                                              "_blacklist": RefSet {
-                                                "list": Set {},
-                                                "refs": Map {},
-                                              },
-                                              "_conditions": Array [],
-                                              "_deps": Array [],
-                                              "_exclusive": Object {
-                                                "integer": false,
-                                              },
-                                              "_mutate": undefined,
-                                              "_options": Object {
-                                                "abortEarly": true,
-                                                "recursive": true,
-                                              },
-                                              "_type": "number",
-                                              "_typeError": [Function],
-                                              "_whitelist": RefSet {
-                                                "list": Set {},
-                                                "refs": Map {},
-                                              },
-                                              "tests": Array [
-                                                [Function],
-                                              ],
-                                              "transforms": Array [
-                                                [Function],
-                                              ],
-                                            },
-                                            "title": StringSchema {
-                                              "_blacklist": RefSet {
-                                                "list": Set {},
-                                                "refs": Map {},
-                                              },
-                                              "_conditions": Array [],
-                                              "_deps": Array [],
-                                              "_exclusive": Object {
-                                                "required": true,
-                                              },
-                                              "_mutate": undefined,
-                                              "_options": Object {
-                                                "abortEarly": true,
-                                                "recursive": true,
-                                              },
-                                              "_type": "string",
-                                              "_typeError": [Function],
-                                              "_whitelist": RefSet {
-                                                "list": Set {},
-                                                "refs": Map {},
-                                              },
-                                              "tests": Array [
-                                                [Function],
-                                              ],
-                                              "transforms": Array [
-                                                [Function],
-                                              ],
-                                            },
-                                          },
-                                          "tests": Array [],
-                                          "transforms": Array [
-                                            [Function],
-                                          ],
-                                        },
+                                        "validationSchema": undefined,
                                         "values": Object {
                                           "title": "",
                                         },
@@ -910,94 +646,7 @@ exports[`DocumentRequestForm tests should render the document request form corre
                                         "validateForm": [Function],
                                         "validateOnBlur": true,
                                         "validateOnChange": true,
-                                        "validationSchema": ObjectSchema {
-                                          "_blacklist": RefSet {
-                                            "list": Set {},
-                                            "refs": Map {},
-                                          },
-                                          "_conditions": Array [],
-                                          "_defaultDefault": [Function],
-                                          "_deps": Array [],
-                                          "_excludedEdges": Array [],
-                                          "_exclusive": Object {},
-                                          "_mutate": undefined,
-                                          "_nodes": Array [
-                                            "publication_year",
-                                            "title",
-                                          ],
-                                          "_options": Object {
-                                            "abortEarly": true,
-                                            "recursive": true,
-                                          },
-                                          "_type": "object",
-                                          "_typeError": [Function],
-                                          "_whitelist": RefSet {
-                                            "list": Set {},
-                                            "refs": Map {},
-                                          },
-                                          "fields": Object {
-                                            "publication_year": NumberSchema {
-                                              "_blacklist": RefSet {
-                                                "list": Set {},
-                                                "refs": Map {},
-                                              },
-                                              "_conditions": Array [],
-                                              "_deps": Array [],
-                                              "_exclusive": Object {
-                                                "integer": false,
-                                              },
-                                              "_mutate": undefined,
-                                              "_options": Object {
-                                                "abortEarly": true,
-                                                "recursive": true,
-                                              },
-                                              "_type": "number",
-                                              "_typeError": [Function],
-                                              "_whitelist": RefSet {
-                                                "list": Set {},
-                                                "refs": Map {},
-                                              },
-                                              "tests": Array [
-                                                [Function],
-                                              ],
-                                              "transforms": Array [
-                                                [Function],
-                                              ],
-                                            },
-                                            "title": StringSchema {
-                                              "_blacklist": RefSet {
-                                                "list": Set {},
-                                                "refs": Map {},
-                                              },
-                                              "_conditions": Array [],
-                                              "_deps": Array [],
-                                              "_exclusive": Object {
-                                                "required": true,
-                                              },
-                                              "_mutate": undefined,
-                                              "_options": Object {
-                                                "abortEarly": true,
-                                                "recursive": true,
-                                              },
-                                              "_type": "string",
-                                              "_typeError": [Function],
-                                              "_whitelist": RefSet {
-                                                "list": Set {},
-                                                "refs": Map {},
-                                              },
-                                              "tests": Array [
-                                                [Function],
-                                              ],
-                                              "transforms": Array [
-                                                [Function],
-                                              ],
-                                            },
-                                          },
-                                          "tests": Array [],
-                                          "transforms": Array [
-                                            [Function],
-                                          ],
-                                        },
+                                        "validationSchema": undefined,
                                         "values": Object {
                                           "title": "",
                                         },
@@ -1176,94 +825,7 @@ exports[`DocumentRequestForm tests should render the document request form corre
                                         "validateForm": [Function],
                                         "validateOnBlur": true,
                                         "validateOnChange": true,
-                                        "validationSchema": ObjectSchema {
-                                          "_blacklist": RefSet {
-                                            "list": Set {},
-                                            "refs": Map {},
-                                          },
-                                          "_conditions": Array [],
-                                          "_defaultDefault": [Function],
-                                          "_deps": Array [],
-                                          "_excludedEdges": Array [],
-                                          "_exclusive": Object {},
-                                          "_mutate": undefined,
-                                          "_nodes": Array [
-                                            "publication_year",
-                                            "title",
-                                          ],
-                                          "_options": Object {
-                                            "abortEarly": true,
-                                            "recursive": true,
-                                          },
-                                          "_type": "object",
-                                          "_typeError": [Function],
-                                          "_whitelist": RefSet {
-                                            "list": Set {},
-                                            "refs": Map {},
-                                          },
-                                          "fields": Object {
-                                            "publication_year": NumberSchema {
-                                              "_blacklist": RefSet {
-                                                "list": Set {},
-                                                "refs": Map {},
-                                              },
-                                              "_conditions": Array [],
-                                              "_deps": Array [],
-                                              "_exclusive": Object {
-                                                "integer": false,
-                                              },
-                                              "_mutate": undefined,
-                                              "_options": Object {
-                                                "abortEarly": true,
-                                                "recursive": true,
-                                              },
-                                              "_type": "number",
-                                              "_typeError": [Function],
-                                              "_whitelist": RefSet {
-                                                "list": Set {},
-                                                "refs": Map {},
-                                              },
-                                              "tests": Array [
-                                                [Function],
-                                              ],
-                                              "transforms": Array [
-                                                [Function],
-                                              ],
-                                            },
-                                            "title": StringSchema {
-                                              "_blacklist": RefSet {
-                                                "list": Set {},
-                                                "refs": Map {},
-                                              },
-                                              "_conditions": Array [],
-                                              "_deps": Array [],
-                                              "_exclusive": Object {
-                                                "required": true,
-                                              },
-                                              "_mutate": undefined,
-                                              "_options": Object {
-                                                "abortEarly": true,
-                                                "recursive": true,
-                                              },
-                                              "_type": "string",
-                                              "_typeError": [Function],
-                                              "_whitelist": RefSet {
-                                                "list": Set {},
-                                                "refs": Map {},
-                                              },
-                                              "tests": Array [
-                                                [Function],
-                                              ],
-                                              "transforms": Array [
-                                                [Function],
-                                              ],
-                                            },
-                                          },
-                                          "tests": Array [],
-                                          "transforms": Array [
-                                            [Function],
-                                          ],
-                                        },
+                                        "validationSchema": undefined,
                                         "values": Object {
                                           "title": "",
                                         },
@@ -1438,94 +1000,7 @@ exports[`DocumentRequestForm tests should render the document request form corre
                                         "validateForm": [Function],
                                         "validateOnBlur": true,
                                         "validateOnChange": true,
-                                        "validationSchema": ObjectSchema {
-                                          "_blacklist": RefSet {
-                                            "list": Set {},
-                                            "refs": Map {},
-                                          },
-                                          "_conditions": Array [],
-                                          "_defaultDefault": [Function],
-                                          "_deps": Array [],
-                                          "_excludedEdges": Array [],
-                                          "_exclusive": Object {},
-                                          "_mutate": undefined,
-                                          "_nodes": Array [
-                                            "publication_year",
-                                            "title",
-                                          ],
-                                          "_options": Object {
-                                            "abortEarly": true,
-                                            "recursive": true,
-                                          },
-                                          "_type": "object",
-                                          "_typeError": [Function],
-                                          "_whitelist": RefSet {
-                                            "list": Set {},
-                                            "refs": Map {},
-                                          },
-                                          "fields": Object {
-                                            "publication_year": NumberSchema {
-                                              "_blacklist": RefSet {
-                                                "list": Set {},
-                                                "refs": Map {},
-                                              },
-                                              "_conditions": Array [],
-                                              "_deps": Array [],
-                                              "_exclusive": Object {
-                                                "integer": false,
-                                              },
-                                              "_mutate": undefined,
-                                              "_options": Object {
-                                                "abortEarly": true,
-                                                "recursive": true,
-                                              },
-                                              "_type": "number",
-                                              "_typeError": [Function],
-                                              "_whitelist": RefSet {
-                                                "list": Set {},
-                                                "refs": Map {},
-                                              },
-                                              "tests": Array [
-                                                [Function],
-                                              ],
-                                              "transforms": Array [
-                                                [Function],
-                                              ],
-                                            },
-                                            "title": StringSchema {
-                                              "_blacklist": RefSet {
-                                                "list": Set {},
-                                                "refs": Map {},
-                                              },
-                                              "_conditions": Array [],
-                                              "_deps": Array [],
-                                              "_exclusive": Object {
-                                                "required": true,
-                                              },
-                                              "_mutate": undefined,
-                                              "_options": Object {
-                                                "abortEarly": true,
-                                                "recursive": true,
-                                              },
-                                              "_type": "string",
-                                              "_typeError": [Function],
-                                              "_whitelist": RefSet {
-                                                "list": Set {},
-                                                "refs": Map {},
-                                              },
-                                              "tests": Array [
-                                                [Function],
-                                              ],
-                                              "transforms": Array [
-                                                [Function],
-                                              ],
-                                            },
-                                          },
-                                          "tests": Array [],
-                                          "transforms": Array [
-                                            [Function],
-                                          ],
-                                        },
+                                        "validationSchema": undefined,
                                         "values": Object {
                                           "title": "",
                                         },
@@ -1640,94 +1115,7 @@ exports[`DocumentRequestForm tests should render the document request form corre
                                                     "validateForm": [Function],
                                                     "validateOnBlur": true,
                                                     "validateOnChange": true,
-                                                    "validationSchema": ObjectSchema {
-                                                      "_blacklist": RefSet {
-                                                        "list": Set {},
-                                                        "refs": Map {},
-                                                      },
-                                                      "_conditions": Array [],
-                                                      "_defaultDefault": [Function],
-                                                      "_deps": Array [],
-                                                      "_excludedEdges": Array [],
-                                                      "_exclusive": Object {},
-                                                      "_mutate": undefined,
-                                                      "_nodes": Array [
-                                                        "publication_year",
-                                                        "title",
-                                                      ],
-                                                      "_options": Object {
-                                                        "abortEarly": true,
-                                                        "recursive": true,
-                                                      },
-                                                      "_type": "object",
-                                                      "_typeError": [Function],
-                                                      "_whitelist": RefSet {
-                                                        "list": Set {},
-                                                        "refs": Map {},
-                                                      },
-                                                      "fields": Object {
-                                                        "publication_year": NumberSchema {
-                                                          "_blacklist": RefSet {
-                                                            "list": Set {},
-                                                            "refs": Map {},
-                                                          },
-                                                          "_conditions": Array [],
-                                                          "_deps": Array [],
-                                                          "_exclusive": Object {
-                                                            "integer": false,
-                                                          },
-                                                          "_mutate": undefined,
-                                                          "_options": Object {
-                                                            "abortEarly": true,
-                                                            "recursive": true,
-                                                          },
-                                                          "_type": "number",
-                                                          "_typeError": [Function],
-                                                          "_whitelist": RefSet {
-                                                            "list": Set {},
-                                                            "refs": Map {},
-                                                          },
-                                                          "tests": Array [
-                                                            [Function],
-                                                          ],
-                                                          "transforms": Array [
-                                                            [Function],
-                                                          ],
-                                                        },
-                                                        "title": StringSchema {
-                                                          "_blacklist": RefSet {
-                                                            "list": Set {},
-                                                            "refs": Map {},
-                                                          },
-                                                          "_conditions": Array [],
-                                                          "_deps": Array [],
-                                                          "_exclusive": Object {
-                                                            "required": true,
-                                                          },
-                                                          "_mutate": undefined,
-                                                          "_options": Object {
-                                                            "abortEarly": true,
-                                                            "recursive": true,
-                                                          },
-                                                          "_type": "string",
-                                                          "_typeError": [Function],
-                                                          "_whitelist": RefSet {
-                                                            "list": Set {},
-                                                            "refs": Map {},
-                                                          },
-                                                          "tests": Array [
-                                                            [Function],
-                                                          ],
-                                                          "transforms": Array [
-                                                            [Function],
-                                                          ],
-                                                        },
-                                                      },
-                                                      "tests": Array [],
-                                                      "transforms": Array [
-                                                        [Function],
-                                                      ],
-                                                    },
+                                                    "validationSchema": undefined,
                                                     "values": Object {
                                                       "title": "",
                                                     },
@@ -1906,94 +1294,7 @@ exports[`DocumentRequestForm tests should render the document request form corre
                                                     "validateForm": [Function],
                                                     "validateOnBlur": true,
                                                     "validateOnChange": true,
-                                                    "validationSchema": ObjectSchema {
-                                                      "_blacklist": RefSet {
-                                                        "list": Set {},
-                                                        "refs": Map {},
-                                                      },
-                                                      "_conditions": Array [],
-                                                      "_defaultDefault": [Function],
-                                                      "_deps": Array [],
-                                                      "_excludedEdges": Array [],
-                                                      "_exclusive": Object {},
-                                                      "_mutate": undefined,
-                                                      "_nodes": Array [
-                                                        "publication_year",
-                                                        "title",
-                                                      ],
-                                                      "_options": Object {
-                                                        "abortEarly": true,
-                                                        "recursive": true,
-                                                      },
-                                                      "_type": "object",
-                                                      "_typeError": [Function],
-                                                      "_whitelist": RefSet {
-                                                        "list": Set {},
-                                                        "refs": Map {},
-                                                      },
-                                                      "fields": Object {
-                                                        "publication_year": NumberSchema {
-                                                          "_blacklist": RefSet {
-                                                            "list": Set {},
-                                                            "refs": Map {},
-                                                          },
-                                                          "_conditions": Array [],
-                                                          "_deps": Array [],
-                                                          "_exclusive": Object {
-                                                            "integer": false,
-                                                          },
-                                                          "_mutate": undefined,
-                                                          "_options": Object {
-                                                            "abortEarly": true,
-                                                            "recursive": true,
-                                                          },
-                                                          "_type": "number",
-                                                          "_typeError": [Function],
-                                                          "_whitelist": RefSet {
-                                                            "list": Set {},
-                                                            "refs": Map {},
-                                                          },
-                                                          "tests": Array [
-                                                            [Function],
-                                                          ],
-                                                          "transforms": Array [
-                                                            [Function],
-                                                          ],
-                                                        },
-                                                        "title": StringSchema {
-                                                          "_blacklist": RefSet {
-                                                            "list": Set {},
-                                                            "refs": Map {},
-                                                          },
-                                                          "_conditions": Array [],
-                                                          "_deps": Array [],
-                                                          "_exclusive": Object {
-                                                            "required": true,
-                                                          },
-                                                          "_mutate": undefined,
-                                                          "_options": Object {
-                                                            "abortEarly": true,
-                                                            "recursive": true,
-                                                          },
-                                                          "_type": "string",
-                                                          "_typeError": [Function],
-                                                          "_whitelist": RefSet {
-                                                            "list": Set {},
-                                                            "refs": Map {},
-                                                          },
-                                                          "tests": Array [
-                                                            [Function],
-                                                          ],
-                                                          "transforms": Array [
-                                                            [Function],
-                                                          ],
-                                                        },
-                                                      },
-                                                      "tests": Array [],
-                                                      "transforms": Array [
-                                                        [Function],
-                                                      ],
-                                                    },
+                                                    "validationSchema": undefined,
                                                     "values": Object {
                                                       "title": "",
                                                     },
@@ -2174,94 +1475,7 @@ exports[`DocumentRequestForm tests should render the document request form corre
                                         "validateForm": [Function],
                                         "validateOnBlur": true,
                                         "validateOnChange": true,
-                                        "validationSchema": ObjectSchema {
-                                          "_blacklist": RefSet {
-                                            "list": Set {},
-                                            "refs": Map {},
-                                          },
-                                          "_conditions": Array [],
-                                          "_defaultDefault": [Function],
-                                          "_deps": Array [],
-                                          "_excludedEdges": Array [],
-                                          "_exclusive": Object {},
-                                          "_mutate": undefined,
-                                          "_nodes": Array [
-                                            "publication_year",
-                                            "title",
-                                          ],
-                                          "_options": Object {
-                                            "abortEarly": true,
-                                            "recursive": true,
-                                          },
-                                          "_type": "object",
-                                          "_typeError": [Function],
-                                          "_whitelist": RefSet {
-                                            "list": Set {},
-                                            "refs": Map {},
-                                          },
-                                          "fields": Object {
-                                            "publication_year": NumberSchema {
-                                              "_blacklist": RefSet {
-                                                "list": Set {},
-                                                "refs": Map {},
-                                              },
-                                              "_conditions": Array [],
-                                              "_deps": Array [],
-                                              "_exclusive": Object {
-                                                "integer": false,
-                                              },
-                                              "_mutate": undefined,
-                                              "_options": Object {
-                                                "abortEarly": true,
-                                                "recursive": true,
-                                              },
-                                              "_type": "number",
-                                              "_typeError": [Function],
-                                              "_whitelist": RefSet {
-                                                "list": Set {},
-                                                "refs": Map {},
-                                              },
-                                              "tests": Array [
-                                                [Function],
-                                              ],
-                                              "transforms": Array [
-                                                [Function],
-                                              ],
-                                            },
-                                            "title": StringSchema {
-                                              "_blacklist": RefSet {
-                                                "list": Set {},
-                                                "refs": Map {},
-                                              },
-                                              "_conditions": Array [],
-                                              "_deps": Array [],
-                                              "_exclusive": Object {
-                                                "required": true,
-                                              },
-                                              "_mutate": undefined,
-                                              "_options": Object {
-                                                "abortEarly": true,
-                                                "recursive": true,
-                                              },
-                                              "_type": "string",
-                                              "_typeError": [Function],
-                                              "_whitelist": RefSet {
-                                                "list": Set {},
-                                                "refs": Map {},
-                                              },
-                                              "tests": Array [
-                                                [Function],
-                                              ],
-                                              "transforms": Array [
-                                                [Function],
-                                              ],
-                                            },
-                                          },
-                                          "tests": Array [],
-                                          "transforms": Array [
-                                            [Function],
-                                          ],
-                                        },
+                                        "validationSchema": undefined,
                                         "values": Object {
                                           "title": "",
                                         },
@@ -2376,94 +1590,7 @@ exports[`DocumentRequestForm tests should render the document request form corre
                                                     "validateForm": [Function],
                                                     "validateOnBlur": true,
                                                     "validateOnChange": true,
-                                                    "validationSchema": ObjectSchema {
-                                                      "_blacklist": RefSet {
-                                                        "list": Set {},
-                                                        "refs": Map {},
-                                                      },
-                                                      "_conditions": Array [],
-                                                      "_defaultDefault": [Function],
-                                                      "_deps": Array [],
-                                                      "_excludedEdges": Array [],
-                                                      "_exclusive": Object {},
-                                                      "_mutate": undefined,
-                                                      "_nodes": Array [
-                                                        "publication_year",
-                                                        "title",
-                                                      ],
-                                                      "_options": Object {
-                                                        "abortEarly": true,
-                                                        "recursive": true,
-                                                      },
-                                                      "_type": "object",
-                                                      "_typeError": [Function],
-                                                      "_whitelist": RefSet {
-                                                        "list": Set {},
-                                                        "refs": Map {},
-                                                      },
-                                                      "fields": Object {
-                                                        "publication_year": NumberSchema {
-                                                          "_blacklist": RefSet {
-                                                            "list": Set {},
-                                                            "refs": Map {},
-                                                          },
-                                                          "_conditions": Array [],
-                                                          "_deps": Array [],
-                                                          "_exclusive": Object {
-                                                            "integer": false,
-                                                          },
-                                                          "_mutate": undefined,
-                                                          "_options": Object {
-                                                            "abortEarly": true,
-                                                            "recursive": true,
-                                                          },
-                                                          "_type": "number",
-                                                          "_typeError": [Function],
-                                                          "_whitelist": RefSet {
-                                                            "list": Set {},
-                                                            "refs": Map {},
-                                                          },
-                                                          "tests": Array [
-                                                            [Function],
-                                                          ],
-                                                          "transforms": Array [
-                                                            [Function],
-                                                          ],
-                                                        },
-                                                        "title": StringSchema {
-                                                          "_blacklist": RefSet {
-                                                            "list": Set {},
-                                                            "refs": Map {},
-                                                          },
-                                                          "_conditions": Array [],
-                                                          "_deps": Array [],
-                                                          "_exclusive": Object {
-                                                            "required": true,
-                                                          },
-                                                          "_mutate": undefined,
-                                                          "_options": Object {
-                                                            "abortEarly": true,
-                                                            "recursive": true,
-                                                          },
-                                                          "_type": "string",
-                                                          "_typeError": [Function],
-                                                          "_whitelist": RefSet {
-                                                            "list": Set {},
-                                                            "refs": Map {},
-                                                          },
-                                                          "tests": Array [
-                                                            [Function],
-                                                          ],
-                                                          "transforms": Array [
-                                                            [Function],
-                                                          ],
-                                                        },
-                                                      },
-                                                      "tests": Array [],
-                                                      "transforms": Array [
-                                                        [Function],
-                                                      ],
-                                                    },
+                                                    "validationSchema": undefined,
                                                     "values": Object {
                                                       "title": "",
                                                     },
@@ -2642,94 +1769,7 @@ exports[`DocumentRequestForm tests should render the document request form corre
                                                     "validateForm": [Function],
                                                     "validateOnBlur": true,
                                                     "validateOnChange": true,
-                                                    "validationSchema": ObjectSchema {
-                                                      "_blacklist": RefSet {
-                                                        "list": Set {},
-                                                        "refs": Map {},
-                                                      },
-                                                      "_conditions": Array [],
-                                                      "_defaultDefault": [Function],
-                                                      "_deps": Array [],
-                                                      "_excludedEdges": Array [],
-                                                      "_exclusive": Object {},
-                                                      "_mutate": undefined,
-                                                      "_nodes": Array [
-                                                        "publication_year",
-                                                        "title",
-                                                      ],
-                                                      "_options": Object {
-                                                        "abortEarly": true,
-                                                        "recursive": true,
-                                                      },
-                                                      "_type": "object",
-                                                      "_typeError": [Function],
-                                                      "_whitelist": RefSet {
-                                                        "list": Set {},
-                                                        "refs": Map {},
-                                                      },
-                                                      "fields": Object {
-                                                        "publication_year": NumberSchema {
-                                                          "_blacklist": RefSet {
-                                                            "list": Set {},
-                                                            "refs": Map {},
-                                                          },
-                                                          "_conditions": Array [],
-                                                          "_deps": Array [],
-                                                          "_exclusive": Object {
-                                                            "integer": false,
-                                                          },
-                                                          "_mutate": undefined,
-                                                          "_options": Object {
-                                                            "abortEarly": true,
-                                                            "recursive": true,
-                                                          },
-                                                          "_type": "number",
-                                                          "_typeError": [Function],
-                                                          "_whitelist": RefSet {
-                                                            "list": Set {},
-                                                            "refs": Map {},
-                                                          },
-                                                          "tests": Array [
-                                                            [Function],
-                                                          ],
-                                                          "transforms": Array [
-                                                            [Function],
-                                                          ],
-                                                        },
-                                                        "title": StringSchema {
-                                                          "_blacklist": RefSet {
-                                                            "list": Set {},
-                                                            "refs": Map {},
-                                                          },
-                                                          "_conditions": Array [],
-                                                          "_deps": Array [],
-                                                          "_exclusive": Object {
-                                                            "required": true,
-                                                          },
-                                                          "_mutate": undefined,
-                                                          "_options": Object {
-                                                            "abortEarly": true,
-                                                            "recursive": true,
-                                                          },
-                                                          "_type": "string",
-                                                          "_typeError": [Function],
-                                                          "_whitelist": RefSet {
-                                                            "list": Set {},
-                                                            "refs": Map {},
-                                                          },
-                                                          "tests": Array [
-                                                            [Function],
-                                                          ],
-                                                          "transforms": Array [
-                                                            [Function],
-                                                          ],
-                                                        },
-                                                      },
-                                                      "tests": Array [],
-                                                      "transforms": Array [
-                                                        [Function],
-                                                      ],
-                                                    },
+                                                    "validationSchema": undefined,
                                                     "values": Object {
                                                       "title": "",
                                                     },
@@ -2908,94 +1948,7 @@ exports[`DocumentRequestForm tests should render the document request form corre
                                                     "validateForm": [Function],
                                                     "validateOnBlur": true,
                                                     "validateOnChange": true,
-                                                    "validationSchema": ObjectSchema {
-                                                      "_blacklist": RefSet {
-                                                        "list": Set {},
-                                                        "refs": Map {},
-                                                      },
-                                                      "_conditions": Array [],
-                                                      "_defaultDefault": [Function],
-                                                      "_deps": Array [],
-                                                      "_excludedEdges": Array [],
-                                                      "_exclusive": Object {},
-                                                      "_mutate": undefined,
-                                                      "_nodes": Array [
-                                                        "publication_year",
-                                                        "title",
-                                                      ],
-                                                      "_options": Object {
-                                                        "abortEarly": true,
-                                                        "recursive": true,
-                                                      },
-                                                      "_type": "object",
-                                                      "_typeError": [Function],
-                                                      "_whitelist": RefSet {
-                                                        "list": Set {},
-                                                        "refs": Map {},
-                                                      },
-                                                      "fields": Object {
-                                                        "publication_year": NumberSchema {
-                                                          "_blacklist": RefSet {
-                                                            "list": Set {},
-                                                            "refs": Map {},
-                                                          },
-                                                          "_conditions": Array [],
-                                                          "_deps": Array [],
-                                                          "_exclusive": Object {
-                                                            "integer": false,
-                                                          },
-                                                          "_mutate": undefined,
-                                                          "_options": Object {
-                                                            "abortEarly": true,
-                                                            "recursive": true,
-                                                          },
-                                                          "_type": "number",
-                                                          "_typeError": [Function],
-                                                          "_whitelist": RefSet {
-                                                            "list": Set {},
-                                                            "refs": Map {},
-                                                          },
-                                                          "tests": Array [
-                                                            [Function],
-                                                          ],
-                                                          "transforms": Array [
-                                                            [Function],
-                                                          ],
-                                                        },
-                                                        "title": StringSchema {
-                                                          "_blacklist": RefSet {
-                                                            "list": Set {},
-                                                            "refs": Map {},
-                                                          },
-                                                          "_conditions": Array [],
-                                                          "_deps": Array [],
-                                                          "_exclusive": Object {
-                                                            "required": true,
-                                                          },
-                                                          "_mutate": undefined,
-                                                          "_options": Object {
-                                                            "abortEarly": true,
-                                                            "recursive": true,
-                                                          },
-                                                          "_type": "string",
-                                                          "_typeError": [Function],
-                                                          "_whitelist": RefSet {
-                                                            "list": Set {},
-                                                            "refs": Map {},
-                                                          },
-                                                          "tests": Array [
-                                                            [Function],
-                                                          ],
-                                                          "transforms": Array [
-                                                            [Function],
-                                                          ],
-                                                        },
-                                                      },
-                                                      "tests": Array [],
-                                                      "transforms": Array [
-                                                        [Function],
-                                                      ],
-                                                    },
+                                                    "validationSchema": undefined,
                                                     "values": Object {
                                                       "title": "",
                                                     },
@@ -3174,94 +2127,7 @@ exports[`DocumentRequestForm tests should render the document request form corre
                                                     "validateForm": [Function],
                                                     "validateOnBlur": true,
                                                     "validateOnChange": true,
-                                                    "validationSchema": ObjectSchema {
-                                                      "_blacklist": RefSet {
-                                                        "list": Set {},
-                                                        "refs": Map {},
-                                                      },
-                                                      "_conditions": Array [],
-                                                      "_defaultDefault": [Function],
-                                                      "_deps": Array [],
-                                                      "_excludedEdges": Array [],
-                                                      "_exclusive": Object {},
-                                                      "_mutate": undefined,
-                                                      "_nodes": Array [
-                                                        "publication_year",
-                                                        "title",
-                                                      ],
-                                                      "_options": Object {
-                                                        "abortEarly": true,
-                                                        "recursive": true,
-                                                      },
-                                                      "_type": "object",
-                                                      "_typeError": [Function],
-                                                      "_whitelist": RefSet {
-                                                        "list": Set {},
-                                                        "refs": Map {},
-                                                      },
-                                                      "fields": Object {
-                                                        "publication_year": NumberSchema {
-                                                          "_blacklist": RefSet {
-                                                            "list": Set {},
-                                                            "refs": Map {},
-                                                          },
-                                                          "_conditions": Array [],
-                                                          "_deps": Array [],
-                                                          "_exclusive": Object {
-                                                            "integer": false,
-                                                          },
-                                                          "_mutate": undefined,
-                                                          "_options": Object {
-                                                            "abortEarly": true,
-                                                            "recursive": true,
-                                                          },
-                                                          "_type": "number",
-                                                          "_typeError": [Function],
-                                                          "_whitelist": RefSet {
-                                                            "list": Set {},
-                                                            "refs": Map {},
-                                                          },
-                                                          "tests": Array [
-                                                            [Function],
-                                                          ],
-                                                          "transforms": Array [
-                                                            [Function],
-                                                          ],
-                                                        },
-                                                        "title": StringSchema {
-                                                          "_blacklist": RefSet {
-                                                            "list": Set {},
-                                                            "refs": Map {},
-                                                          },
-                                                          "_conditions": Array [],
-                                                          "_deps": Array [],
-                                                          "_exclusive": Object {
-                                                            "required": true,
-                                                          },
-                                                          "_mutate": undefined,
-                                                          "_options": Object {
-                                                            "abortEarly": true,
-                                                            "recursive": true,
-                                                          },
-                                                          "_type": "string",
-                                                          "_typeError": [Function],
-                                                          "_whitelist": RefSet {
-                                                            "list": Set {},
-                                                            "refs": Map {},
-                                                          },
-                                                          "tests": Array [
-                                                            [Function],
-                                                          ],
-                                                          "transforms": Array [
-                                                            [Function],
-                                                          ],
-                                                        },
-                                                      },
-                                                      "tests": Array [],
-                                                      "transforms": Array [
-                                                        [Function],
-                                                      ],
-                                                    },
+                                                    "validationSchema": undefined,
                                                     "values": Object {
                                                       "title": "",
                                                     },
@@ -3442,94 +2308,7 @@ exports[`DocumentRequestForm tests should render the document request form corre
                                         "validateForm": [Function],
                                         "validateOnBlur": true,
                                         "validateOnChange": true,
-                                        "validationSchema": ObjectSchema {
-                                          "_blacklist": RefSet {
-                                            "list": Set {},
-                                            "refs": Map {},
-                                          },
-                                          "_conditions": Array [],
-                                          "_defaultDefault": [Function],
-                                          "_deps": Array [],
-                                          "_excludedEdges": Array [],
-                                          "_exclusive": Object {},
-                                          "_mutate": undefined,
-                                          "_nodes": Array [
-                                            "publication_year",
-                                            "title",
-                                          ],
-                                          "_options": Object {
-                                            "abortEarly": true,
-                                            "recursive": true,
-                                          },
-                                          "_type": "object",
-                                          "_typeError": [Function],
-                                          "_whitelist": RefSet {
-                                            "list": Set {},
-                                            "refs": Map {},
-                                          },
-                                          "fields": Object {
-                                            "publication_year": NumberSchema {
-                                              "_blacklist": RefSet {
-                                                "list": Set {},
-                                                "refs": Map {},
-                                              },
-                                              "_conditions": Array [],
-                                              "_deps": Array [],
-                                              "_exclusive": Object {
-                                                "integer": false,
-                                              },
-                                              "_mutate": undefined,
-                                              "_options": Object {
-                                                "abortEarly": true,
-                                                "recursive": true,
-                                              },
-                                              "_type": "number",
-                                              "_typeError": [Function],
-                                              "_whitelist": RefSet {
-                                                "list": Set {},
-                                                "refs": Map {},
-                                              },
-                                              "tests": Array [
-                                                [Function],
-                                              ],
-                                              "transforms": Array [
-                                                [Function],
-                                              ],
-                                            },
-                                            "title": StringSchema {
-                                              "_blacklist": RefSet {
-                                                "list": Set {},
-                                                "refs": Map {},
-                                              },
-                                              "_conditions": Array [],
-                                              "_deps": Array [],
-                                              "_exclusive": Object {
-                                                "required": true,
-                                              },
-                                              "_mutate": undefined,
-                                              "_options": Object {
-                                                "abortEarly": true,
-                                                "recursive": true,
-                                              },
-                                              "_type": "string",
-                                              "_typeError": [Function],
-                                              "_whitelist": RefSet {
-                                                "list": Set {},
-                                                "refs": Map {},
-                                              },
-                                              "tests": Array [
-                                                [Function],
-                                              ],
-                                              "transforms": Array [
-                                                [Function],
-                                              ],
-                                            },
-                                          },
-                                          "tests": Array [],
-                                          "transforms": Array [
-                                            [Function],
-                                          ],
-                                        },
+                                        "validationSchema": undefined,
                                         "values": Object {
                                           "title": "",
                                         },
@@ -3644,94 +2423,7 @@ exports[`DocumentRequestForm tests should render the document request form corre
                                                     "validateForm": [Function],
                                                     "validateOnBlur": true,
                                                     "validateOnChange": true,
-                                                    "validationSchema": ObjectSchema {
-                                                      "_blacklist": RefSet {
-                                                        "list": Set {},
-                                                        "refs": Map {},
-                                                      },
-                                                      "_conditions": Array [],
-                                                      "_defaultDefault": [Function],
-                                                      "_deps": Array [],
-                                                      "_excludedEdges": Array [],
-                                                      "_exclusive": Object {},
-                                                      "_mutate": undefined,
-                                                      "_nodes": Array [
-                                                        "publication_year",
-                                                        "title",
-                                                      ],
-                                                      "_options": Object {
-                                                        "abortEarly": true,
-                                                        "recursive": true,
-                                                      },
-                                                      "_type": "object",
-                                                      "_typeError": [Function],
-                                                      "_whitelist": RefSet {
-                                                        "list": Set {},
-                                                        "refs": Map {},
-                                                      },
-                                                      "fields": Object {
-                                                        "publication_year": NumberSchema {
-                                                          "_blacklist": RefSet {
-                                                            "list": Set {},
-                                                            "refs": Map {},
-                                                          },
-                                                          "_conditions": Array [],
-                                                          "_deps": Array [],
-                                                          "_exclusive": Object {
-                                                            "integer": false,
-                                                          },
-                                                          "_mutate": undefined,
-                                                          "_options": Object {
-                                                            "abortEarly": true,
-                                                            "recursive": true,
-                                                          },
-                                                          "_type": "number",
-                                                          "_typeError": [Function],
-                                                          "_whitelist": RefSet {
-                                                            "list": Set {},
-                                                            "refs": Map {},
-                                                          },
-                                                          "tests": Array [
-                                                            [Function],
-                                                          ],
-                                                          "transforms": Array [
-                                                            [Function],
-                                                          ],
-                                                        },
-                                                        "title": StringSchema {
-                                                          "_blacklist": RefSet {
-                                                            "list": Set {},
-                                                            "refs": Map {},
-                                                          },
-                                                          "_conditions": Array [],
-                                                          "_deps": Array [],
-                                                          "_exclusive": Object {
-                                                            "required": true,
-                                                          },
-                                                          "_mutate": undefined,
-                                                          "_options": Object {
-                                                            "abortEarly": true,
-                                                            "recursive": true,
-                                                          },
-                                                          "_type": "string",
-                                                          "_typeError": [Function],
-                                                          "_whitelist": RefSet {
-                                                            "list": Set {},
-                                                            "refs": Map {},
-                                                          },
-                                                          "tests": Array [
-                                                            [Function],
-                                                          ],
-                                                          "transforms": Array [
-                                                            [Function],
-                                                          ],
-                                                        },
-                                                      },
-                                                      "tests": Array [],
-                                                      "transforms": Array [
-                                                        [Function],
-                                                      ],
-                                                    },
+                                                    "validationSchema": undefined,
                                                     "values": Object {
                                                       "title": "",
                                                     },
@@ -3913,94 +2605,7 @@ exports[`DocumentRequestForm tests should render the document request form corre
                                                       "validateForm": [Function],
                                                       "validateOnBlur": true,
                                                       "validateOnChange": true,
-                                                      "validationSchema": ObjectSchema {
-                                                        "_blacklist": RefSet {
-                                                          "list": Set {},
-                                                          "refs": Map {},
-                                                        },
-                                                        "_conditions": Array [],
-                                                        "_defaultDefault": [Function],
-                                                        "_deps": Array [],
-                                                        "_excludedEdges": Array [],
-                                                        "_exclusive": Object {},
-                                                        "_mutate": undefined,
-                                                        "_nodes": Array [
-                                                          "publication_year",
-                                                          "title",
-                                                        ],
-                                                        "_options": Object {
-                                                          "abortEarly": true,
-                                                          "recursive": true,
-                                                        },
-                                                        "_type": "object",
-                                                        "_typeError": [Function],
-                                                        "_whitelist": RefSet {
-                                                          "list": Set {},
-                                                          "refs": Map {},
-                                                        },
-                                                        "fields": Object {
-                                                          "publication_year": NumberSchema {
-                                                            "_blacklist": RefSet {
-                                                              "list": Set {},
-                                                              "refs": Map {},
-                                                            },
-                                                            "_conditions": Array [],
-                                                            "_deps": Array [],
-                                                            "_exclusive": Object {
-                                                              "integer": false,
-                                                            },
-                                                            "_mutate": undefined,
-                                                            "_options": Object {
-                                                              "abortEarly": true,
-                                                              "recursive": true,
-                                                            },
-                                                            "_type": "number",
-                                                            "_typeError": [Function],
-                                                            "_whitelist": RefSet {
-                                                              "list": Set {},
-                                                              "refs": Map {},
-                                                            },
-                                                            "tests": Array [
-                                                              [Function],
-                                                            ],
-                                                            "transforms": Array [
-                                                              [Function],
-                                                            ],
-                                                          },
-                                                          "title": StringSchema {
-                                                            "_blacklist": RefSet {
-                                                              "list": Set {},
-                                                              "refs": Map {},
-                                                            },
-                                                            "_conditions": Array [],
-                                                            "_deps": Array [],
-                                                            "_exclusive": Object {
-                                                              "required": true,
-                                                            },
-                                                            "_mutate": undefined,
-                                                            "_options": Object {
-                                                              "abortEarly": true,
-                                                              "recursive": true,
-                                                            },
-                                                            "_type": "string",
-                                                            "_typeError": [Function],
-                                                            "_whitelist": RefSet {
-                                                              "list": Set {},
-                                                              "refs": Map {},
-                                                            },
-                                                            "tests": Array [
-                                                              [Function],
-                                                            ],
-                                                            "transforms": Array [
-                                                              [Function],
-                                                            ],
-                                                          },
-                                                        },
-                                                        "tests": Array [],
-                                                        "transforms": Array [
-                                                          [Function],
-                                                        ],
-                                                      },
+                                                      "validationSchema": undefined,
                                                       "values": Object {
                                                         "title": "",
                                                       },
@@ -4058,90 +2663,87 @@ exports[`DocumentRequestForm tests should render the document request form corre
                                                       }
                                                     }
                                                   >
-                                                    <YearInput
-                                                      autoComplete="off"
-                                                      clearable={true}
-                                                      closable={true}
-                                                      dateFormat="YYYY"
+                                                    <YearPicker
+                                                      defaultValue=""
                                                       error={null}
-                                                      icon="calendar"
-                                                      iconPosition="left"
+                                                      handleBlur={[Function]}
+                                                      handleYearChange={[Function]}
                                                       id="publication_year"
-                                                      inline={false}
+                                                      initialYear=""
                                                       label="Publication Year"
-                                                      localization="en"
                                                       name="publication_year"
-                                                      onBlur={[Function]}
-                                                      onChange={[Function]}
                                                       placeholder="Publication Year"
-                                                      value=""
                                                     >
-                                                      <InputView
-                                                        animation="scale"
+                                                      <YearInput
                                                         autoComplete="off"
-                                                        clearIcon="remove"
                                                         clearable={true}
-                                                        closeOnMouseLeave={true}
-                                                        closePopup={[Function]}
-                                                        duration={200}
+                                                        closable={true}
+                                                        data-test=""
+                                                        dateFormat="YYYY"
                                                         error={null}
                                                         icon="calendar"
                                                         iconPosition="left"
                                                         id="publication_year"
+                                                        initialDate=""
                                                         inline={false}
                                                         label="Publication Year"
+                                                        localization="en"
                                                         name="publication_year"
-                                                        onBlur={[Function]}
                                                         onChange={[Function]}
-                                                        onMount={[Function]}
-                                                        openPopup={[Function]}
                                                         placeholder="Publication Year"
-                                                        popupIsClosed={true}
-                                                        renderPicker={[Function]}
-                                                        tabIndex="0"
                                                         value=""
                                                       >
-                                                        <FormInputWithRef
+                                                        <InputView
+                                                          animation="scale"
                                                           autoComplete="off"
                                                           clearIcon="remove"
                                                           clearable={true}
+                                                          closeOnMouseLeave={true}
+                                                          closePopup={[Function]}
+                                                          data-test=""
+                                                          duration={200}
                                                           error={null}
                                                           icon="calendar"
                                                           iconPosition="left"
                                                           id="publication_year"
-                                                          innerRef={[Function]}
+                                                          inline={false}
                                                           label="Publication Year"
                                                           name="publication_year"
-                                                          onBlur={[Function]}
                                                           onChange={[Function]}
-                                                          onClear={[Function]}
-                                                          onFocus={[Function]}
-                                                          onMouseEnter={[Function]}
+                                                          onMount={[Function]}
+                                                          openPopup={[Function]}
                                                           placeholder="Publication Year"
+                                                          popupIsClosed={true}
+                                                          renderPicker={[Function]}
                                                           tabIndex="0"
                                                           value=""
                                                         >
-                                                          <FormInput
-                                                            as={[Function]}
+                                                          <FormInputWithRef
                                                             autoComplete="off"
-                                                            control={[Function]}
+                                                            clearIcon="remove"
+                                                            clearable={true}
+                                                            data-test=""
                                                             error={null}
-                                                            icon={true}
+                                                            icon="calendar"
                                                             iconPosition="left"
                                                             id="publication_year"
+                                                            innerRef={[Function]}
                                                             label="Publication Year"
                                                             name="publication_year"
                                                             onBlur={[Function]}
                                                             onChange={[Function]}
-                                                            onClick={[Function]}
+                                                            onClear={[Function]}
                                                             onFocus={[Function]}
                                                             onMouseEnter={[Function]}
                                                             placeholder="Publication Year"
                                                             tabIndex="0"
+                                                            value=""
                                                           >
-                                                            <FormField
+                                                            <FormInput
+                                                              as={[Function]}
                                                               autoComplete="off"
                                                               control={[Function]}
+                                                              data-test=""
                                                               error={null}
                                                               icon={true}
                                                               iconPosition="left"
@@ -4156,75 +2758,96 @@ exports[`DocumentRequestForm tests should render the document request form corre
                                                               placeholder="Publication Year"
                                                               tabIndex="0"
                                                             >
-                                                              <div
-                                                                className="field"
+                                                              <FormField
+                                                                autoComplete="off"
+                                                                control={[Function]}
+                                                                data-test=""
+                                                                error={null}
+                                                                icon={true}
+                                                                iconPosition="left"
+                                                                id="publication_year"
+                                                                label="Publication Year"
+                                                                name="publication_year"
+                                                                onBlur={[Function]}
+                                                                onChange={[Function]}
+                                                                onClick={[Function]}
+                                                                onFocus={[Function]}
+                                                                onMouseEnter={[Function]}
+                                                                placeholder="Publication Year"
+                                                                tabIndex="0"
                                                               >
-                                                                <label
-                                                                  htmlFor="publication_year"
+                                                                <div
+                                                                  className="field"
                                                                 >
-                                                                  Publication Year
-                                                                </label>
-                                                                <Input
-                                                                  autoComplete="off"
-                                                                  icon={true}
-                                                                  iconPosition="left"
-                                                                  id="publication_year"
-                                                                  name="publication_year"
-                                                                  onBlur={[Function]}
-                                                                  onChange={[Function]}
-                                                                  onClick={[Function]}
-                                                                  onFocus={[Function]}
-                                                                  onMouseEnter={[Function]}
-                                                                  placeholder="Publication Year"
-                                                                  tabIndex="0"
-                                                                  type="text"
-                                                                >
-                                                                  <div
-                                                                    className="ui left icon input"
+                                                                  <label
+                                                                    htmlFor="publication_year"
                                                                   >
-                                                                    <Icon
-                                                                      as="i"
-                                                                      key=".0"
-                                                                      name="calendar"
+                                                                    Publication Year
+                                                                  </label>
+                                                                  <Input
+                                                                    autoComplete="off"
+                                                                    data-test=""
+                                                                    icon={true}
+                                                                    iconPosition="left"
+                                                                    id="publication_year"
+                                                                    name="publication_year"
+                                                                    onBlur={[Function]}
+                                                                    onChange={[Function]}
+                                                                    onClick={[Function]}
+                                                                    onFocus={[Function]}
+                                                                    onMouseEnter={[Function]}
+                                                                    placeholder="Publication Year"
+                                                                    tabIndex="0"
+                                                                    type="text"
+                                                                  >
+                                                                    <div
+                                                                      className="ui left icon input"
+                                                                      data-test=""
                                                                     >
-                                                                      <i
-                                                                        aria-hidden="true"
-                                                                        className="calendar icon"
+                                                                      <Icon
+                                                                        as="i"
+                                                                        key=".0"
+                                                                        name="calendar"
+                                                                      >
+                                                                        <i
+                                                                          aria-hidden="true"
+                                                                          className="calendar icon"
+                                                                          onClick={[Function]}
+                                                                        />
+                                                                      </Icon>
+                                                                      <input
+                                                                        autoComplete="off"
+                                                                        id="publication_year"
+                                                                        key=".1"
+                                                                        name="publication_year"
+                                                                        onBlur={[Function]}
+                                                                        onChange={[Function]}
                                                                         onClick={[Function]}
+                                                                        onFocus={[Function]}
+                                                                        onMouseEnter={[Function]}
+                                                                        placeholder="Publication Year"
+                                                                        tabIndex="0"
+                                                                        type="text"
+                                                                        value=""
                                                                       />
-                                                                    </Icon>
-                                                                    <input
-                                                                      autoComplete="off"
-                                                                      id="publication_year"
-                                                                      key=".1"
-                                                                      name="publication_year"
-                                                                      onBlur={[Function]}
-                                                                      onChange={[Function]}
-                                                                      onClick={[Function]}
-                                                                      onFocus={[Function]}
-                                                                      onMouseEnter={[Function]}
-                                                                      placeholder="Publication Year"
-                                                                      tabIndex="0"
-                                                                      type="text"
-                                                                      value=""
-                                                                    />
-                                                                  </div>
-                                                                </Input>
-                                                              </div>
-                                                            </FormField>
-                                                          </FormInput>
-                                                        </FormInputWithRef>
-                                                        <Transition
-                                                          animation="scale"
-                                                          duration={200}
-                                                          mountOnShow={true}
-                                                          onComplete={[Function]}
-                                                          transitionOnMount={false}
-                                                          unmountOnHide={true}
-                                                          visible={false}
-                                                        />
-                                                      </InputView>
-                                                    </YearInput>
+                                                                    </div>
+                                                                  </Input>
+                                                                </div>
+                                                              </FormField>
+                                                            </FormInput>
+                                                          </FormInputWithRef>
+                                                          <Transition
+                                                            animation="scale"
+                                                            duration={200}
+                                                            mountOnShow={true}
+                                                            onComplete={[Function]}
+                                                            transitionOnMount={false}
+                                                            unmountOnHide={true}
+                                                            visible={false}
+                                                          />
+                                                        </InputView>
+                                                      </YearInput>
+                                                    </YearPicker>
                                                   </Component>
                                                 </FieldInner>
                                               </FormikConnect(FieldInner)>
@@ -4285,94 +2908,7 @@ exports[`DocumentRequestForm tests should render the document request form corre
                                         "validateForm": [Function],
                                         "validateOnBlur": true,
                                         "validateOnChange": true,
-                                        "validationSchema": ObjectSchema {
-                                          "_blacklist": RefSet {
-                                            "list": Set {},
-                                            "refs": Map {},
-                                          },
-                                          "_conditions": Array [],
-                                          "_defaultDefault": [Function],
-                                          "_deps": Array [],
-                                          "_excludedEdges": Array [],
-                                          "_exclusive": Object {},
-                                          "_mutate": undefined,
-                                          "_nodes": Array [
-                                            "publication_year",
-                                            "title",
-                                          ],
-                                          "_options": Object {
-                                            "abortEarly": true,
-                                            "recursive": true,
-                                          },
-                                          "_type": "object",
-                                          "_typeError": [Function],
-                                          "_whitelist": RefSet {
-                                            "list": Set {},
-                                            "refs": Map {},
-                                          },
-                                          "fields": Object {
-                                            "publication_year": NumberSchema {
-                                              "_blacklist": RefSet {
-                                                "list": Set {},
-                                                "refs": Map {},
-                                              },
-                                              "_conditions": Array [],
-                                              "_deps": Array [],
-                                              "_exclusive": Object {
-                                                "integer": false,
-                                              },
-                                              "_mutate": undefined,
-                                              "_options": Object {
-                                                "abortEarly": true,
-                                                "recursive": true,
-                                              },
-                                              "_type": "number",
-                                              "_typeError": [Function],
-                                              "_whitelist": RefSet {
-                                                "list": Set {},
-                                                "refs": Map {},
-                                              },
-                                              "tests": Array [
-                                                [Function],
-                                              ],
-                                              "transforms": Array [
-                                                [Function],
-                                              ],
-                                            },
-                                            "title": StringSchema {
-                                              "_blacklist": RefSet {
-                                                "list": Set {},
-                                                "refs": Map {},
-                                              },
-                                              "_conditions": Array [],
-                                              "_deps": Array [],
-                                              "_exclusive": Object {
-                                                "required": true,
-                                              },
-                                              "_mutate": undefined,
-                                              "_options": Object {
-                                                "abortEarly": true,
-                                                "recursive": true,
-                                              },
-                                              "_type": "string",
-                                              "_typeError": [Function],
-                                              "_whitelist": RefSet {
-                                                "list": Set {},
-                                                "refs": Map {},
-                                              },
-                                              "tests": Array [
-                                                [Function],
-                                              ],
-                                              "transforms": Array [
-                                                [Function],
-                                              ],
-                                            },
-                                          },
-                                          "tests": Array [],
-                                          "transforms": Array [
-                                            [Function],
-                                          ],
-                                        },
+                                        "validationSchema": undefined,
                                         "values": Object {
                                           "title": "",
                                         },
