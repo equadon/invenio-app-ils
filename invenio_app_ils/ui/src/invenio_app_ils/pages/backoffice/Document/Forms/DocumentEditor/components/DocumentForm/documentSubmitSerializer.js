@@ -1,16 +1,32 @@
-export default values => {
-  const submittingValues = { ...values };
+import { sessionManager } from '../../../../../../../authentication/services';
 
-  if (submittingValues.tags) {
-    submittingValues.tag_pids = submittingValues.tags.map(tag => tag.pid);
+const changedObject = () => ({
+  by: {
+    type: 'user_id',
+    value: `${sessionManager.user.id}`,
+  },
+  timestamp: `${new Date().getTime()}`,
+});
+
+export default (values, newRecord) => {
+  const submitValues = { ...values };
+
+  if (newRecord) {
+    submitValues.created = changedObject();
+  } else {
+    submitValues.updated = changedObject();
   }
 
-  delete submittingValues.tags;
-  delete submittingValues.circulation;
-  delete submittingValues.eitems;
-  delete submittingValues.items;
-  delete submittingValues.relations;
-  delete submittingValues._access;
+  if (submitValues.tags) {
+    submitValues.tag_pids = submitValues.tags.map(tag => tag.pid);
+  }
 
-  return submittingValues;
+  delete submitValues.tags;
+  delete submitValues.circulation;
+  delete submitValues.eitems;
+  delete submitValues.items;
+  delete submitValues.relations;
+  delete submitValues._access;
+
+  return submitValues;
 };

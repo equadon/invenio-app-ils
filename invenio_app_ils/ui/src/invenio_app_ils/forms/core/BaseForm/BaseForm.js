@@ -9,8 +9,9 @@ import { ErrorMessage } from '../ErrorMessage';
 export class BaseForm extends Component {
   submitSerializer = values => {
     const { _submitButton, ...rawValues } = values;
+    const newRecord = this.props.pid ? false : true;
     const serializedValues = this.props.submitSerializer
-      ? this.props.submitSerializer(rawValues)
+      ? this.props.submitSerializer(rawValues, newRecord)
       : { ...rawValues };
     return [serializedValues, _submitButton];
   };
