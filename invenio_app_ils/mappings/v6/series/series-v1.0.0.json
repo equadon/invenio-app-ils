@@ -4,99 +4,160 @@
       "date_detection": false,
       "numeric_detection": false,
       "properties": {
-        "$schema": {
-          "type": "keyword"
-        },
-        "authors": {
-          "type": "text",
-          "fields": {
-            "tag": {
-              "type": "keyword"
-            }
-          }
-        },
-        "abstract": {
-          "type": "text"
-        },
-        "isbn": {
-          "type": "keyword"
-        },
-        "issn": {
-          "type": "keyword"
-        },
-        "edition": {
-          "type": "keyword"
-        },
-        "mode_of_issuance": {
-          "type": "keyword"
-        },
-        "languages": {
-          "type": "keyword"
-        },
-        "relations": {
-          "type": "object",
-          "properties": {
-            "edition": {
-              "type": "object",
-              "properties": {
-                "pid": {
-                  "type": "keyword"
-                },
-                "pid_type": {
-                  "type": "keyword"
-                },
-                "relation_type": {
-                  "type": "keyword",
-                  "copy_to": "relation_types"
-                }
-              }
-            },
-            "multipart_monograph": {
-              "type": "object",
-              "properties": {
-                "pid": {
-                  "type": "keyword"
-                },
-                "pid_type": {
-                  "type": "keyword"
-                },
-                "relation_type": {
-                  "type": "keyword",
-                  "copy_to": "relation_types"
-                },
-                "volume": {
-                  "type": "keyword"
-                }
-              }
-            },
-            "serial": {
-              "type": "object",
-              "properties": {
-                "pid": {
-                  "type": "keyword"
-                },
-                "pid_type": {
-                  "type": "keyword"
-                },
-                "relation_type": {
-                  "type": "keyword",
-                  "copy_to": "relation_types"
-                }
-              }
-            }
-          }
-        },
-        "relation_types": {
-          "type": "keyword"
-        },
-        "title": {
-          "type": "text"
-        },
         "_created": {
           "type": "date"
         },
         "_updated": {
           "type": "date"
+        },
+        "$schema": {
+          "type": "keyword"
+        },
+        "abstract": {
+          "type": "text"
+        },
+        "access_urls": {
+          "type": "object",
+          "properties": {
+            "access": {
+              "type": "keyword"
+            },
+            "description": {
+              "type": "text"
+            },
+            "value": {
+              "type": "keyword"
+            }
+          }
+        },
+        "alternative_titles": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "fields": {
+                "keyword": {
+                  "type": "keyword"
+                }
+              },
+              "type": "text"
+            },
+            "type": {
+              "type": "keyword"
+            }
+          }
+        },
+        "authors": {
+          "fields": {
+            "keyword": {
+              "type": "keyword"
+            }
+          },
+          "type": "text"
+        },
+        "edition": {
+          "type": "keyword"
+        },
+        "identifiers": {
+          "properties": {
+            "material": {
+              "type": "keyword"
+            },
+            "scheme": {
+              "type": "keyword"
+            },
+            "value": {
+              "type": "keyword"
+            }
+          }
+        },
+        "internal_notes": {
+          "type": "keyword"
+        },
+        "languages": {
+          "type": "keyword"
+        },
+        "mode_of_issuance": {
+          "type": "keyword"
+        },
+        "notes": {
+          "type": "keyword"
+        },
+        "publisher": {
+          "fields": {
+            "keyword": {
+              "type": "keyword"
+            }
+          },
+          "type": "text"
+        },
+        "relation_types": {
+          "type": "keyword"
+        },
+        "relations": {
+          "properties": {
+            "edition": {
+              "properties": {
+                "pid": {
+                  "type": "keyword"
+                },
+                "pid_type": {
+                  "type": "keyword"
+                },
+                "relation_type": {
+                  "copy_to": "relation_types",
+                  "type": "keyword"
+                }
+              },
+              "type": "object"
+            },
+            "multipart_monograph": {
+              "properties": {
+                "pid": {
+                  "type": "keyword"
+                },
+                "pid_type": {
+                  "type": "keyword"
+                },
+                "relation_type": {
+                  "copy_to": "relation_types",
+                  "type": "keyword"
+                },
+                "volume": {
+                  "type": "keyword"
+                }
+              },
+              "type": "object"
+            },
+            "serial": {
+              "properties": {
+                "pid": {
+                  "type": "keyword"
+                },
+                "pid_type": {
+                  "type": "keyword"
+                },
+                "relation_type": {
+                  "copy_to": "relation_types",
+                  "type": "keyword"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "type": "object"
+        },
+        "title": {
+          "type": "text"
+        },
+        "urls": {
+          "properties": {
+            "description": {
+              "type": "text"
+            },
+            "value": {
+              "type": "keyword"
+            }
+          }
         }
       }
     }

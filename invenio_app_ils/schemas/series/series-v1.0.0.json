@@ -11,6 +11,55 @@
       "type": "string",
       "description": ""
     },
+    "access_urls": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "access": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "description": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "value": {
+            "format": "uri",
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": ["value"],
+        "title": "URL of external resource",
+        "type": "object"
+      },
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "alternative_titles": {
+      "description": "Alternative titles of the series",
+      "items": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "value": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "type": {
+              "type": "string",
+              "title": "Type of alternative title (Vocabulary)"
+            }
+          },
+          "required": ["value"],
+          "type": "object"
+        }
+      ],
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
+    },
     "authors": {
       "items": {
         "type": "string"
@@ -22,16 +71,30 @@
       "type": "string",
       "description": "Edition"
     },
-    "issn": {
-      "title": "ISSN",
-      "type": "string"
-    },
-    "isbn": {
+    "identifiers": {
       "items": {
-        "type": "string"
+        "properties": {
+          "material": {
+            "type": "string",
+            "title": "Material to which the identifiers refers to."
+          },
+          "scheme": {
+            "title": "Scheme of the identifier (Vocabulary)",
+            "type": "string"
+          },
+          "value": {
+            "title": "Value of the identifier",
+            "type": "string"
+          }
+        },
+        "required": ["value", "scheme"]
       },
-      "type": "array",
-      "description": ""
+      "title": "List of Identifiers of the record",
+      "type": "array"
+    },
+    "internal_notes": {
+      "title": "Internal notes",
+      "type": "string"
     },
     "languages": {
       "items": {
@@ -46,6 +109,14 @@
       "type": "string",
       "enum": ["MULTIPART_MONOGRAPH", "SERIAL"],
       "description": ""
+    },
+    "notes": {
+      "title": "Note for the public",
+      "type": "string"
+    },
+    "publisher": {
+      "title": "Publisher name",
+      "type": "string"
     },
     "relations_metadata": {
       "type": "object",
@@ -118,6 +189,28 @@
     },
     "title": {
       "type": "string"
+    },
+    "urls": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "description": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "value": {
+            "format": "uri",
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": ["value"],
+        "title": "URL of external resource",
+        "type": "object"
+      },
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
     }
   }
 }

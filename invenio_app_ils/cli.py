@@ -466,13 +466,54 @@ class LoanGenerator(Generator):
 class SeriesGenerator(Generator):
     """Series Generator."""
 
-    DOCUMENT_TYPES = ["BOOK", "STANDARD", "PROCEEDING", "JOURNAL"]
     MODE_OF_ISSUANCE = ["MULTIPART_MONOGRAPH", "SERIAL"]
 
     def random_issn(self):
         """Generate a random ISSN."""
         random_4digit = [randint(1000, 9999), randint(1000, 9999)]
         return "-".join(str(r) for r in random_4digit)
+
+    def random_multipart(self, obj):
+        """Randomize multipart data."""
+        obj["edition"] = obj["pid"]
+        for _ in range(randint(1, 3)):
+            obj["identifiers"].append(dict(
+                scheme="ISBN",
+                value=self.random_issn()
+            ))
+
+    def random_serial(self, obj):
+        """Randomize serial data."""
+        for _ in range(randint(1, 3)):
+            obj["identifiers"].append(dict(
+                material=random.choice(["ONLINE", "PRINT"]),
+                scheme="ISSN",
+                value=self.random_issn()
+            ))
+        obj["alternative_titles"] = [
+            dict(
+                value=obj["title"],
+                type="ABBREVIATION"
+            )
+        ]
+        obj["internal_notes"] = lorem.text()
+        obj["notes"] = lorem.text()
+        obj["publisher"] = lorem.sentence()
+        obj["access_urls"] = [
+            dict(
+                access="OPEN",
+                description=lorem.sentence(),
+                value="https://home.cern/"
+            )
+            for _ in range(1, 3)
+        ]
+        obj["urls"] = [
+            dict(
+                description=lorem.sentence(),
+                value="https://home.cern/"
+            )
+            for _ in range(1, 3)
+        ]
 
     def generate(self):
         """Generate."""
@@ -483,16 +524,21 @@ class SeriesGenerator(Generator):
             obj = {
                 "pid": self.create_pid(),
                 "mode_of_issuance": moi,
-                "issn": self.random_issn(),
                 "title": lorem.sentence(),
                 "authors": [lorem.sentence()],
                 "abstract": lorem.text(),
-                "languages": [lang["key"] for lang in random.sample(
-                    self.holder.languages, randint(1, 3)
-                )],
+                "languages": [
+                    lang["key"]
+                    for lang in random.sample(
+                        self.holder.languages, randint(1, 3)
+                    )
+                ],
+                "identifiers": [],
             }
-            if moi == "MULTIPART_MONOGRAPH":
-                obj["edition"] = str(pid)
+            if moi == "SERIAL":
+                self.random_serial(obj)
+            elif moi == "MULTIPART_MONOGRAPH":
+                self.random_multipart(obj)
             objs.append(obj)
 
         self.holder.series["objs"] = objs
