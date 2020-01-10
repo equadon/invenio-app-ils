@@ -7,6 +7,10 @@
     "$schema": {
       "type": "string"
     },
+    "abbreviated_title": {
+      "type": "string",
+      "description": "Abbreviated series title"
+    },
     "abstract": {
       "type": "string",
       "description": ""
@@ -15,9 +19,12 @@
       "items": {
         "additionalProperties": false,
         "properties": {
-          "access": {
+          "access_restriction": {
             "minLength": 1,
             "type": "string"
+          },
+          "open_access": {
+            "type": "boolean"
           },
           "description": {
             "minLength": 1,
@@ -38,14 +45,24 @@
       "uniqueItems": true
     },
     "alternative_titles": {
-      "description": "Alternative titles of the series",
+      "description": "Alternative titles of the document",
       "items": [
         {
           "additionalProperties": false,
           "properties": {
+            "language": {
+              "maxLength": 2,
+              "minLength": 2,
+              "title": "ISO 639-1 language code (Vocabulary)",
+              "type": "string"
+            },
             "value": {
               "minLength": 1,
               "type": "string"
+            },
+            "source": {
+              "type": "string",
+              "title": "Source of the alternative title."
             },
             "type": {
               "type": "string",
@@ -93,8 +110,29 @@
       "type": "array"
     },
     "internal_notes": {
-      "title": "Internal notes",
-      "type": "string"
+      "items": {
+        "additionalProperties": false,
+        "description": "Visible only for Librarians",
+        "properties": {
+          "field": {
+            "title": "Field to which the note refers to",
+            "type": "string"
+          },
+          "user": {
+            "type": "string",
+            "title": "User who has composed the note."
+          },
+          "value": {
+            "title": "Note",
+            "type": "string"
+          }
+        },
+        "required": ["value"]
+      },
+      "minItems": 1,
+      "title": "List of internal notes",
+      "type": "array",
+      "uniqueItems": true
     },
     "languages": {
       "items": {
@@ -110,8 +148,8 @@
       "enum": ["MULTIPART_MONOGRAPH", "SERIAL"],
       "description": ""
     },
-    "notes": {
-      "title": "Note for the public",
+    "note": {
+      "title": "Note for the series",
       "type": "string"
     },
     "publisher": {

@@ -476,7 +476,7 @@ class SeriesGenerator(Generator):
     def random_multipart(self, obj):
         """Randomize multipart data."""
         obj["edition"] = obj["pid"]
-        for _ in range(randint(1, 3)):
+        for _ in range(randint(1, 2)):
             obj["identifiers"].append(dict(
                 scheme="ISBN",
                 value=self.random_issn()
@@ -490,18 +490,25 @@ class SeriesGenerator(Generator):
                 scheme="ISSN",
                 value=self.random_issn()
             ))
+        obj["abbreviated_title"] = obj["title"].split()[0]
         obj["alternative_titles"] = [
             dict(
                 value=obj["title"],
-                type="ABBREVIATION"
+                type="TEST"
             )
         ]
-        obj["internal_notes"] = lorem.text()
+        obj["internal_notes"] = [
+            dict(
+                field="title",
+                user="Test",
+                value="Internal test note."
+            )
+        ]
         obj["notes"] = lorem.text()
         obj["publisher"] = lorem.sentence()
         obj["access_urls"] = [
             dict(
-                access="OPEN",
+                open_access=True,
                 description=lorem.sentence(),
                 value="https://home.cern/"
             )

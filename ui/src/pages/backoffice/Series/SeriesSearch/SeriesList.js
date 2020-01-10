@@ -100,6 +100,17 @@ class SeriesListEntry extends Component {
 
   render() {
     const { series } = this.props;
+    const identifiers = series.metadata.identifiers.reduce(
+      (acc, obj) => {
+        if (obj.scheme === 'ISSN') {
+          acc.issn.push(obj.value);
+        } else if (obj.scheme === 'ISBN') {
+          acc.isbn.push(obj.value);
+        }
+        return acc;
+      },
+      { issn: [], isbn: [] }
+    );
     return (
       <Item>
         <Item.Content>
@@ -123,17 +134,17 @@ class SeriesListEntry extends Component {
                 </label>
               </Item.Meta>
 
-              {series.metadata.issn && (
+              {identifiers.issn.length > 0 && (
                 <>
                   {' '}
-                  <label>ISSN</label> {series.metadata.issn}
+                  <label>ISSN</label> {identifiers.issn.join(', ')}
                 </>
               )}
               <br />
-              {series.metadata.isbn && (
+              {identifiers.isbn.length > 0 && (
                 <>
                   {' '}
-                  <label>ISBN</label> {series.metadata.isbn}
+                  <label>ISBN</label> {identifiers.isbn.join(', ')}
                 </>
               )}
             </Grid.Column>

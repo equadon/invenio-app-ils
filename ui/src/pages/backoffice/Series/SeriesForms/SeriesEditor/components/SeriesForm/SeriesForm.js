@@ -12,22 +12,36 @@ import {
   LanguageField,
   GroupField,
   DeleteActionButton,
+  UrlsField,
 } from '@forms';
 import { series as seriesApi } from '@api/series/series';
 import { BackOfficeRoutes } from '@routes/urls';
 import { goTo } from '@history';
 import { invenioConfig } from '@config';
+import {
+  Identifiers,
+  AlternativeTitles,
+} from '@pages/backoffice/Document/DocumentForms/DocumentEditor/components/DocumentForm/components';
+import { InternalNotes } from '@pages/backoffice/Document/DocumentForms/DocumentEditor/components/DocumentForm/components/InternalNotes';
 
 export class SeriesForm extends Component {
   prepareData = data => {
     return pick(data, [
-      'title',
+      'abbreviated_title',
       'abstract',
+      'access_urls',
+      'alternative_titles',
       'authors',
       'edition',
+      'identifiers',
+      'internal_notes',
       'issn',
       'languages',
       'mode_of_issuance',
+      'note',
+      'publisher',
+      'title',
+      'urls',
     ]);
   };
 
@@ -79,6 +93,12 @@ export class SeriesForm extends Component {
         pid={this.props.pid}
       >
         <StringField label="Title" fieldPath="title" required />
+        <StringField
+          label="Abbreviated title"
+          fieldPath="abbreviated_title"
+          required
+        />
+        <AlternativeTitles />
         <SelectField
           required
           search
@@ -109,7 +129,16 @@ export class SeriesForm extends Component {
           type={invenioConfig.vocabularies.series.language}
         />
         <StringField label="Edition" fieldPath="edition" />
-        <StringField label="ISSN" fieldPath="issn" />
+        <StringField label="Publisher" fieldPath="publisher" />
+        <UrlsField />
+        <UrlsField withAccess label="Access Urls" fieldPath="access_urls" />
+        <Identifiers
+          vocabularies={{
+            scheme: invenioConfig.vocabularies.series.identifier.scheme,
+          }}
+        />
+        <TextField label="Notes" fieldPath="note" rows={5} optimized />
+        <InternalNotes />
       </BaseForm>
     );
   }

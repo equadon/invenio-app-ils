@@ -1,5 +1,13 @@
 import React, { Component } from 'react';
-import { AccordionField, ArrayField, StringField, GroupField } from '../core';
+import PropTypes from 'prop-types';
+import {
+  AccordionField,
+  ArrayField,
+  StringField,
+  GroupField,
+  BooleanField,
+  VocabularyField,
+} from '../core';
 import { DeleteActionButton } from './DeleteActionButton';
 
 export class UrlsField extends Component {
@@ -18,20 +26,35 @@ export class UrlsField extends Component {
           label="Description"
           fieldPath={`${objectPath}.description`}
         />
+        {this.props.withAccess && (
+          <>
+            <BooleanField
+              toggle
+              fieldPath={`${objectPath}.open_access`}
+              label="Open Access"
+            />
+            <VocabularyField
+              type="series_url_access_restriction"
+              fieldPath={`${objectPath}.access_restriction`}
+              label="Access Restriction"
+            />
+          </>
+        )}
       </GroupField>
     );
   }
 
   render() {
+    const { defaultNewValue, fieldPath, label } = this.props;
     return (
       <AccordionField
-        label="Urls"
-        fieldPath="urls"
+        label={label}
+        fieldPath={fieldPath}
         content={
           <ArrayField
-            fieldPath="urls"
-            defaultNewValue={{ value: '', description: '' }}
-            renderArrayItem={this.renderFormField}
+            fieldPath={fieldPath}
+            defaultNewValue={defaultNewValue}
+            renderArrayItem={this.renderFormField.bind(this)}
             addButtonLabel="Add new url"
           />
         }
@@ -39,3 +62,17 @@ export class UrlsField extends Component {
     );
   }
 }
+
+UrlsField.propTypes = {
+  defaultNewValue: PropTypes.object.isRequired,
+  fieldPath: PropTypes.string.isRequired,
+  label: PropTypes.string,
+  withAccess: PropTypes.bool,
+};
+
+UrlsField.defaultProps = {
+  defaultNewValue: { value: '', description: '' },
+  fieldPath: 'urls',
+  label: 'Urls',
+  withAccess: false,
+};

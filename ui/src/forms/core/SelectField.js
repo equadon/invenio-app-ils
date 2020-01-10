@@ -81,6 +81,7 @@ export class SelectField extends Component {
       ...uiProps
     } = this.props;
     const value = getIn(values, fieldPath, multiple ? [] : defaultValue);
+    console.log('value', value, fieldPath);
     return (
       <Form.Dropdown
         fluid

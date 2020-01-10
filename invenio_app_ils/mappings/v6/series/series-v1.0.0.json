@@ -13,14 +13,20 @@
         "$schema": {
           "type": "keyword"
         },
+        "abbreviated_title": {
+          "type": "text"
+        },
         "abstract": {
           "type": "text"
         },
         "access_urls": {
           "type": "object",
           "properties": {
-            "access": {
+            "access_restriction": {
               "type": "keyword"
+            },
+            "open_access": {
+              "type": "boolean"
             },
             "description": {
               "type": "text"
@@ -33,13 +39,14 @@
         "alternative_titles": {
           "type": "object",
           "properties": {
+            "language": {
+              "type": "keyword"
+            },
             "value": {
-              "fields": {
-                "keyword": {
-                  "type": "keyword"
-                }
-              },
               "type": "text"
+            },
+            "source": {
+              "type": "keyword"
             },
             "type": {
               "type": "keyword"
@@ -68,10 +75,22 @@
             "value": {
               "type": "keyword"
             }
-          }
+          },
+          "type": "object"
         },
         "internal_notes": {
-          "type": "keyword"
+          "properties": {
+            "field": {
+              "type": "keyword"
+            },
+            "user": {
+              "type": "keyword"
+            },
+            "value": {
+              "type": "keyword"
+            }
+          },
+          "type": "object"
         },
         "languages": {
           "type": "keyword"
@@ -79,8 +98,8 @@
         "mode_of_issuance": {
           "type": "keyword"
         },
-        "notes": {
-          "type": "keyword"
+        "note": {
+          "type": "text"
         },
         "publisher": {
           "fields": {
@@ -157,7 +176,8 @@
             "value": {
               "type": "keyword"
             }
-          }
+          },
+          "type": "object"
         }
       }
     }
