@@ -7,10 +7,16 @@
 
 """Search utilities."""
 
+from elasticsearch_dsl import Q
 from flask import current_app
-from invenio_search.api import RecordsSearch
+from invenio_search.api import DefaultFilter, RecordsSearch
 
 from invenio_app_ils.errors import MissingRequiredParameterError
+
+
+def filter_journal_issues():
+    """Remove journal issues."""
+    return ~Q("term", document_type="PERIODICAL_ISSUE")
 
 
 class _ItemSearch(RecordsSearch):
@@ -257,4 +263,5 @@ class MultiSearch(RecordsSearch):
         """Search for documents and series."""
 
         index = ["documents", "series"]
+        default_filter = DefaultFilter(filter_journal_issues)
         doc_types = None

@@ -34,7 +34,7 @@ import history from '@history';
 
 export class DocumentsSearch extends Component {
   searchApi = new InvenioSearchApi({
-    url: documentApi.searchBaseURL,
+    url: documentApi.multiSearchBaseURL,
     withCredentials: true,
   });
   state = { activeIndex: 0, isLayoutGrid: true };
