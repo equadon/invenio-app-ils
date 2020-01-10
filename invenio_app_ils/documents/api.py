@@ -100,6 +100,7 @@ class Document(IlsRecordWithRelations):
     def create(cls, data, id_=None, **kwargs):
         """Create Document record."""
         cls.build_resolver_fields(data)
+        data["pid_type"] = cls._pid_type
         return super(Document, cls).create(data, id_=id_, **kwargs)
 
     def update(self, data):

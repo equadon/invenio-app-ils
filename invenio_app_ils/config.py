@@ -22,7 +22,7 @@ from invenio_app.config import APP_DEFAULT_SECURE_HEADERS
 from invenio_circulation.api import Loan
 from invenio_pidrelations.config import RelationType
 from invenio_records_rest.facets import terms_filter
-from invenio_records_rest.utils import deny_all
+from invenio_records_rest.utils import allow_all, deny_all
 from invenio_stats.aggregations import StatAggregator
 from invenio_stats.processors import EventsIndexer
 from invenio_stats.queries import ESTermsQuery
@@ -137,6 +137,7 @@ from .search.api import (  # isort:skip
     PatronsSearch,
     SeriesSearch,
     VocabularySearch,
+    MultiSearch,
 )
 
 
@@ -660,6 +661,38 @@ RECORDS_REST_ENDPOINTS = dict(
         max_result_window=_RECORDS_REST_MAX_RESULT_WINDOW,
         error_handlers=dict(),
         list_permission_factory_imp=backoffice_permission,
+        read_permission_factory_imp=deny_all,
+        create_permission_factory_imp=deny_all,
+        update_permission_factory_imp=deny_all,
+        delete_permission_factory_imp=deny_all,
+    ),
+    multid=dict(
+        pid_type="multid",
+        pid_minter="multid",
+        pid_fetcher="multid",
+        search_class=MultiSearch,
+        # search_factory_imp="invenio_app_ils.search:multi_search_factory",
+        record_serializers={
+            "application/json": (
+                "invenio_app_ils.records.serializers:json_v1_response"
+            )
+        },
+        search_serializers={
+            "application/json": (
+                "invenio_app_ils.records.serializers:json_v1_search"
+            ),
+            "text/csv": ("invenio_app_ils.records.serializers:csv_v1_search"),
+        },
+        search_serializers_aliases={
+            "csv": "text/csv",
+            "json": "application/json",
+        },
+        item_route="/multi/<pid(multid):pid_value>",
+        list_route="/multi/",
+        default_media_type="application/json",
+        max_result_window=_RECORDS_REST_MAX_RESULT_WINDOW,
+        error_handlers=dict(),
+        list_permission_factory_imp=allow_all,
         read_permission_factory_imp=deny_all,
         create_permission_factory_imp=deny_all,
         update_permission_factory_imp=deny_all,

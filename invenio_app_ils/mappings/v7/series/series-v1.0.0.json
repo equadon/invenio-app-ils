@@ -100,6 +100,12 @@
       "note": {
         "type": "text"
       },
+      "pid": {
+        "type": "keyword"
+      },
+      "pid_type": {
+        "type": "keyword"
+      },
       "publisher": {
         "fields": {
           "keyword": {

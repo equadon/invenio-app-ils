@@ -248,3 +248,13 @@ class VocabularySearch(RecordsSearch):
         """Search vocabularies by type and key."""
         search = self.search_by_type(type)
         return search.filter("term", **{"key.keyword": key})
+
+
+class MultiSearch(RecordsSearch):
+    """Search multiple indexes."""
+
+    class Meta:
+        """Search for documents and series."""
+
+        index = ["documents", "series"]
+        doc_types = None

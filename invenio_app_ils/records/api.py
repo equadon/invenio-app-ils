@@ -440,6 +440,7 @@ class Series(IlsRecordWithRelations):
     def create(cls, data, id_=None, **kwargs):
         """Create Series record."""
         cls.build_resolver_fields(data)
+        data["pid_type"] = cls._pid_type
         return super(Series, cls).create(data, id_=id_, **kwargs)
 
     def update(self, data):

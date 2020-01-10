@@ -91,3 +91,12 @@ def vocabulary_pid_fetcher(record_uuid, data):
         pid_type=VOCABULARY_PID_TYPE,
         pid_value=str(data['id']),
     )
+
+
+def multi_pid_fetcher(record_uuid, data):
+    """Dummy multi fetcher."""
+    return FetchedPID(
+        provider=None,
+        pid_type="multid",
+        pid_value=str(data["pid"]),
+    )

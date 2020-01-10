@@ -170,6 +170,9 @@
       "pid": {
         "type": "keyword"
       },
+      "pid_type": {
+        "type": "keyword"
+      },
       "relations": {
         "properties": {
           "edition": {

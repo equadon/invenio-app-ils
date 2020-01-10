@@ -67,11 +67,6 @@ def series_pid_minter(record_uuid, data):
     return provider.pid
 
 
-def patron_pid_minter(record_uuid, data):
-    """Dummy patron minter."""
-    return None
-
-
 def document_request_pid_minter(record_uuid, data):
     """Mint DocumentRequest identifiers."""
     assert "pid" not in data
@@ -83,6 +78,6 @@ def document_request_pid_minter(record_uuid, data):
     return provider.pid
 
 
-def vocabulary_pid_minter(record_uuid, data):
-    """Mint Vocabulary identifiers."""
+def dummy_pid_minter(record_uuid, data):
+    """Dummy minter."""
     return None
