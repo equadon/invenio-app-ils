@@ -15,5 +15,5 @@ export const SeriesImage = ({ metadata, ...props }) => {
 };
 
 SeriesImage.propTypes = {
-  metadata: PropTypes.object.isRequired,
+  metadata: PropTypes.object,
 };
