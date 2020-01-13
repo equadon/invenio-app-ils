@@ -8,9 +8,11 @@
 """Search utilities."""
 
 from flask import current_app
-from invenio_search.api import RecordsSearch
+from invenio_search.api import DefaultFilter, RecordsSearch
 
 from invenio_app_ils.errors import MissingRequiredParameterError
+from invenio_app_ils.search.permissions import _ils_search_factory, \
+    search_filter_record_permissions
 
 
 class _ItemSearch(RecordsSearch):
@@ -219,3 +221,36 @@ class VocabularySearch(RecordsSearch):
         """Search vocabularies by type and key."""
         search = self.search_by_type(type)
         return search.filter("term", **{"key.keyword": key})
+
+
+def search_factory_literature(self, search):
+    """Search factory for literature (series and documents)."""
+
+    def filter_periodical_issues(query_string):
+        """Filter periodical issues unless include_all=yes."""
+        from distutils.util import strtobool
+        from flask import request
+
+        if not strtobool(request.values.get("include_all", "no")):
+            issue_query_string = "NOT document_type:PERIODICAL_ISSUE"
+            if query_string:
+                query_string = "{} AND {}".format(
+                    query_string,
+                    issue_query_string
+                )
+            else:
+                query_string = issue_query_string
+        return query_string
+
+    return _ils_search_factory(self, search, filter_periodical_issues)
+
+
+class LiteratureSearch(RecordsSearch):
+    """Literature search that searches both documents and series."""
+
+    class Meta:
+        """Search for documents and series."""
+
+        index = ["documents", "series"]
+        doc_types = None
+        default_filter = DefaultFilter(search_filter_record_permissions)

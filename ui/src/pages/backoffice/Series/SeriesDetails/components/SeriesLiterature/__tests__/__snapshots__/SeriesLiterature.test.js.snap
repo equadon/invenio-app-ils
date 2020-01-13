@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`SeriesDocuments tests should load the SeriesDocuments component 1`] = `
+exports[`SeriesLiterature tests should load the SeriesLiterature component 1`] = `
 <Loader>
   <Error>
     <ResultsTable
@@ -20,8 +20,9 @@ exports[`SeriesDocuments tests should load the SeriesDocuments component 1`] = `
             "title": "Volume",
           },
           Object {
-            "field": "metadata.title",
-            "title": "Title",
+            "field": "",
+            "formatter": [Function],
+            "title": "Type",
           },
           Object {
             "formatter": [Function],
@@ -32,7 +33,7 @@ exports[`SeriesDocuments tests should load the SeriesDocuments component 1`] = `
       currentPage={1}
       data={Array []}
       headerActionComponent={null}
-      name="documents"
+      name="series or documents"
       paginationComponent={null}
       seeAllComponent={
         <SeeAllButton
@@ -45,7 +46,7 @@ exports[`SeriesDocuments tests should load the SeriesDocuments component 1`] = `
       showMaxRows={5}
       singleLine={false}
       subtitle=""
-      title="Documents"
+      title="Literature included in this series"
       totalHitsCount={0}
     />
   </Error>
