@@ -111,6 +111,12 @@ form {
     color: @fsSecondaryColor;
   }
 
+  .info-popup {
+    .icon {
+      padding-left: 0.3rem;
+    }
+  }
+
 }
 
 /* BACKOFFICE */
