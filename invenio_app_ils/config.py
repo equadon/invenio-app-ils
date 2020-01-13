@@ -25,7 +25,7 @@ from invenio_circulation.api import Loan
 from invenio_oauthclient.contrib import cern
 from invenio_pidrelations.config import RelationType
 from invenio_records_rest.facets import terms_filter
-from invenio_records_rest.utils import deny_all
+from invenio_records_rest.utils import allow_all, deny_all
 from invenio_stats.aggregations import StatAggregator
 from invenio_stats.processors import EventsIndexer
 from invenio_stats.queries import ESTermsQuery
@@ -99,6 +99,9 @@ from .pidstore.pids import (  # isort:skip
     EITEM_PID_FETCHER,
     EITEM_PID_MINTER,
     EITEM_PID_TYPE,
+    FRONT_SITE_SEARCH_PID_FETCHER,
+    FRONT_SITE_SEARCH_PID_MINTER,
+    FRONT_SITE_SEARCH_PID_TYPE,
     INTERNAL_LOCATION_PID_FETCHER,
     INTERNAL_LOCATION_PID_MINTER,
     INTERNAL_LOCATION_PID_TYPE,
@@ -135,6 +138,7 @@ from .records.permissions import (  # isort:skip
 from .search.api import (  # isort:skip
     DocumentRequestSearch,
     EItemSearch,
+    FrontSiteSearch,
     InternalLocationSearch,
     ItemSearch,
     LocationSearch,
@@ -683,6 +687,37 @@ RECORDS_REST_ENDPOINTS = dict(
         max_result_window=_RECORDS_REST_MAX_RESULT_WINDOW,
         error_handlers=dict(),
         list_permission_factory_imp=backoffice_permission,
+        read_permission_factory_imp=deny_all,
+        create_permission_factory_imp=deny_all,
+        update_permission_factory_imp=deny_all,
+        delete_permission_factory_imp=deny_all,
+    ),
+    fssid=dict(
+        pid_type=FRONT_SITE_SEARCH_PID_TYPE,
+        pid_minter=FRONT_SITE_SEARCH_PID_MINTER,
+        pid_fetcher=FRONT_SITE_SEARCH_PID_FETCHER,
+        search_class=FrontSiteSearch,
+        record_serializers={
+            "application/json": (
+                "invenio_app_ils.records.serializers:json_v1_response"
+            )
+        },
+        search_serializers={
+            "application/json": (
+                "invenio_app_ils.records.serializers:json_v1_search"
+            ),
+            "text/csv": ("invenio_app_ils.records.serializers:csv_v1_search"),
+        },
+        search_serializers_aliases={
+            "csv": "text/csv",
+            "json": "application/json",
+        },
+        item_route="/frontsite-search/<pid(fssid):pid_value>",
+        list_route="/frontsite-search/",
+        default_media_type="application/json",
+        max_result_window=_RECORDS_REST_MAX_RESULT_WINDOW,
+        error_handlers=dict(),
+        list_permission_factory_imp=allow_all,
         read_permission_factory_imp=deny_all,
         create_permission_factory_imp=deny_all,
         update_permission_factory_imp=deny_all,
@@ -1406,7 +1441,6 @@ ILS_VOCABULARIES = [
     "conference_identifier_scheme",
     "country",
     "currencies",
-    "document_type",
     "identifier_scheme",
     "language",
     "license",

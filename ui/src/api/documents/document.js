@@ -173,6 +173,7 @@ const count = query => {
 
 export const document = {
   searchBaseURL: `${apiConfig.baseURL}${documentURL}`,
+  frontSiteSearchBaseURL: `${apiConfig.baseURL}/frontsite-search/`,
   get: get,
   create: create,
   update: update,

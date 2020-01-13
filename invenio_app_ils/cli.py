@@ -264,7 +264,6 @@ class DocumentGenerator(Generator):
     """Document Generator."""
 
     PERIODICAL_ISSUE = "PERIODICAL_ISSUE"
-    DOCUMENT_TYPES = ["BOOK", "STANDARD", "PROCEEDING", PERIODICAL_ISSUE]
     AUTHORS = [
         {"full_name": "Close, Frank"},
         {"full_name": "CERN", "type": "ORGANISATION"},
@@ -304,7 +303,7 @@ class DocumentGenerator(Generator):
             "title": lorem.sentence(),
             "authors": random.sample(self.AUTHORS, randint(1, 3)),
             "abstract": "{}".format(lorem.text()),
-            "document_type": random.choice(self.DOCUMENT_TYPES),
+            "document_type": random.choice(Document.DOCUMENT_TYPES),
             "languages": [
                 lang["key"]
                 for lang in random.sample(self.holder.languages, randint(1, 3))

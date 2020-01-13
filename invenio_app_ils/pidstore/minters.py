@@ -84,5 +84,10 @@ def document_request_pid_minter(record_uuid, data):
 
 
 def vocabulary_pid_minter(record_uuid, data):
-    """Mint Vocabulary identifiers."""
+    """Dummy vocabulary minter."""
+    return None
+
+
+def front_site_search_pid_minter(record_uuid, data):
+    """Dummy front site search minter."""
     return None

@@ -6,3 +6,5 @@
 # under the terms of the MIT License; see LICENSE file for more details.
 
 """Invenio App ILS search module."""
+
+from werkzeug.datastructures import MultiDict

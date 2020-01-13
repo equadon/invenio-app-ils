@@ -7,10 +7,16 @@
 
 """Search utilities."""
 
+from elasticsearch_dsl import Q
 from flask import current_app
-from invenio_search.api import RecordsSearch
+from invenio_search.api import DefaultFilter, RecordsSearch
 
 from invenio_app_ils.errors import MissingRequiredParameterError
+
+
+def filter_periodical_issues():
+    """Remove periodical issues."""
+    return ~Q("term", document_type="PERIODICAL_ISSUE")
 
 
 class _ItemSearch(RecordsSearch):
@@ -248,3 +254,14 @@ class VocabularySearch(RecordsSearch):
         """Search vocabularies by type and key."""
         search = self.search_by_type(type)
         return search.filter("term", **{"key.keyword": key})
+
+
+class FrontSiteSearch(RecordsSearch):
+    """Search used on frontsite - searches both documents and series."""
+
+    class Meta:
+        """Search for documents and series."""
+
+        index = ["documents", "series"]
+        default_filter = DefaultFilter(filter_periodical_issues)
+        doc_types = None

@@ -12,6 +12,7 @@ from invenio_pidstore.fetchers import FetchedPID
 from .pids import (  # isort:skip
     DOCUMENT_REQUEST_PID_TYPE,
     EITEM_PID_TYPE,
+    FRONT_SITE_SEARCH_PID_TYPE,
     INTERNAL_LOCATION_PID_TYPE,
     ITEM_PID_TYPE,
     LOCATION_PID_TYPE,
@@ -90,4 +91,13 @@ def vocabulary_pid_fetcher(record_uuid, data):
         provider=None,
         pid_type=VOCABULARY_PID_TYPE,
         pid_value=str(data['id']),
+    )
+
+
+def front_site_search_pid_fetcher(record_uuid, data):
+    """Front site search fetcher."""
+    return FetchedPID(
+        provider=None,
+        pid_type=FRONT_SITE_SEARCH_PID_TYPE,
+        pid_value=str(data["pid"]),
     )

@@ -21,7 +21,8 @@ from .circulation.receivers import register_circulation_signals
 from .documents.api import DOCUMENT_PID_TYPE
 from .files.receivers import register_files_signals
 from .pidstore.pids import DOCUMENT_REQUEST_PID_TYPE, EITEM_PID_TYPE, \
-    INTERNAL_LOCATION_PID_TYPE, ITEM_PID_TYPE, PATRON_PID_TYPE
+    INTERNAL_LOCATION_PID_TYPE, ITEM_PID_TYPE, PATRON_PID_TYPE, \
+    SERIES_PID_TYPE
 
 
 def handle_rest_exceptions(exception):
@@ -139,6 +140,21 @@ class _InvenioAppIlsState(object):
     def patron_cls(self):
         """Return the patron record class."""
         return self.record_class_by_pid_type(PATRON_PID_TYPE)
+
+    @cached_property
+    def series_record_cls(self):
+        """Return the series record class."""
+        return self.record_class_by_pid_type(SERIES_PID_TYPE)
+
+    @cached_property
+    def series_search_cls(self):
+        """Return the series search cls."""
+        return self.search_by_pid_type(SERIES_PID_TYPE)
+
+    @cached_property
+    def series_indexer(self):
+        """Return a series indexer instance."""
+        return self.indexer_by_pid_type(SERIES_PID_TYPE)
 
 
 class InvenioAppIls(object):
