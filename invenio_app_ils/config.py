@@ -105,6 +105,9 @@ from .pidstore.pids import (  # isort:skip
     ITEM_PID_FETCHER,
     ITEM_PID_MINTER,
     ITEM_PID_TYPE,
+    LITERATURE_PID_FETCHER,
+    LITERATURE_PID_MINTER,
+    LITERATURE_PID_TYPE,
     LOCATION_PID_FETCHER,
     LOCATION_PID_MINTER,
     LOCATION_PID_TYPE,
@@ -137,6 +140,7 @@ from .search.api import (  # isort:skip
     EItemSearch,
     InternalLocationSearch,
     ItemSearch,
+    LiteratureSearch,
     LocationSearch,
     PatronsSearch,
     SeriesSearch,
@@ -683,6 +687,40 @@ RECORDS_REST_ENDPOINTS = dict(
         max_result_window=_RECORDS_REST_MAX_RESULT_WINDOW,
         error_handlers=dict(),
         list_permission_factory_imp=backoffice_permission,
+        read_permission_factory_imp=deny_all,
+        create_permission_factory_imp=deny_all,
+        update_permission_factory_imp=deny_all,
+        delete_permission_factory_imp=deny_all,
+    ),
+    litid=dict(
+        pid_type=LITERATURE_PID_TYPE,
+        pid_minter=LITERATURE_PID_MINTER,
+        pid_fetcher=LITERATURE_PID_FETCHER,
+        search_class=LiteratureSearch,
+        search_factory_imp="invenio_app_ils.search.api"
+                           ":search_factory_literature",
+        record_serializers={
+            "application/json": (
+                "invenio_app_ils.records.serializers:json_v1_response"
+            )
+        },
+        search_serializers={
+            "application/json": (
+                "invenio_app_ils.records.serializers:json_v1_search"
+            ),
+            "text/csv": ("invenio_app_ils.records.serializers:csv_v1_search"),
+        },
+        search_serializers_aliases={
+            "csv": "text/csv",
+            "json": "application/json",
+        },
+        item_route="/literature/<pid({}):pid_value>".format(
+            LITERATURE_PID_TYPE
+        ),
+        list_route="/literature/",
+        default_media_type="application/json",
+        max_result_window=_RECORDS_REST_MAX_RESULT_WINDOW,
+        error_handlers=dict(),
         read_permission_factory_imp=deny_all,
         create_permission_factory_imp=deny_all,
         update_permission_factory_imp=deny_all,
@@ -1406,7 +1444,6 @@ ILS_VOCABULARIES = [
     "conference_identifier_scheme",
     "country",
     "currencies",
-    "document_type",
     "identifier_scheme",
     "language",
     "license",

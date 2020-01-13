@@ -9,7 +9,7 @@
 
 from __future__ import absolute_import, print_function
 
-from flask import Blueprint, current_app, jsonify
+from flask import Blueprint, current_app, jsonify, request
 from invenio_accounts.views.rest import UserInfoView, default_user_payload
 from invenio_db import db
 from invenio_files_rest.models import ObjectVersion

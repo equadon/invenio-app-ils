@@ -1,4 +1,3 @@
-export { SeriesDocuments } from './SeriesDocuments';
+export { SeriesLiterature } from './SeriesLiterature';
 export { SeriesMetadata } from './SeriesMetadata';
-export { SeriesMultipartMonographs } from './SeriesMultipartMonographs';
 export { SeriesRelations } from './SeriesRelations';
