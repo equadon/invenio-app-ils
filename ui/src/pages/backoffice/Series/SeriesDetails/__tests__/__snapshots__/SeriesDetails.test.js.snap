@@ -7,8 +7,7 @@ exports[`SeriesDetails tests should load the details component 1`] = `
   >
     <Error>
       <SeriesMetadata />
-      <SeriesDocuments />
-      <SeriesMultipartMonographs />
+      <SeriesLiterature />
       <SeriesRelations />
     </Error>
   </Loader>

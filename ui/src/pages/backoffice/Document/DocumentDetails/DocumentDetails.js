@@ -32,14 +32,13 @@ class DocumentHeader extends Component {
       <>
         <label>Document</label> #{data.metadata.pid}{' '}
         <CopyButton text={data.metadata.pid} />
-        {(
+        {data.metadata.created_by && (
           <>
             <br />
-            <label>Created by</label>{' '}
+            <label>Created by</label> <br />
+            <label>Created on</label> {toShortDate(data.created)}
           </>
-        ) && data.metadata.created_by}
-        <br />
-        <label>Created on</label> {toShortDate(data.created)}
+        )}
       </>
     );
     return (
@@ -164,7 +163,7 @@ export default class DocumentDetails extends Component {
                         <Container className="spaced">
                           <DocumentSummary document={data} />
                         </Container>
-                          <DocumentMetadata />
+                        <DocumentMetadata />
                         <DocumentContent data={data} />
                       </Container>
                     </Grid.Column>
