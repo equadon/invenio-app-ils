@@ -9,14 +9,9 @@
 
 from elasticsearch_dsl import Q
 from flask import current_app
-from invenio_search.api import DefaultFilter, RecordsSearch
+from invenio_search.api import RecordsSearch
 
 from invenio_app_ils.errors import MissingRequiredParameterError
-
-
-def filter_periodical_issues():
-    """Remove periodical issues."""
-    return ~Q("term", document_type="PERIODICAL_ISSUE")
 
 
 class _ItemSearch(RecordsSearch):
@@ -256,6 +251,44 @@ class VocabularySearch(RecordsSearch):
         return search.filter("term", **{"key.keyword": key})
 
 
+def search_factory_frontsite(self, search):
+    def query_parser(qstr=None):
+        """Default parser that uses the Q() from elasticsearch_dsl."""
+        if qstr:
+            return Q("query_string", query=qstr)
+        return Q()
+
+    from flask import request
+    from invenio_records_rest.facets import default_facets_factory
+    from invenio_records_rest.sorter import default_sorter_factory
+    from invenio_app_ils.errors import SearchQueryError
+
+    query_string = request.values.get("q")
+
+    if request.values.get("include_all") != "1":
+        issue_query_string = "NOT document_type:PERIODICAL_ISSUE"
+        if query_string:
+            query_string = "{} AND {}".format(query_string, issue_query_string)
+        else:
+            query_string = issue_query_string
+
+    query = query_parser(query_string)
+
+    try:
+        search = search.query(query)
+    except SyntaxError:
+        raise SearchQueryError(query_string)
+
+    search_index = search._index[0]
+    search, urlkwargs = default_facets_factory(search, search_index)
+    search, sortkwargs = default_sorter_factory(search, search_index)
+    for key, value in sortkwargs.items():
+        urlkwargs.add(key, value)
+
+    urlkwargs.add("q", query_string)
+    return search, urlkwargs
+
+
 class FrontSiteSearch(RecordsSearch):
     """Search used on frontsite - searches both documents and series."""
 
@@ -263,5 +296,4 @@ class FrontSiteSearch(RecordsSearch):
         """Search for documents and series."""
 
         index = ["documents", "series"]
-        default_filter = DefaultFilter(filter_periodical_issues)
         doc_types = None

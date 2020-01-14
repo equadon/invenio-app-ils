@@ -697,6 +697,8 @@ RECORDS_REST_ENDPOINTS = dict(
         pid_minter=FRONT_SITE_SEARCH_PID_MINTER,
         pid_fetcher=FRONT_SITE_SEARCH_PID_FETCHER,
         search_class=FrontSiteSearch,
+        search_factory_imp="invenio_app_ils.search.api"
+                           ":search_factory_frontsite",
         record_serializers={
             "application/json": (
                 "invenio_app_ils.records.serializers:json_v1_response"
