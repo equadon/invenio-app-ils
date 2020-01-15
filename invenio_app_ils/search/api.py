@@ -251,7 +251,7 @@ class VocabularySearch(RecordsSearch):
         return search.filter("term", **{"key.keyword": key})
 
 
-def search_factory_frontsite(self, search):
+def search_factory_literature(self, search):
     def query_parser(qstr=None):
         """Default parser that uses the Q() from elasticsearch_dsl."""
         if qstr:
@@ -265,7 +265,7 @@ def search_factory_frontsite(self, search):
 
     query_string = request.values.get("q")
 
-    if request.values.get("include_all") != "1":
+    if request.values.get("include_all") != "yes":
         issue_query_string = "NOT document_type:PERIODICAL_ISSUE"
         if query_string:
             query_string = "{} AND {}".format(query_string, issue_query_string)
@@ -289,8 +289,8 @@ def search_factory_frontsite(self, search):
     return search, urlkwargs
 
 
-class FrontSiteSearch(RecordsSearch):
-    """Search used on frontsite - searches both documents and series."""
+class LiteratureSearch(RecordsSearch):
+    """Literature search that searches both documents and series."""
 
     class Meta:
         """Search for documents and series."""

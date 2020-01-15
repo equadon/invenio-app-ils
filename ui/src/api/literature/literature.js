@@ -18,7 +18,7 @@ class QueryBuilder {
   }
 
   includeAll() {
-    this.extraParamsQuery.push('include_all=true');
+    this.extraParamsQuery.push('include_all=yes');
     return this;
   }
 

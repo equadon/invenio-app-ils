@@ -25,7 +25,7 @@ from invenio_circulation.api import Loan
 from invenio_oauthclient.contrib import cern
 from invenio_pidrelations.config import RelationType
 from invenio_records_rest.facets import terms_filter
-from invenio_records_rest.utils import allow_all, deny_all
+from invenio_records_rest.utils import deny_all
 from invenio_stats.aggregations import StatAggregator
 from invenio_stats.processors import EventsIndexer
 from invenio_stats.queries import ESTermsQuery
@@ -99,15 +99,15 @@ from .pidstore.pids import (  # isort:skip
     EITEM_PID_FETCHER,
     EITEM_PID_MINTER,
     EITEM_PID_TYPE,
-    FRONT_SITE_SEARCH_PID_FETCHER,
-    FRONT_SITE_SEARCH_PID_MINTER,
-    FRONT_SITE_SEARCH_PID_TYPE,
     INTERNAL_LOCATION_PID_FETCHER,
     INTERNAL_LOCATION_PID_MINTER,
     INTERNAL_LOCATION_PID_TYPE,
     ITEM_PID_FETCHER,
     ITEM_PID_MINTER,
     ITEM_PID_TYPE,
+    LITERATURE_PID_FETCHER,
+    LITERATURE_PID_MINTER,
+    LITERATURE_PID_TYPE,
     LOCATION_PID_FETCHER,
     LOCATION_PID_MINTER,
     LOCATION_PID_TYPE,
@@ -138,9 +138,9 @@ from .records.permissions import (  # isort:skip
 from .search.api import (  # isort:skip
     DocumentRequestSearch,
     EItemSearch,
-    FrontSiteSearch,
     InternalLocationSearch,
     ItemSearch,
+    LiteratureSearch,
     LocationSearch,
     PatronsSearch,
     SeriesSearch,
@@ -692,13 +692,13 @@ RECORDS_REST_ENDPOINTS = dict(
         update_permission_factory_imp=deny_all,
         delete_permission_factory_imp=deny_all,
     ),
-    fssid=dict(
-        pid_type=FRONT_SITE_SEARCH_PID_TYPE,
-        pid_minter=FRONT_SITE_SEARCH_PID_MINTER,
-        pid_fetcher=FRONT_SITE_SEARCH_PID_FETCHER,
-        search_class=FrontSiteSearch,
+    litid=dict(
+        pid_type=LITERATURE_PID_TYPE,
+        pid_minter=LITERATURE_PID_MINTER,
+        pid_fetcher=LITERATURE_PID_FETCHER,
+        search_class=LiteratureSearch,
         search_factory_imp="invenio_app_ils.search.api"
-                           ":search_factory_frontsite",
+                           ":search_factory_literature",
         record_serializers={
             "application/json": (
                 "invenio_app_ils.records.serializers:json_v1_response"
@@ -714,8 +714,10 @@ RECORDS_REST_ENDPOINTS = dict(
             "csv": "text/csv",
             "json": "application/json",
         },
-        item_route="/frontsite-search/<pid(fssid):pid_value>",
-        list_route="/frontsite-search/",
+        item_route="/literature/<pid({}):pid_value>".format(
+            LITERATURE_PID_TYPE
+        ),
+        list_route="/literature/",
         default_media_type="application/json",
         max_result_window=_RECORDS_REST_MAX_RESULT_WINDOW,
         error_handlers=dict(),

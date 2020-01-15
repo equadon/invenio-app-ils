@@ -88,6 +88,6 @@ def vocabulary_pid_minter(record_uuid, data):
     return None
 
 
-def front_site_search_pid_minter(record_uuid, data):
-    """Dummy front site search minter."""
+def literature_pid_minter(record_uuid, data):
+    """Dummy literature minter."""
     return None
