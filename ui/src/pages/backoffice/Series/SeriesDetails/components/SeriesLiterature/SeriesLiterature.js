@@ -26,7 +26,6 @@ export default class SeriesLiterature extends Component {
       documentApi
         .query()
         .withSeriesPid(this.seriesPid, this.seriesType)
-        .sortBy(`relations.serial.volume`)
         .qs()
     );
     return <SeeAllButton to={path} />;
@@ -93,7 +92,7 @@ export default class SeriesLiterature extends Component {
             columns={columns}
             totalHitsCount={seriesLiterature.total}
             title={'Literature included in this series'}
-            name={'literature'}
+            name={'series or documents'}
             seeAllComponent={this.seeAllButton()}
             showMaxRows={showMaxDocuments}
           />
