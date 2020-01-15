@@ -16,12 +16,12 @@ const mockResponse = {
   },
 };
 
-const mockFetchSeriesDocuments = jest.fn();
-documentApi.list = mockFetchSeriesDocuments;
+const mockFetchSeriesLiterature = jest.fn();
+documentApi.list = mockFetchSeriesLiterature;
 
 let store;
 beforeEach(() => {
-  mockFetchSeriesDocuments.mockClear();
+  mockFetchSeriesLiterature.mockClear();
 
   store = mockStore({ documentItems: initialState });
   store.clearActions();
@@ -30,44 +30,44 @@ beforeEach(() => {
 describe('Series Document tests', () => {
   describe('Fetch series document tests', () => {
     it('should dispatch a loading action when fetching documents', async () => {
-      mockFetchSeriesDocuments.mockResolvedValue(mockResponse);
+      mockFetchSeriesLiterature.mockResolvedValue(mockResponse);
 
       const expectedAction = {
         type: types.IS_LOADING,
       };
 
-      store.dispatch(actions.fetchSeriesDocuments('123', 'SERIAL'));
-      expect(mockFetchSeriesDocuments).toHaveBeenCalledWith(
+      store.dispatch(actions.fetchSeriesLiterature('123', 'SERIAL'));
+      expect(mockFetchSeriesLiterature).toHaveBeenCalledWith(
         'relations.serial.pid:123'
       );
       expect(store.getActions()[0]).toEqual(expectedAction);
     });
 
     it('should dispatch a success action when documents fetch succeeds', async () => {
-      mockFetchSeriesDocuments.mockResolvedValue(mockResponse);
+      mockFetchSeriesLiterature.mockResolvedValue(mockResponse);
 
       const expectedAction = {
         type: types.SUCCESS,
         payload: mockResponse.data,
       };
 
-      await store.dispatch(actions.fetchSeriesDocuments('123', 'SERIAL'));
-      expect(mockFetchSeriesDocuments).toHaveBeenCalledWith(
+      await store.dispatch(actions.fetchSeriesLiterature('123', 'SERIAL'));
+      expect(mockFetchSeriesLiterature).toHaveBeenCalledWith(
         'relations.serial.pid:123'
       );
       expect(store.getActions()[1]).toEqual(expectedAction);
     });
 
     it('should dispatch an error action when documents fetch fails', async () => {
-      mockFetchSeriesDocuments.mockRejectedValue([500, 'Error']);
+      mockFetchSeriesLiterature.mockRejectedValue([500, 'Error']);
 
       const expectedAction = {
         type: types.HAS_ERROR,
         payload: [500, 'Error'],
       };
 
-      await store.dispatch(actions.fetchSeriesDocuments('123', 'SERIAL'));
-      expect(mockFetchSeriesDocuments).toHaveBeenCalledWith(
+      await store.dispatch(actions.fetchSeriesLiterature('123', 'SERIAL'));
+      expect(mockFetchSeriesLiterature).toHaveBeenCalledWith(
         'relations.serial.pid:123'
       );
       expect(store.getActions()[1]).toEqual(expectedAction);

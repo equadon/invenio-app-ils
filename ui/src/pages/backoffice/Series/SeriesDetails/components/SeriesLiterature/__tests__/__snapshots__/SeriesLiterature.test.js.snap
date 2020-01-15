@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`SeriesMultipartMonographs tests should load the SeriesMultipartMonographs component 1`] = `
+exports[`SeriesLiterature tests should load the SeriesLiterature component 1`] = `
 <Loader>
   <Error>
     <ResultsTable
@@ -25,6 +25,7 @@ exports[`SeriesMultipartMonographs tests should load the SeriesMultipartMonograp
           },
           Object {
             "field": "metadata.authors",
+            "formatter": [Function],
             "title": "Authors",
           },
         ]
@@ -32,20 +33,20 @@ exports[`SeriesMultipartMonographs tests should load the SeriesMultipartMonograp
       currentPage={1}
       data={Array []}
       headerActionComponent={null}
-      name="multipart monographs"
+      name="documents"
       paginationComponent={null}
       seeAllComponent={
         <SeeAllButton
           disabled={false}
           fluid={false}
-          to="/backoffice/series?q=relations.serial.pid_type:serid AND NOT (pid:111) AND relations.serial.pid:111"
+          to="/backoffice/documents?q=relations.serial.pid:111"
         />
       }
       showAllResults={false}
-      showMaxRows={15}
+      showMaxRows={5}
       singleLine={false}
       subtitle=""
-      title="Multipart Monographs"
+      title="Documents"
       totalHitsCount={0}
     />
   </Error>

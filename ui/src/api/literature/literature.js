@@ -1,5 +1,6 @@
 import { http, apiConfig } from '../base';
 import { serializer } from './serializer';
+import { prepareSumQuery } from '../utils';
 
 const literatureURL = '/literature/';
 
@@ -14,7 +15,24 @@ const list = async query => {
 
 class QueryBuilder {
   constructor() {
-    this.extraParamsQuery = '';
+    this.extraParamsQuery = [];
+    this.withSeriesQuery = [];
+  }
+
+  withSeriesPid(seriesPid, moi) {
+    if (!seriesPid) {
+      throw TypeError('Series PID argument missing');
+    }
+    if (moi === 'SERIAL') {
+      this.withSeriesQuery.push(
+        `relations.serial.pid:${prepareSumQuery(seriesPid)}`
+      );
+    } else {
+      this.withSeriesQuery.push(
+        `relations.multipart_monograph.pid:${prepareSumQuery(seriesPid)}`
+      );
+    }
+    return this;
   }
 
   includeAll() {
@@ -28,7 +46,8 @@ class QueryBuilder {
   }
 
   qs() {
-    return this.extraParamsQuery.join('&');
+    const searchQuery = this.withSeriesQuery.join(' AND ');
+    return `${searchQuery}&${this.extraParamsQuery.join('&')}`;
   }
 }
 

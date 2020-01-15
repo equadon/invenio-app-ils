@@ -1,19 +1,19 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 import { BackOfficeRoutes } from '@routes/urls';
-import { SeriesMultipartMonographsData as SeriesMultipartMonographs } from '../SeriesMultipartMonographs';
+import SeriesLiterature from '../SeriesLiterature';
 import { Settings } from 'luxon';
 import { fromISO } from '@api/date';
+import * as testData from '@testData/documents';
 import { Button } from 'semantic-ui-react';
 
 jest.mock('react-router-dom');
-BackOfficeRoutes.seriesDetailsFor = jest.fn(pid => `url/${pid}`);
-let mockViewDetails = jest.fn();
-
 Settings.defaultZoneName = 'utc';
 const stringDate = fromISO('2018-01-01T11:05:00+01:00');
+BackOfficeRoutes.documentDetailsFor = jest.fn(pid => `url/${pid}`);
+let mockViewDetails = jest.fn();
 
-describe('SeriesMultipartMonographs tests', () => {
+describe('SeriesLiterature tests', () => {
   let component;
   afterEach(() => {
     mockViewDetails.mockClear();
@@ -31,37 +31,38 @@ describe('SeriesMultipartMonographs tests', () => {
     },
   };
 
-  it('should load the SeriesMultipartMonographs component', () => {
+  it('should load the SeriesLiterature component', () => {
     const component = shallow(
-      <SeriesMultipartMonographs
+      <SeriesLiterature
         seriesDetails={series}
-        multipartMonographs={{ hits: [], total: 0 }}
-        fetchSeriesMultipartMonographs={() => {}}
+        seriesLiterature={{ hits: [], total: 0 }}
+        fetchSeriesLiterature={() => {}}
       />
     );
     expect(component).toMatchSnapshot();
   });
 
   it('should fetch pending loans on mount', () => {
-    const mockedFetchSeriesMultipartMonographs = jest.fn();
+    const mockedFetchSeriesLiterature = jest.fn();
     component = mount(
-      <SeriesMultipartMonographs
+      <SeriesLiterature
         seriesDetails={series}
-        multipartMonographs={{ hits: [], total: 0 }}
-        fetchSeriesMultipartMonographs={mockedFetchSeriesMultipartMonographs}
+        seriesLiterature={{ hits: [], total: 0 }}
+        fetchSeriesLiterature={mockedFetchSeriesLiterature}
       />
     );
-    expect(mockedFetchSeriesMultipartMonographs).toHaveBeenCalledWith(
-      series.pid
+    expect(mockedFetchSeriesLiterature).toHaveBeenCalledWith(
+      series.pid,
+      'SERIAL'
     );
   });
 
-  it('should render show a message with no series', () => {
+  it('should render show a message with no documents', () => {
     component = mount(
-      <SeriesMultipartMonographs
+      <SeriesLiterature
         seriesDetails={series}
-        multipartMonographs={{ hits: [], total: 0 }}
-        fetchSeriesMultipartMonographs={() => {}}
+        seriesLiterature={{ hits: [], total: 0 }}
+        fetchSeriesLiterature={() => {}}
       />
     );
 
@@ -71,29 +72,28 @@ describe('SeriesMultipartMonographs tests', () => {
     expect(message).toHaveLength(1);
   });
 
-  it('should render series', () => {
+  it('should render document', () => {
     const data = {
       hits: [
         {
           ID: '1',
-          updated: stringDate,
           created: stringDate,
-          pid: 'series1',
+          pid: 'document1',
           metadata: {
-            pid: 'series1',
-            title: 'Test',
-            relations: {},
+            ...testData[0],
+            pid: 'document1',
+            volume: '1',
           },
         },
         {
           id: '2',
           updated: stringDate,
           created: stringDate,
-          pid: 'series2',
+          pid: 'document2',
           metadata: {
-            pid: 'series2',
-            title: 'Test',
-            relations: {},
+            ...testData[1],
+            pid: 'document2',
+            volume: '2',
           },
         },
       ],
@@ -101,10 +101,10 @@ describe('SeriesMultipartMonographs tests', () => {
     };
 
     component = mount(
-      <SeriesMultipartMonographs
+      <SeriesLiterature
         seriesDetails={series}
-        multipartMonographs={data}
-        fetchSeriesMultipartMonographs={() => {}}
+        seriesLiterature={data}
+        fetchSeriesLiterature={() => {}}
       />
     );
 
@@ -112,8 +112,8 @@ describe('SeriesMultipartMonographs tests', () => {
       .find('TableRow')
       .filterWhere(
         element =>
-          element.prop('data-test') === 'series1' ||
-          element.prop('data-test') === 'series2'
+          element.prop('data-test') === 'document1' ||
+          element.prop('data-test') === 'document2'
       );
     expect(rows).toHaveLength(2);
 
@@ -123,7 +123,7 @@ describe('SeriesMultipartMonographs tests', () => {
     expect(footer).toHaveLength(0);
   });
 
-  it('should render the see all button when showing only a few series', () => {
+  it('should render the see all button when showing only a few documents', () => {
     const data = {
       hits: [
         {
@@ -131,9 +131,8 @@ describe('SeriesMultipartMonographs tests', () => {
           updated: stringDate,
           created: stringDate,
           metadata: {
+            ...testData[0],
             pid: '1',
-            relations: {},
-            title: 'Test',
           },
         },
         {
@@ -141,9 +140,8 @@ describe('SeriesMultipartMonographs tests', () => {
           updated: stringDate,
           created: stringDate,
           metadata: {
+            ...testData[1],
             pid: '2',
-            relations: {},
-            title: 'Test 2',
           },
         },
       ],
@@ -151,11 +149,11 @@ describe('SeriesMultipartMonographs tests', () => {
     };
 
     component = mount(
-      <SeriesMultipartMonographs
+      <SeriesLiterature
         seriesDetails={series}
-        multipartMonographs={data}
-        fetchSeriesMultipartMonographs={() => {}}
-        showMaxSeries={1}
+        seriesLiterature={data}
+        fetchSeriesLiterature={() => {}}
+        showMaxDocuments={1}
       />
     );
 
@@ -165,17 +163,17 @@ describe('SeriesMultipartMonographs tests', () => {
     expect(footer).toHaveLength(1);
   });
 
-  it('should go to series details when clicking on a series row', () => {
+  it('should go to documents details when clicking on a document row', () => {
     const data = {
       hits: [
         {
           ID: '1',
           updated: stringDate,
           created: stringDate,
-          pid: 'series1',
+          pid: 'document1',
           metadata: {
-            pid: 'series1',
-            title: 'Title',
+            ...testData[0],
+            pid: 'document1',
             series_objs: [],
           },
         },
@@ -184,10 +182,10 @@ describe('SeriesMultipartMonographs tests', () => {
     };
 
     component = mount(
-      <SeriesMultipartMonographs
+      <SeriesLiterature
         seriesDetails={series}
-        multipartMonographs={data}
-        fetchSeriesMultipartMonographs={() => {}}
+        seriesLiterature={data}
+        fetchSeriesLiterature={() => {}}
         showMaxItems={1}
       />
     );
@@ -198,6 +196,7 @@ describe('SeriesMultipartMonographs tests', () => {
     component.instance().forceUpdate();
 
     const firstId = data.hits[0].pid;
+
     component
       .find('TableCell')
       .filterWhere(element => element.prop('data-test') === `0-${firstId}`)
