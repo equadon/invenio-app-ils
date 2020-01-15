@@ -7,11 +7,13 @@
 
 """Search utilities."""
 
-from elasticsearch_dsl import Q
 from flask import current_app
-from invenio_search.api import RecordsSearch
+from invenio_search.api import DefaultFilter, RecordsSearch
 
 from invenio_app_ils.errors import MissingRequiredParameterError
+
+from invenio_app_ils.search.permissions import _ils_search_factory, \
+    search_filter_record_permissions
 
 
 class _ItemSearch(RecordsSearch):
@@ -252,41 +254,25 @@ class VocabularySearch(RecordsSearch):
 
 
 def search_factory_literature(self, search):
-    def query_parser(qstr=None):
-        """Default parser that uses the Q() from elasticsearch_dsl."""
-        if qstr:
-            return Q("query_string", query=qstr)
-        return Q()
+    """Search factory for literature (series and documents)."""
 
-    from flask import request
-    from invenio_records_rest.facets import default_facets_factory
-    from invenio_records_rest.sorter import default_sorter_factory
-    from invenio_app_ils.errors import SearchQueryError
+    def filter_periodical_issues(query_string):
+        """Filter periodical issues unless include_all=yes."""
+        from distutils.util import strtobool
+        from flask import request
 
-    query_string = request.values.get("q")
+        if strtobool(request.values.get("include_all")):
+            issue_query_string = "NOT document_type:PERIODICAL_ISSUE"
+            if query_string:
+                query_string = "{} AND {}".format(
+                    query_string,
+                    issue_query_string
+                )
+            else:
+                query_string = issue_query_string
+        return query_string
 
-    if request.values.get("include_all") != "yes":
-        issue_query_string = "NOT document_type:PERIODICAL_ISSUE"
-        if query_string:
-            query_string = "{} AND {}".format(query_string, issue_query_string)
-        else:
-            query_string = issue_query_string
-
-    query = query_parser(query_string)
-
-    try:
-        search = search.query(query)
-    except SyntaxError:
-        raise SearchQueryError(query_string)
-
-    search_index = search._index[0]
-    search, urlkwargs = default_facets_factory(search, search_index)
-    search, sortkwargs = default_sorter_factory(search, search_index)
-    for key, value in sortkwargs.items():
-        urlkwargs.add(key, value)
-
-    urlkwargs.add("q", query_string)
-    return search, urlkwargs
+    return _ils_search_factory(self, search, filter_periodical_issues)
 
 
 class LiteratureSearch(RecordsSearch):
@@ -297,3 +283,4 @@ class LiteratureSearch(RecordsSearch):
 
         index = ["documents", "series"]
         doc_types = None
+        default_filter = DefaultFilter(search_filter_record_permissions)

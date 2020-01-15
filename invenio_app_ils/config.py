@@ -721,7 +721,6 @@ RECORDS_REST_ENDPOINTS = dict(
         default_media_type="application/json",
         max_result_window=_RECORDS_REST_MAX_RESULT_WINDOW,
         error_handlers=dict(),
-        # list_permission_factory_imp=allow_all,
         read_permission_factory_imp=deny_all,
         create_permission_factory_imp=deny_all,
         update_permission_factory_imp=deny_all,
