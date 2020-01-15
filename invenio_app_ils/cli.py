@@ -639,6 +639,11 @@ class RecordRelationsGenerator(Generator):
         objs = self.holder.related_records["objs"]
         rr = RecordRelationsSiblings()
 
+        def is_serial(series):
+            return series["mode_of_issuance"] == "SERIAL"
+
+        serials = list(filter(is_serial, series))
+
         def add_random_relations(relation_type):
             random_docs = random.sample(
                 documents, randint(2, min(5, len(documents)))
@@ -654,8 +659,35 @@ class RecordRelationsGenerator(Generator):
                 rr.add(random_docs[0], record, relation_type=relation_type)
                 objs.append(record)
 
+        def add_other_relations(relation_type):
+            random_serials = random.sample(
+                serials,
+                randint(3, min(6, len(serials)))
+            )
+
+            prev = random_serials[0]
+            objs.append(prev)
+            for serial in random_serials[1:]:
+                objs.append(serial)
+                rr.add(
+                    prev,
+                    serial,
+                    relation_type=relation_type,
+                    note="Continued by"
+                )
+                prev = serial
+            # link first and last
+            rr.add(
+                random_serials[-1],
+                random_serials[0],
+                relation_type=relation_type,
+                note="Continued by"
+            )
+            print('abc', random_serials[0]["pid"], random_serials[-1]["pid"])
+
         add_random_relations(Relation.get_relation_by_name("language"))
         add_random_relations(Relation.get_relation_by_name("edition"))
+        add_other_relations(Relation.get_relation_by_name("other"))
 
     def generate(self, rec_docs, rec_series):
         """Generate related records."""
