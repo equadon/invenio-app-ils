@@ -39,6 +39,10 @@ const FrontSiteRoutesGenerators = {
     generatePath(FrontSiteRoutesList.documentDetails, {
       documentPid: documentPid,
     }),
+  seriesDetailsFor: seriesPid =>
+    generatePath(FrontSiteRoutesList.seriesDetails, {
+      seriesPid: seriesPid,
+    }),
 };
 
 export const FrontSiteRoutes = {
