@@ -8,6 +8,7 @@ import { ILSParagraphPlaceholder } from '@components/ILSPlaceholder';
 import { Breadcrumbs } from '@pages/frontsite/components';
 import { SeriesPanel } from './SeriesPanel';
 import { SeriesLiterature } from '@pages/frontsite/components/Series';
+import { SeriesMetadata } from './SeriesMetadata';
 
 export default class SeriesDetails extends React.Component {
   state = {
@@ -43,6 +44,7 @@ export default class SeriesDetails extends React.Component {
 
   render() {
     const { error, isLoading, series } = this.props;
+    console.log('seriesDetails isLoading', isLoading);
     return (
       <>
         <Container fluid className="series-details-search-container">
@@ -71,6 +73,13 @@ export default class SeriesDetails extends React.Component {
             <ILSParagraphPlaceholder linesNumber={3} isLoading={isLoading}>
               <SeriesLiterature />
             </ILSParagraphPlaceholder>
+          </Container>
+          <Container className="section" fluid>
+            <Container>
+              <ILSParagraphPlaceholder linesNumber={20} isLoading={isLoading}>
+                <SeriesMetadata />
+              </ILSParagraphPlaceholder>
+            </Container>
           </Container>
         </Error>
       </>
