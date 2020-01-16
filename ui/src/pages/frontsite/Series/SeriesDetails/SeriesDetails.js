@@ -7,6 +7,7 @@ import { FrontSiteRoutes } from '@routes/urls';
 import { ILSParagraphPlaceholder } from '@components/ILSPlaceholder';
 import { Breadcrumbs } from '@pages/frontsite/components';
 import { SeriesPanel } from './SeriesPanel';
+import { SeriesLiterature } from '@pages/frontsite/components/Series';
 
 export default class SeriesDetails extends React.Component {
   state = {
@@ -65,6 +66,11 @@ export default class SeriesDetails extends React.Component {
               />
             </ILSParagraphPlaceholder>
             <SeriesPanel />
+          </Container>
+          <Container className="items-locations spaced">
+            <ILSParagraphPlaceholder linesNumber={3} isLoading={isLoading}>
+              <SeriesLiterature />
+            </ILSParagraphPlaceholder>
           </Container>
         </Error>
       </>

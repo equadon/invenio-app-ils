@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import { SeriesAbstract as SeriesAbstractComponent } from './SeriesAbstract';
+import { SeriesLiterature as SeriesLiteratureComponent } from './SeriesLiterature';
 import { SeriesTitle as SeriesTitleComponent } from './SeriesTitle';
 import { SeriesUrls as SeriesUrlsComponent } from './SeriesUrls';
 
@@ -14,6 +15,11 @@ export const SeriesAbstract = connect(
   mapStateToProps,
   null
 )(SeriesAbstractComponent);
+
+export const SeriesLiterature = connect(
+  mapStateToProps,
+  null
+)(SeriesLiteratureComponent);
 
 export const SeriesTitle = connect(
   mapStateToProps,
