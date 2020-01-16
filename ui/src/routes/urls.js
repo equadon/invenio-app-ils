@@ -22,12 +22,15 @@ export const AuthenticationRoutes = {
 
 const FrontSiteBase = '/';
 
+const pidRegex = '[a-z0-9]{5}-[a-z0-9]{5}';
+
 const FrontSiteRoutesList = {
   home: FrontSiteBase,
   patronProfile: `${FrontSiteBase}profile`,
   documentsList: `${FrontSiteBase}search`,
-  documentDetails: `${FrontSiteBase}records/:documentPid`,
+  documentDetails: `${FrontSiteBase}:documentPid(${pidRegex})`,
   documentRequestForm: `${FrontSiteBase}request`,
+  seriesDetails: `${FrontSiteBase}series/:seriesPid(${pidRegex})`,
 };
 
 const FrontSiteRoutesGenerators = {
