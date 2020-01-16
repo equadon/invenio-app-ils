@@ -9,6 +9,7 @@ import {
 import {
   SeriesAbstract,
   SeriesTitle,
+  SeriesUrls,
 } from '@pages/frontsite/components/Series';
 import { SeriesPanelMobile } from './index';
 import { SeriesAuthors } from '@components/Series';
@@ -23,9 +24,9 @@ export default class SeriesPanel extends Component {
             className="series-panel"
             data-test={series.metadata ? series.metadata.pid : 0}
           >
-            <Grid columns={3}>
+            <Grid>
               <Grid.Row>
-                <Grid.Column>
+                <Grid.Column width={11}>
                   <ILSHeaderPlaceholder isLoading={isLoading}>
                     <SeriesTitle />
                   </ILSHeaderPlaceholder>
@@ -46,7 +47,9 @@ export default class SeriesPanel extends Component {
                     <SeriesAbstract lines={20} />
                   </ILSParagraphPlaceholder>
                 </Grid.Column>
-                <Grid.Column>SeriesCirculation</Grid.Column>
+                <Grid.Column width={5}>
+                  <SeriesUrls />
+                </Grid.Column>
               </Grid.Row>
             </Grid>
           </div>
@@ -60,5 +63,6 @@ export default class SeriesPanel extends Component {
 }
 
 SeriesPanel.propTypes = {
+  isLoading: PropTypes.bool,
   series: PropTypes.object.isRequired,
 };
