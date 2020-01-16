@@ -9,6 +9,7 @@ import {
 import {
   SeriesAbstract,
   SeriesTitle,
+  SeriesUrls,
 } from '@pages/frontsite/components/Series';
 import { SeriesAuthors } from '@components/Series';
 
@@ -37,7 +38,9 @@ export default class SeriesPanelMobile extends Component {
               </Grid.Column>
             </Grid.Row>
             <Grid.Row>
-              <Grid.Column mobile={16}>Series Circulation</Grid.Column>
+              <Grid.Column mobile={16}>
+                <SeriesUrls />
+              </Grid.Column>
             </Grid.Row>
             <Grid.Row>
               <Grid.Column mobile={16}>

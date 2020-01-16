@@ -44,10 +44,9 @@ export default class SeriesDetails extends React.Component {
 
   render() {
     const { error, isLoading, series } = this.props;
-    console.log('seriesDetails isLoading', isLoading);
     return (
       <>
-        <Container fluid className="series-details-search-container">
+        <Container fluid className="document-details-search-container">
           <Container>
             <SearchBar
               currentQueryString={this.state.searchQuery}

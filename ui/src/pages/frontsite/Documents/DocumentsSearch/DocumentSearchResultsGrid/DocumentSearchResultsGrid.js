@@ -4,11 +4,12 @@ import { BookCard } from '@pages/frontsite/components/BookCard';
 import { Card, Responsive } from 'semantic-ui-react';
 import { ResultsGrid } from 'react-searchkit';
 import { SeriesCard } from '@pages/frontsite/components/SeriesCard';
+import { recordToPidType } from '@api/utils';
 
 export default class DocumentSearchResultsGrid extends Component {
   renderResultsGrid = results => {
     const cards = results.map(result => {
-      return result.metadata.$schema.includes('documents/document') ? (
+      return recordToPidType(result) === 'docid' ? (
         <BookCard key={result.metadata.pid} data={result} />
       ) : (
         <SeriesCard key={result.metadata.pid} data={result} />

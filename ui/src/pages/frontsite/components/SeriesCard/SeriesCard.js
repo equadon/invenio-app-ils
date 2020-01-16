@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Card, Label, Image, Icon } from 'semantic-ui-react';
-import get from 'lodash/get';
+import { Card } from 'semantic-ui-react';
 import { goTo } from '@history';
 import { FrontSiteRoutes } from '@routes/urls';
+import { SeriesImage } from '../Series/SeriesImage';
 
 export class SeriesCard extends Component {
   render() {
@@ -21,7 +21,7 @@ export class SeriesCard extends Component {
         <Card.Meta className={'discrete'}>
           {moi}
           <br />
-          <Icon size="huge" color="grey" name="list" />
+          <SeriesImage metadata={data.metadata} />
         </Card.Meta>
         <Card.Content>
           <Card.Header>{data.metadata.title}</Card.Header>
