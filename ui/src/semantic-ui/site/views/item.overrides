@@ -22,6 +22,12 @@
       background-color: lighten(@danger, 40%) !important;
       padding: 1em !important;
     }
+
+    .search-result-image {
+      .ui.floating.label {
+        left: 0;
+      }
+    }
   }
 }
 

@@ -10,6 +10,7 @@ import { SeriesMetadataAccordion as SeriesMetadataAccordionComponent } from './S
 import { SeriesMetadataTabs as SeriesMetadataTabsComponent } from './SeriesMetadataTabs';
 import { SeriesTitle as SeriesTitleComponent } from './SeriesTitle';
 import { SeriesUrls as SeriesUrlsComponent } from './SeriesUrls';
+export { SeriesLiteratureSearch } from './SeriesLiteratureSearch';
 export { SeriesCard } from './SeriesCard';
 
 const mapStateToProps = state => ({
@@ -48,11 +49,6 @@ export const SeriesLinks = connect(
   mapStateToProps,
   null
 )(SeriesLinksComponent);
-
-export const SeriesLiterature = connect(
-  mapStateToProps,
-  null
-)(SeriesLiteratureComponent);
 
 export const SeriesMetadataAccordion = connect(
   mapStateToProps,
