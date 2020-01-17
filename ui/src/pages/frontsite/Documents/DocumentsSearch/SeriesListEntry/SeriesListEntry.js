@@ -6,6 +6,7 @@ import { FrontSiteRoutes } from '@routes/urls';
 import { getCover } from '../../../config';
 import Truncate from 'react-truncate';
 import { SeriesAuthors } from '@components';
+import { SeriesLanguages, SeriesModeOfIssuance } from '@components/Series';
 
 export default class SeriesListEntry extends Component {
   constructor(props) {
@@ -24,7 +25,9 @@ export default class SeriesListEntry extends Component {
           to={FrontSiteRoutes.seriesDetailsFor(this.metadata.pid)}
         />
         <Item.Content>
-          <Item.Meta>{this.metadata.mode_of_issuance}</Item.Meta>
+          <Item.Meta>
+            <SeriesModeOfIssuance metadata={this.metadata} />
+          </Item.Meta>
           <Item.Header
             as={Link}
             to={FrontSiteRoutes.seriesDetailsFor(this.metadata.pid)}
@@ -49,10 +52,18 @@ export default class SeriesListEntry extends Component {
                       </List.Content>
                     </List.Item>
                   )}
+                  {this.metadata.publisher && (
+                    <List.Item>
+                      <List.Content>
+                        <span>Publisher: </span>
+                        {this.metadata.publisher}
+                      </List.Content>
+                    </List.Item>
+                  )}
                   <List.Item>
                     <List.Content>
                       <span>Languages: </span>
-                      {/* <SeriesLanguages metadata={this.metadata} /> */}
+                      <SeriesLanguages metadata={this.metadata} />
                     </List.Content>
                   </List.Item>
                 </List>

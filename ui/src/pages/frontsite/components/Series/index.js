@@ -7,7 +7,6 @@ import { SeriesStats as SeriesStatsComponent } from './SeriesStats';
 import { SeriesMetadataTabs as SeriesMetadataTabsComponent } from './SeriesMetadataTabs';
 import { SeriesTitle as SeriesTitleComponent } from './SeriesTitle';
 import { SeriesUrls as SeriesUrlsComponent } from './SeriesUrls';
-export { SeriesImage } from './SeriesImage';
 
 const mapStateToProps = state => ({
   isLoading: state.seriesDetailsFront.isLoading,

@@ -16,14 +16,6 @@ export class SeriesMetadataTabs extends Component {
         ),
       },
       {
-        menuItem: 'Alternative titles',
-        render: () => <Tab.Pane attached={false}>Titles</Tab.Pane>,
-      },
-      {
-        menuItem: 'Identifiers',
-        render: () => <Tab.Pane attached={false}>Identifiers</Tab.Pane>,
-      },
-      {
         menuItem: 'Notes',
         render: () => (
           <Tab.Pane attached={false}>

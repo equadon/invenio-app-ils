@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Responsive } from 'semantic-ui-react';
+import { Grid, Responsive, Segment } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 
 import {
@@ -36,7 +36,7 @@ export default class SeriesPanel extends Component {
                   >
                     <SeriesAuthors
                       prefix="by "
-                      listItemAs="h4"
+                      itemProps={{ as: 'h4' }}
                       metadata={series.metadata}
                     />
                   </ILSParagraphPlaceholder>
@@ -48,7 +48,9 @@ export default class SeriesPanel extends Component {
                   </ILSParagraphPlaceholder>
                 </Grid.Column>
                 <Grid.Column width={5}>
-                  <SeriesUrls />
+                  <Segment className="highlighted">
+                    <SeriesUrls />
+                  </Segment>
                 </Grid.Column>
               </Grid.Row>
             </Grid>

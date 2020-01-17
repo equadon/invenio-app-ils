@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Container, Responsive } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import {
-  // SeriesMetadataAccordion,
+  SeriesMetadataAccordion,
   SeriesMetadataTabs,
   // SeriesStats,
 } from '@pages/frontsite/components/Series';
@@ -15,10 +15,10 @@ export default class SeriesMetadata extends Component {
         <Responsive minWidth={Responsive.onlyTablet.minWidth}>
           <SeriesMetadataTabs />
         </Responsive>
-        {/* <Responsive {...Responsive.onlyMobile}>
+        <Responsive {...Responsive.onlyMobile}>
           <SeriesMetadataAccordion />
         </Responsive>
-        <Container textAlign={'center'}>
+        {/*<Container textAlign={'center'}>
           <SeriesStats series={this.series} />
         </Container> */}
       </Container>

@@ -12,5 +12,6 @@ export { ResultsSort } from './ResultsSort/ResultsSort';
 export { ResultsTable } from './ResultsTable/ResultsTable';
 export { SearchBar } from './SearchBar';
 export { SearchControls } from './SearchControls';
+export { SeparatedList } from './SeparatedList';
 export { SeriesAuthors } from './Series';
 export { YearPicker } from './YearPicker';

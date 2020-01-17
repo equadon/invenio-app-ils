@@ -17,7 +17,6 @@ const AccessUrl = ({ url }) => {
 const Url = ({ url }) => {
   return (
     <a href={url.value}>
-      <Icon name="linkify" />
       {truncate(url.description || url.value, { length: 40 })}
     </a>
   );
@@ -32,7 +31,7 @@ export class SeriesUrls extends React.Component {
     }
 
     return (
-      <Segment className="highlighted">
+      <>
         {!isEmpty(urls) && (
           <>
             <Header as="h3">Access online</Header>
@@ -49,7 +48,7 @@ export class SeriesUrls extends React.Component {
         {!isEmpty(accessUrls) && (
           <>
             <Header as="h3">Links</Header>
-            <List>
+            <List bulleted>
               {urls.map((url, index) => (
                 <List.Item key={index}>
                   <Url url={url} />
@@ -58,7 +57,7 @@ export class SeriesUrls extends React.Component {
             </List>
           </>
         )}
-      </Segment>
+      </>
     );
   }
 }
