@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import { SeriesAbstract as SeriesAbstractComponent } from './SeriesAbstract';
+import { SeriesContent as SeriesContentComponent } from './SeriesContent';
 import { SeriesInfo as SeriesInfoComponent } from './SeriesInfo';
 import { SeriesLiterature as SeriesLiteratureComponent } from './SeriesLiterature';
 import { SeriesMetadataAccordion as SeriesMetadataAccordionComponent } from './SeriesMetadataAccordion';
@@ -19,6 +20,11 @@ export const SeriesAbstract = connect(
   mapStateToProps,
   null
 )(SeriesAbstractComponent);
+
+export const SeriesContent = connect(
+  mapStateToProps,
+  null
+)(SeriesContentComponent);
 
 export const SeriesInfo = connect(
   mapStateToProps,

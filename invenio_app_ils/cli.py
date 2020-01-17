@@ -516,7 +516,13 @@ class SeriesGenerator(Generator):
         obj["alternative_titles"] = [
             dict(
                 value=obj["title"],
-                type="TEST"
+                type="SUBTITLE"
+            ),
+            dict(
+                value=obj["title"],
+                type="TRANSLATED_TITLE",
+                language="FR",
+                source="CERN"
             )
         ]
         obj["internal_notes"] = [

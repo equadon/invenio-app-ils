@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Accordion, Divider, Icon } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
-import { SeriesInfo } from './';
+import { SeriesInfo, SeriesUrls, SeriesContent } from './';
 
 export class SeriesMetadataAccordion extends Component {
   state = { activeIndex: 'details' };
@@ -21,62 +21,31 @@ export class SeriesMetadataAccordion extends Component {
       <Accordion fluid styled>
         <Accordion.Title
           active={activeIndex === 'details'}
-          index={'details'}
+          index="details"
           onClick={this.handleClick}
         >
           <Icon name="dropdown" />
           Details
         </Accordion.Title>
         <Accordion.Content active={activeIndex === 'details'}>
-          <SeriesInfo metadata={this.metadata} />
+          <SeriesInfo metadata={metadata} />
         </Accordion.Content>
 
-        {/*<Accordion.Title
+        <Accordion.Title
           active={activeIndex === 'content'}
-          index={'content'}
+          index="content"
           onClick={this.handleClick}
         >
           <Icon name="dropdown" />
           Content
         </Accordion.Title>
         <Accordion.Content active={activeIndex === 'content'}>
-          <SeriesTableOfContent
-            toc={this.metadata.table_of_content}
-            abstract={this.metadata.abstract}
-          />
-          <SeriesInfo metadata={this.metadata} />
+          <SeriesContent />
         </Accordion.Content>
-
-        <Accordion.Title
-          active={activeIndex === 'publications'}
-          index={'publications'}
-          onClick={this.handleClick}
-        >
-          <Icon name="dropdown" />
-          Publications
-        </Accordion.Title>
-        <Accordion.Content active={activeIndex === 'publications'}>
-          TODO
-        </Accordion.Content>
-
-        <Accordion.Title
-          active={activeIndex === 'conference'}
-          index={'conference'}
-          onClick={this.handleClick}
-        >
-          <Icon name="dropdown" />
-          Conference
-        </Accordion.Title>
-        <Accordion.Content active={activeIndex === 'conference'}>
-          <SeriesConference
-            conference={this.metadata.conference_info}
-            seriesType={this.metadata.series_type}
-          />
-        </Accordion.Content> */}
 
         <Accordion.Title
           active={activeIndex === 'notes'}
-          index={'notes'}
+          index="notes"
           onClick={this.handleClick}
         >
           <Icon name="dropdown" />
@@ -85,6 +54,18 @@ export class SeriesMetadataAccordion extends Component {
         <Accordion.Content active={activeIndex === 'notes'}>
           <Divider horizontal>Librarian's note</Divider>
           {metadata.note}
+        </Accordion.Content>
+
+        <Accordion.Title
+          active={activeIndex === 'links'}
+          index="links"
+          onClick={this.handleClick}
+        >
+          <Icon name="dropdown" />
+          Links
+        </Accordion.Title>
+        <Accordion.Content active={activeIndex === 'links'}>
+          <SeriesUrls />
         </Accordion.Content>
       </Accordion>
     );
