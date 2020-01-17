@@ -16,7 +16,7 @@ const SerialSearchBar = (_, executeSearch, onInputChange, queryString) => {
       currentQueryString={queryString}
       onInputChange={onInputChange}
       executeSearch={executeSearch}
-      placeholder="Search periodical issues..."
+      placeholder="Search books and series..."
     />
   );
 };
@@ -27,7 +27,7 @@ const MultipartSearchBar = (_, executeSearch, onInputChange, queryString) => {
       currentQueryString={queryString}
       onInputChange={onInputChange}
       executeSearch={executeSearch}
-      placeholder="Search books and series..."
+      placeholder="Search books..."
     />
   );
 };
