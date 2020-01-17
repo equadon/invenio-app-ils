@@ -6,15 +6,7 @@ const AlternativeTitle = ({ title }) => {
   const type = capitalize(title.type.replace('_', ' '));
   return (
     <Table.Row>
-      <Table.Cell>
-        {type}
-        {title.source && (
-          <>
-            {' '}
-            (<abbr title="Source of this title">{title.source}</abbr>)
-          </>
-        )}
-      </Table.Cell>
+      <Table.Cell>{type}</Table.Cell>
       <Table.Cell>
         {title.value}
         {title.language && (
