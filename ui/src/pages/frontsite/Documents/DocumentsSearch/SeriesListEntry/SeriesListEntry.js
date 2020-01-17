@@ -1,14 +1,11 @@
 import React, { Component } from 'react';
-import { Grid, Item, List, Icon } from 'semantic-ui-react';
+import { Grid, Item, List } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { FrontSiteRoutes } from '@routes/urls';
 import { getCover } from '../../../config';
 import Truncate from 'react-truncate';
 import { SeriesAuthors } from '@components';
-import { SeriesImage } from '@pages/frontsite/components/Series';
-// import { SeriesLanguages } from '@components/Series';
-// import { SeriesAuthors } from '@components/Series';
 
 export default class SeriesListEntry extends Component {
   constructor(props) {
@@ -19,9 +16,15 @@ export default class SeriesListEntry extends Component {
   render() {
     return (
       <Item>
-        <SeriesImage metadata={this.metadata} />
+        <Item.Image
+          src={getCover(this.metadata.edition || '0')}
+          size="small"
+          floated="left"
+          as={Link}
+          to={FrontSiteRoutes.seriesDetailsFor(this.metadata.pid)}
+        />
         <Item.Content>
-          <Item.Meta>{this.metadata.series_type}</Item.Meta>
+          <Item.Meta>{this.metadata.mode_of_issuance}</Item.Meta>
           <Item.Header
             as={Link}
             to={FrontSiteRoutes.seriesDetailsFor(this.metadata.pid)}
@@ -38,10 +41,18 @@ export default class SeriesListEntry extends Component {
             <Grid>
               <Grid.Column width={4}>
                 <List>
+                  {this.metadata.edition && (
+                    <List.Item>
+                      <List.Content>
+                        <span>Edition: </span>
+                        {this.metadata.edition}
+                      </List.Content>
+                    </List.Item>
+                  )}
                   <List.Item>
                     <List.Content>
-                      <span>Mode of issuance: </span>
-                      {this.metadata.mode_of_issuance}
+                      <span>Languages: </span>
+                      {/* <SeriesLanguages metadata={this.metadata} /> */}
                     </List.Content>
                   </List.Item>
                 </List>
