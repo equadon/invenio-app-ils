@@ -7,10 +7,12 @@ import truncate from 'lodash/truncate';
 
 const AccessUrl = ({ url }) => {
   return (
-    <a href={url.value}>
-      <Icon name={url.open_access ? 'lock open' : 'lock'} />
-      {truncate(url.description || url.value, { length: 40 })}
-    </a>
+    <>
+      <a href={url.value}>
+        {truncate(url.description || url.value, { length: 40 })}{' '}
+        <Icon name={url.open_access ? 'lock open' : 'lock'} />
+      </a>
+    </>
   );
 };
 
@@ -32,10 +34,10 @@ export class SeriesUrls extends React.Component {
 
     return (
       <>
-        {!isEmpty(urls) && (
+        {!isEmpty(accessUrls) && (
           <>
             <Header as="h3">Access online</Header>
-            <List>
+            <List bulleted>
               {accessUrls.map((url, index) => (
                 <List.Item key={index}>
                   <AccessUrl url={url} />
@@ -45,7 +47,7 @@ export class SeriesUrls extends React.Component {
           </>
         )}
 
-        {!isEmpty(accessUrls) && (
+        {!isEmpty(urls) && (
           <>
             <Header as="h3">Links</Header>
             <List bulleted>
