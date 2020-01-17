@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { SeriesAbstract as SeriesAbstractComponent } from './SeriesAbstract';
-import { SeriesContent as SeriesContentComponent } from './SeriesContent';
+import { SeriesAlternativeTitles as SeriesAlternativeTitlesComponent } from './SeriesAlternativeTitles';
 import { SeriesInfo as SeriesInfoComponent } from './SeriesInfo';
 import { SeriesLiterature as SeriesLiteratureComponent } from './SeriesLiterature';
 import { SeriesMetadataAccordion as SeriesMetadataAccordionComponent } from './SeriesMetadataAccordion';
@@ -21,10 +21,10 @@ export const SeriesAbstract = connect(
   null
 )(SeriesAbstractComponent);
 
-export const SeriesContent = connect(
+export const SeriesAlternativeTitles = connect(
   mapStateToProps,
   null
-)(SeriesContentComponent);
+)(SeriesAlternativeTitlesComponent);
 
 export const SeriesInfo = connect(
   mapStateToProps,

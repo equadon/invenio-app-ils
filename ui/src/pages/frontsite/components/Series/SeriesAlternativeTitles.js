@@ -20,17 +20,13 @@ const AlternativeTitle = ({ title }) => {
   );
 };
 
-export const SeriesContent = ({ metadata }) => {
+export const SeriesAlternativeTitles = ({ metadata }) => {
   const alternativeTitles = metadata.alternative_titles || [];
   return (
     <>
-      <Divider horizontal>Titles</Divider>
+      <Divider horizontal>Alternative titles</Divider>
       <Table definition>
         <Table.Body>
-          <Table.Row>
-            <Table.Cell>Title</Table.Cell>
-            <Table.Cell>{metadata.title}</Table.Cell>
-          </Table.Row>
           {metadata.abbreviated_title && (
             <Table.Row>
               <Table.Cell>Abbreviated title</Table.Cell>
@@ -42,9 +38,6 @@ export const SeriesContent = ({ metadata }) => {
           ))}
         </Table.Body>
       </Table>
-
-      <Divider horizontal>Abstract</Divider>
-      {metadata.abstract}
     </>
   );
 };

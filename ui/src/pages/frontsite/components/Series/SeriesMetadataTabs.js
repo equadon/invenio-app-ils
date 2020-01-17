@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Divider, Tab } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
-import { SeriesContent, SeriesInfo, SeriesUrls } from './';
+import { SeriesInfo, SeriesUrls, SeriesAlternativeTitles } from './';
 
 export class SeriesMetadataTabs extends Component {
   renderTabPanes = () => {
@@ -12,14 +12,7 @@ export class SeriesMetadataTabs extends Component {
         render: () => (
           <Tab.Pane attached={false}>
             <SeriesInfo />
-          </Tab.Pane>
-        ),
-      },
-      {
-        menuItem: 'Content',
-        render: () => (
-          <Tab.Pane attached={false}>
-            <SeriesContent />
+            <SeriesAlternativeTitles />
           </Tab.Pane>
         ),
       },

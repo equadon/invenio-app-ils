@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Accordion, Divider, Icon } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
-import { SeriesInfo, SeriesUrls, SeriesContent } from './';
+import { SeriesInfo, SeriesUrls, SeriesContent, SeriesAlternativeTitles } from './';
 
 export class SeriesMetadataAccordion extends Component {
   state = { activeIndex: 'details' };
@@ -29,18 +29,7 @@ export class SeriesMetadataAccordion extends Component {
         </Accordion.Title>
         <Accordion.Content active={activeIndex === 'details'}>
           <SeriesInfo metadata={metadata} />
-        </Accordion.Content>
-
-        <Accordion.Title
-          active={activeIndex === 'content'}
-          index="content"
-          onClick={this.handleClick}
-        >
-          <Icon name="dropdown" />
-          Content
-        </Accordion.Title>
-        <Accordion.Content active={activeIndex === 'content'}>
-          <SeriesContent />
+          <SeriesAlternativeTitles metadata={metadata} />
         </Accordion.Content>
 
         <Accordion.Title
