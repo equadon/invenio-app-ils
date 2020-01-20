@@ -1,18 +1,17 @@
 import { IS_LOADING, SUCCESS, HAS_ERROR } from './types';
-import { literature as literatureApi } from '@api';
+import { document as documentApi } from '@api';
 import { sendErrorNotification } from '@components/Notifications';
 
-export const fetchSeriesLiterature = (seriesPid, moi) => {
+export const fetchSeriesDocuments = (seriesPid, moi) => {
   return async dispatch => {
     dispatch({
       type: IS_LOADING,
     });
 
-    await literatureApi
+    await documentApi
       .list(
-        literatureApi
+        documentApi
           .query()
-          .includeAll()
           .withSeriesPid(seriesPid, moi)
           .qs()
       )

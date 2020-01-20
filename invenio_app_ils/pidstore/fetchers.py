@@ -13,7 +13,6 @@ from .pids import (  # isort:skip
     EITEM_PID_TYPE,
     INTERNAL_LOCATION_PID_TYPE,
     ITEM_PID_TYPE,
-    LITERATURE_PID_TYPE,
     LOCATION_PID_TYPE,
     PATRON_PID_TYPE,
     SERIES_PID_TYPE,
@@ -81,13 +80,4 @@ def vocabulary_pid_fetcher(record_uuid, data):
         provider=None,
         pid_type=VOCABULARY_PID_TYPE,
         pid_value=str(data['id']),
-    )
-
-
-def literature_pid_fetcher(record_uuid, data):
-    """Literature fetcher."""
-    return FetchedPID(
-        provider=None,
-        pid_type=LITERATURE_PID_TYPE,
-        pid_value=str(data["pid"]),
     )

@@ -17,15 +17,15 @@ describe('Fetch Series Document reducer', () => {
   });
 
   it('should change data state on success action', () => {
-    const seriesLiterature = [{ field: '123' }, { field: '456' }];
+    const SeriesMultipartMonographs = [{ field: '123' }, { field: '456' }];
     const action = {
       type: types.SUCCESS,
-      payload: seriesLiterature,
+      payload: SeriesMultipartMonographs,
     };
     expect(reducer(initialState, action)).toEqual({
       ...initialState,
       isLoading: false,
-      data: seriesLiterature,
+      data: SeriesMultipartMonographs,
       hasError: false,
     });
   });

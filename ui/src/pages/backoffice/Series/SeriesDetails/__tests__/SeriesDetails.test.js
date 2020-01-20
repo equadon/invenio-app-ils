@@ -4,8 +4,9 @@ import SeriesDetails from '../SeriesDetails';
 
 jest.mock('../components/', () => {
   return {
-    SeriesLiterature: () => null,
+    SeriesDocuments: () => null,
     SeriesMetadata: () => null,
+    SeriesMultipartMonographs: () => null,
     SeriesRelations: () => null,
   };
 });

@@ -49,7 +49,8 @@ import { mostLoanedDocumentsReducer } from '@pages/backoffice/Stats/reducer';
 import { notificationsReducer } from './components/Notifications/reducer';
 import {
   seriesDetailsReducer,
-  seriesLiteratureReducer,
+  seriesDocumentsReducer,
+  seriesMultipartMonographsReducer,
   seriesRelationsReducer,
 } from '@pages/backoffice/Series/SeriesDetails/reducer';
 import {
@@ -108,7 +109,8 @@ const rootReducer = combineReducers({
   pendingOverdueDocuments: pendingOverdueDocumentsReducer,
   seriesDetails: seriesDetailsReducer,
   seriesDetailsFront: seriesDetailsFrontReducer,
-  seriesLiterature: seriesLiteratureReducer,
+  seriesDocuments: seriesDocumentsReducer,
+  seriesMultipartMonographs: seriesMultipartMonographsReducer,
   seriesRelations: seriesRelationsReducer,
   statsMostLoanedDocuments: mostLoanedDocumentsReducer,
   vendorDetails: vendorDetailsReducer,

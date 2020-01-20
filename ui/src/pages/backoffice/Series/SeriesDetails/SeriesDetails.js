@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import { Container } from 'semantic-ui-react';
 import { Loader, Error } from '@components';
 import {
-  SeriesLiterature,
+  SeriesDocuments,
   SeriesMetadata,
+  SeriesMultipartMonographs,
   SeriesRelations,
 } from './components';
 import history from '@history';
@@ -30,7 +31,8 @@ export default class SeriesDetails extends Component {
         <Loader isLoading={isLoading}>
           <Error error={error}>
             <SeriesMetadata />
-            <SeriesLiterature />
+            <SeriesDocuments />
+            <SeriesMultipartMonographs />
             <SeriesRelations />
           </Error>
         </Loader>
