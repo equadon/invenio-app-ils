@@ -1,27 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { List } from 'semantic-ui-react';
+import { Icon, List } from 'semantic-ui-react';
 import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
 import _truncate from 'lodash/truncate';
 
-const Url = ({ truncate, url }) => {
+const AccessUrl = ({ truncate, url }) => {
   const description = url.description || url.value;
   return (
     <a href={url.value}>
       {truncate ? _truncate(description, { length: 35 }) : description}{' '}
+      <Icon name={url.open_access ? 'lock open' : 'lock'} />
     </a>
   );
 };
 
-export class SeriesUrls extends React.Component {
+export class SeriesAccessUrls extends React.Component {
   render() {
-    const urls = get(this.props, 'metadata.urls', []);
-    return isEmpty(urls) ? null : (
+    const accessUrls = get(this.props, 'metadata.access_urls', []);
+    return isEmpty(accessUrls) ? null : (
       <List bulleted>
-        {urls.map((url, index) => (
+        {accessUrls.map((url, index) => (
           <List.Item key={index}>
-            <Url truncate={this.props.truncate} url={url} />
+            <AccessUrl truncate={this.props.truncate} url={url} />
           </List.Item>
         ))}
       </List>
@@ -29,7 +30,7 @@ export class SeriesUrls extends React.Component {
   }
 }
 
-SeriesUrls.propTypes = {
+SeriesAccessUrls.propTypes = {
   metadata: PropTypes.object,
   truncate: PropTypes.bool,
 };

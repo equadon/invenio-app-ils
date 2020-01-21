@@ -4,6 +4,7 @@ export { DateRangePicker } from './DateRangePicker';
 export { DocumentAuthors } from './Document';
 export { EmailLink } from './EmailLink';
 export { Error } from './Error';
+export { InfoPopup } from './InfoPopup';
 export { Loader } from './Loader';
 export { NotFound } from './NotFound/NotFound';
 export { Pagination } from './Pagination';

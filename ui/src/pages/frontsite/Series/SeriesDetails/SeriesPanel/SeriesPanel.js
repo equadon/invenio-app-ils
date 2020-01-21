@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Responsive, Segment } from 'semantic-ui-react';
+import { Grid, Responsive, Segment, Header } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 
 import {
@@ -8,8 +8,8 @@ import {
 } from '@components/ILSPlaceholder';
 import {
   SeriesAbstract,
+  SeriesAccessUrls,
   SeriesTitle,
-  SeriesUrls,
 } from '@pages/frontsite/components/Series';
 import { SeriesPanelMobile } from './index';
 import { SeriesAuthors } from '@components/Series';
@@ -19,7 +19,6 @@ import isEmpty from 'lodash/isEmpty';
 export default class SeriesPanel extends Component {
   render() {
     const { isLoading, series } = this.props;
-    const urls = get(series, 'metadata.urls', []);
     const accessUrls = get(series, 'metadata.access_urls', []);
     return (
       <>
@@ -51,10 +50,11 @@ export default class SeriesPanel extends Component {
                     <SeriesAbstract lines={20} />
                   </ILSParagraphPlaceholder>
                 </Grid.Column>
-                {(!isEmpty(urls) || !isEmpty(accessUrls)) && (
+                {!isEmpty(accessUrls) && (
                   <Grid.Column width={5}>
                     <Segment className="highlighted">
-                      <SeriesUrls truncate />
+                      <Header as="h3">Access online</Header>
+                      <SeriesAccessUrls truncate />
                     </Segment>
                   </Grid.Column>
                 )}

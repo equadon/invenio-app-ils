@@ -2,6 +2,7 @@ import React from 'react';
 import { Divider, Table } from 'semantic-ui-react';
 import capitalize from 'lodash/capitalize';
 import isEmpty from 'lodash/isEmpty';
+import { InfoPopup } from '@components';
 
 export const AlternativeTitle = ({ title }) => {
   const type = capitalize(title.type.replace('_', ' '));
@@ -11,10 +12,10 @@ export const AlternativeTitle = ({ title }) => {
       <Table.Cell>
         {title.value}
         {title.language && (
-          <>
+          <InfoPopup message="Language of the title">
             {' '}
-            (<abbr title="Language of the title">{title.language}</abbr>)
-          </>
+            ({title.language})
+          </InfoPopup>
         )}
       </Table.Cell>
     </Table.Row>
@@ -29,12 +30,6 @@ export const SeriesAlternativeTitles = ({ metadata }) => {
         <Divider horizontal>Alternative titles</Divider>
         <Table definition>
           <Table.Body>
-            {metadata.abbreviated_title && (
-              <Table.Row>
-                <Table.Cell>Abbreviated title</Table.Cell>
-                <Table.Cell>{metadata.abbreviated_title}</Table.Cell>
-              </Table.Row>
-            )}
             {alternativeTitles.map((title, index) => (
               <AlternativeTitle title={title} key={index} />
             ))}
