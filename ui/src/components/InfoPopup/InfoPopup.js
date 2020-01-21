@@ -9,7 +9,7 @@ export const InfoPopup = ({ children, message }) => {
       trigger={
         <span className="info-popup">
           {children}
-          <Icon name="info circle" />
+          <Icon color="grey" name="question circle outline" />
         </span>
       }
     />

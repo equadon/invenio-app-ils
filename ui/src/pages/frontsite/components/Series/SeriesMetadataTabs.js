@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
-import { Divider, Tab } from 'semantic-ui-react';
+import { Divider, Tab, Table } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
-import { SeriesAccessUrls, SeriesInfo, SeriesUrls, SeriesTitlesTab } from './';
+import {
+  SeriesAccessUrls,
+  SeriesInfo,
+  SeriesUrls,
+  SeriesTitlesTab,
+  SeriesIdentifiers,
+} from './';
 
 export class SeriesMetadataTabs extends Component {
   renderTabPanes = () => {
@@ -19,7 +25,12 @@ export class SeriesMetadataTabs extends Component {
         menuItem: 'Identifiers',
         render: () => (
           <Tab.Pane attached={false}>
-            <SeriesInfo />
+            <Divider horizontal>Identifiers</Divider>
+            <Table definition>
+              <Table.Body>
+                <SeriesIdentifiers />
+              </Table.Body>
+            </Table>
           </Tab.Pane>
         ),
       },

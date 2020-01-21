@@ -6,42 +6,7 @@ import {
   SeriesLanguages,
   SeriesModeOfIssuance,
 } from '@components/Series';
-import { SeparatedList } from '@components';
-import get from 'lodash/get';
-import capitalize from 'lodash/capitalize';
-
-export const SeriesIdentifiers = ({ metadata }) => {
-  const identifiers = {};
-  for (const id of get(metadata, 'identifiers', [])) {
-    const value = { value: id.value, material: id.material };
-    if (id.scheme in identifiers) {
-      identifiers[id.scheme].push(value);
-    } else {
-      identifiers[id.scheme] = [value];
-    }
-  }
-  return Object.entries(identifiers).map(([scheme, ids]) => {
-    const values = ids.map(id => (
-      <>
-        {id.value}
-        {id.material && (
-          <>
-            {' '}
-            (<abbr title="Material">{capitalize(id.material)}</abbr>)
-          </>
-        )}
-      </>
-    ));
-    return (
-      <Table.Row key={scheme}>
-        <Table.Cell>{scheme}</Table.Cell>
-        <Table.Cell>
-          <SeparatedList items={values} />
-        </Table.Cell>
-      </Table.Row>
-    );
-  });
-};
+import { SeriesIdentifiers } from '@pages/frontsite/components/Series';
 
 export const SeriesInfo = ({ metadata }) => {
   return (
@@ -85,7 +50,12 @@ export const SeriesInfo = ({ metadata }) => {
               </Table.Cell>
             </Table.Row>
           )}
-          {metadata.identifiers && <SeriesIdentifiers metadata={metadata} />}
+          {metadata.identifiers && (
+            <SeriesIdentifiers
+              includeSchemes={['ISBN', 'ISSN']}
+              metadata={metadata}
+            />
+          )}
         </Table.Body>
       </Table>
     </>
