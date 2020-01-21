@@ -3,9 +3,11 @@ import { Accordion, Divider, Icon } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import {
   SeriesAccessUrls,
+  SeriesAllTitles,
   SeriesInfo,
   SeriesUrls,
   SeriesAlternativeTitles,
+  SeriesIdentifiers,
 } from './';
 
 export class SeriesMetadataAccordion extends Component {
@@ -35,6 +37,30 @@ export class SeriesMetadataAccordion extends Component {
         <Accordion.Content active={activeIndex === 'details'}>
           <SeriesInfo metadata={metadata} />
           <SeriesAlternativeTitles metadata={metadata} />
+        </Accordion.Content>
+
+        <Accordion.Title
+          active={activeIndex === 'identifiers'}
+          index="identifiers"
+          onClick={this.handleClick}
+        >
+          <Icon name="dropdown" />
+          Identifiers
+        </Accordion.Title>
+        <Accordion.Content active={activeIndex === 'identifiers'}>
+          <SeriesIdentifiers />
+        </Accordion.Content>
+
+        <Accordion.Title
+          active={activeIndex === 'titles'}
+          index="titles"
+          onClick={this.handleClick}
+        >
+          <Icon name="dropdown" />
+          Titles
+        </Accordion.Title>
+        <Accordion.Content active={activeIndex === 'titles'}>
+          <SeriesAllTitles />
         </Accordion.Content>
 
         <Accordion.Title

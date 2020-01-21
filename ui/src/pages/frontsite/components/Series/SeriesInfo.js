@@ -6,7 +6,7 @@ import {
   SeriesLanguages,
   SeriesModeOfIssuance,
 } from '@components/Series';
-import { SeriesIdentifiers } from '@pages/frontsite/components/Series';
+import { SeriesIdentifierRows } from '@pages/frontsite/components/Series';
 
 export const SeriesInfo = ({ metadata }) => {
   return (
@@ -51,7 +51,7 @@ export const SeriesInfo = ({ metadata }) => {
             </Table.Row>
           )}
           {metadata.identifiers && (
-            <SeriesIdentifiers
+            <SeriesIdentifierRows
               includeSchemes={['ISBN', 'ISSN']}
               metadata={metadata}
             />

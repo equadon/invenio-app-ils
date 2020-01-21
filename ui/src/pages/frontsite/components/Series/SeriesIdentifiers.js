@@ -5,7 +5,21 @@ import get from 'lodash/get';
 import { Table } from 'semantic-ui-react';
 import { SeparatedList, InfoPopup } from '@components';
 
-export const SeriesIdentifiers = ({ includeSchemes, metadata }) => {
+export const SeriesIdentifiers = ({ metadata }) => {
+  return (
+    <Table definition>
+      <Table.Body>
+        <SeriesIdentifierRows metadata={metadata} />
+      </Table.Body>
+    </Table>
+  );
+};
+
+SeriesIdentifiers.propTypes = {
+  metadata: PropTypes.object.isRequired,
+};
+
+export const SeriesIdentifierRows = ({ includeSchemes, metadata }) => {
   const identifiers = {};
   for (const id of get(metadata, 'identifiers', [])) {
     // Only include whitelisted schemes if includeSchemes is set
@@ -44,7 +58,7 @@ export const SeriesIdentifiers = ({ includeSchemes, metadata }) => {
   });
 };
 
-SeriesIdentifiers.propTypes = {
+SeriesIdentifierRows.propTypes = {
   includeSchemes: PropTypes.array,
   metadata: PropTypes.object.isRequired,
 };

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Divider, Table } from 'semantic-ui-react';
 import { SeriesAlternativeTitles } from '.';
 
-export const SeriesTitlesTab = ({ metadata }) => {
+export const SeriesAllTitles = ({ metadata }) => {
   return (
     <>
       <Divider horizontal>Main titles</Divider>
@@ -24,6 +24,6 @@ export const SeriesTitlesTab = ({ metadata }) => {
   );
 };
 
-SeriesTitlesTab.propTypes = {
+SeriesAllTitles.propTypes = {
   metadata: PropTypes.object.isRequired,
 };

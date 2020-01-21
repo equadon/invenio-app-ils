@@ -1,14 +1,17 @@
 import { connect } from 'react-redux';
 import { SeriesAbstract as SeriesAbstractComponent } from './SeriesAbstract';
 import { SeriesAccessUrls as SeriesAccessUrlsComponent } from './SeriesAccessUrls';
+import { SeriesAllTitles as SeriesAllTitlesComponent } from './SeriesAllTitles';
 import { SeriesAlternativeTitles as SeriesAlternativeTitlesComponent } from './SeriesAlternativeTitles';
-import { SeriesIdentifiers as SeriesIdentifiersComponent } from './SeriesIdentifiers';
+import {
+  SeriesIdentifiers as SeriesIdentifiersComponent,
+  SeriesIdentifierRows as SeriesIdentifierRowsComponent,
+} from './SeriesIdentifiers';
 import { SeriesInfo as SeriesInfoComponent } from './SeriesInfo';
 import { SeriesLiterature as SeriesLiteratureComponent } from './SeriesLiterature';
 import { SeriesMetadataAccordion as SeriesMetadataAccordionComponent } from './SeriesMetadataAccordion';
 import { SeriesMetadataTabs as SeriesMetadataTabsComponent } from './SeriesMetadataTabs';
 import { SeriesTitle as SeriesTitleComponent } from './SeriesTitle';
-import { SeriesTitlesTab as SeriesTitlesTabComponent } from './SeriesTitlesTab';
 import { SeriesUrls as SeriesUrlsComponent } from './SeriesUrls';
 export { SeriesCard } from './SeriesCard';
 
@@ -29,6 +32,11 @@ export const SeriesAccessUrls = connect(
   null
 )(SeriesAccessUrlsComponent);
 
+export const SeriesAllTitles = connect(
+  mapStateToProps,
+  null
+)(SeriesAllTitlesComponent);
+
 export const SeriesAlternativeTitles = connect(
   mapStateToProps,
   null
@@ -38,6 +46,11 @@ export const SeriesIdentifiers = connect(
   mapStateToProps,
   null
 )(SeriesIdentifiersComponent);
+
+export const SeriesIdentifierRows = connect(
+  mapStateToProps,
+  null
+)(SeriesIdentifierRowsComponent);
 
 export const SeriesInfo = connect(
   mapStateToProps,
@@ -63,11 +76,6 @@ export const SeriesTitle = connect(
   mapStateToProps,
   null
 )(SeriesTitleComponent);
-
-export const SeriesTitlesTab = connect(
-  mapStateToProps,
-  null
-)(SeriesTitlesTabComponent);
 
 export const SeriesUrls = connect(
   mapStateToProps,
