@@ -4,7 +4,6 @@ import { Divider, Table } from 'semantic-ui-react';
 import {
   ReactSearchKit,
   InvenioSearchApi,
-  // InvenioRequestSerializer,
   ResultsList,
   SearchBar,
 } from 'react-searchkit';
@@ -18,18 +17,11 @@ import { recordToPidType } from '@api/utils';
 import { SearchFooter } from '@components/SearchControls';
 import { Link } from 'react-router-dom';
 import { FrontSiteRoutes } from '@routes/urls';
+import { SearchBar as LiteratureSearchBar } from '@components';
 
-const LiteratureSearchBar = (_, executeSearch, onInputChange, queryString) => {
-  return (
-    <SearchBar
-      currentQueryString={queryString}
-      onInputChange={onInputChange}
-      executeSearch={executeSearch}
-      placeholder="Search for volumes or issues in this series..."
-    />
-  );
-};
-
+/**
+ * TODO: Document this temporary class and why it's here!!
+ */
 export class InvenioRequestSerializer {
   constructor() {
     this.serialize = this.serialize.bind(this);
@@ -110,7 +102,7 @@ export class InvenioRequestSerializer {
 }
 
 const literatureRequestSerializer = metadata => {
-  return class LiteratureRequestSerializerNew extends InvenioRequestSerializer {
+  return class LiteratureRequestSerializer extends InvenioRequestSerializer {
     serialize(stateQuery) {
       const relationQuery = `relations.serial.pid:${metadata.pid}`;
       if (isEmpty(stateQuery.queryString)) {
@@ -119,7 +111,6 @@ const literatureRequestSerializer = metadata => {
         stateQuery.queryString = `${relationQuery} AND (${stateQuery.queryString})`;
       }
       const query = `${super.serialize(stateQuery)}&include_all`;
-      console.log('serialize', stateQuery, query);
       return query;
     }
   };
@@ -133,7 +124,7 @@ const formatVolume = (result, parentPid) => {
   return parent ? parent.volume : '?';
 };
 
-const literatureResults = metadata => results => {
+const literatureResults = (metadata, results) => {
   return (
     <Table basic>
       <Table.Header>
@@ -141,7 +132,7 @@ const literatureResults = metadata => results => {
           <Table.HeaderCell>Volume</Table.HeaderCell>
           <Table.HeaderCell>Title</Table.HeaderCell>
           <Table.HeaderCell>Type</Table.HeaderCell>
-          <Table.HeaderCell>Document Type / MOI</Table.HeaderCell>
+          <Table.HeaderCell>Publication Year</Table.HeaderCell>
         </Table.Row>
       </Table.Header>
       <Table.Body>
@@ -158,10 +149,7 @@ const literatureResults = metadata => results => {
             <Table.Cell>
               {recordToPidType(result) === 'docid' ? 'Document' : 'Series'}
             </Table.Cell>
-            <Table.Cell>
-              {result.metadata.document_type ||
-                result.metadata.mode_of_issuance}
-            </Table.Cell>
+            <Table.Cell>{result.metadata.publication_year}</Table.Cell>
           </Table.Row>
         ))}
       </Table.Body>
@@ -170,24 +158,34 @@ const literatureResults = metadata => results => {
 };
 
 export class SeriesLiterature extends Component {
-  get searchApi() {
-    return new InvenioSearchApi({
+  renderSearchBar = (_, queryString, onInputChange, executeSearch) => {
+    return (
+      <LiteratureSearchBar
+        currentQueryString={queryString}
+        onInputChange={onInputChange}
+        executeSearch={executeSearch}
+        placeholder={`Search for literature...`}
+      />
+    );
+  };
+
+  render() {
+    const { metadata } = this.props;
+    const api = new InvenioSearchApi({
       invenio: {
-        requestSerializer: literatureRequestSerializer(this.props.metadata),
+        requestSerializer: literatureRequestSerializer(metadata),
       },
       url: literatureApi.searchBaseURL,
       withCredentials: true,
     });
-  }
-
-  render() {
-    const { metadata } = this.props;
     return (
       <>
         <Divider horizontal>Literature in this series</Divider>
-        <ReactSearchKit searchApi={this.searchApi} history={history}>
-          <SearchBar renderElement={LiteratureSearchBar} />
-          <ResultsList renderElement={literatureResults(metadata)} />
+        <ReactSearchKit searchApi={api} history={history}>
+          <SearchBar renderElement={this.renderSearchBar} />
+          <ResultsList
+            renderElement={results => literatureResults(metadata, results)}
+          />
           <SearchFooter />
         </ReactSearchKit>
       </>
