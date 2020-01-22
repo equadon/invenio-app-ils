@@ -109,19 +109,21 @@ export class InvenioRequestSerializer {
   }
 }
 
-class LiteratureRequestSerializer extends InvenioRequestSerializer {
-  serialize(stateQuery) {
-    const relationQuery = 'relations.serial.pid:kezdn-xa684';
-    if (isEmpty(stateQuery.queryString)) {
-      stateQuery.queryString = relationQuery;
-    } else {
-      stateQuery.queryString = `${relationQuery} AND (${stateQuery.queryString})`;
+const literatureRequestSerializer = metadata => {
+  return class LiteratureRequestSerializerNew extends InvenioRequestSerializer {
+    serialize(stateQuery) {
+      const relationQuery = `relations.serial.pid:${metadata.pid}`;
+      if (isEmpty(stateQuery.queryString)) {
+        stateQuery.queryString = relationQuery;
+      } else {
+        stateQuery.queryString = `${relationQuery} AND (${stateQuery.queryString})`;
+      }
+      const query = `${super.serialize(stateQuery)}&include_all`;
+      console.log('serialize', stateQuery, query);
+      return query;
     }
-    const query = `${super.serialize(stateQuery)}&include_all`;
-    console.log('serialize', stateQuery, query);
-    return query;
-  }
-}
+  };
+};
 
 const formatVolume = (result, parentPid) => {
   const serials = get(result, 'metadata.relations.serial', []);
@@ -171,7 +173,7 @@ export class SeriesLiterature extends Component {
   get searchApi() {
     return new InvenioSearchApi({
       invenio: {
-        requestSerializer: LiteratureRequestSerializer,
+        requestSerializer: literatureRequestSerializer(this.props.metadata),
       },
       url: literatureApi.searchBaseURL,
       withCredentials: true,
