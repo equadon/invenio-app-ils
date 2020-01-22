@@ -3,6 +3,7 @@ export { DatePicker } from './DatePicker';
 export { DateRangePicker } from './DateRangePicker';
 export { DocumentAuthors } from './Document';
 export { EmailLink } from './EmailLink';
+export { EmptyMessage } from './EmptyMessage';
 export { Error } from './Error';
 export { InfoPopup } from './InfoPopup';
 export { Loader } from './Loader';

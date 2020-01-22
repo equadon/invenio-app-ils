@@ -8,6 +8,8 @@ import {
   SeriesUrls,
   SeriesIdentifiers,
 } from './';
+import isEmpty from 'lodash/isEmpty';
+import { EmptyMessage } from '@components';
 
 export class SeriesMetadataTabs extends Component {
   renderTabPanes = () => {
@@ -25,7 +27,12 @@ export class SeriesMetadataTabs extends Component {
         menuItem: 'Identifiers',
         render: () => (
           <Tab.Pane attached={false}>
-            <SeriesIdentifiers />
+            <EmptyMessage
+              show={!isEmpty(metadata.identifiers)}
+              message="There are no identifiers for this series."
+            >
+              <SeriesIdentifiers />
+            </EmptyMessage>
           </Tab.Pane>
         ),
       },
@@ -41,8 +48,13 @@ export class SeriesMetadataTabs extends Component {
         menuItem: 'Notes',
         render: () => (
           <Tab.Pane attached={false}>
-            <Divider horizontal>Librarian's note</Divider>
-            {metadata.note}
+            <EmptyMessage
+              show={!isEmpty(metadata.note)}
+              message="There is no note from the library for this series."
+            >
+              <Divider horizontal>Librarian's note</Divider>
+              {metadata.note}
+            </EmptyMessage>
           </Tab.Pane>
         ),
       },
@@ -50,10 +62,15 @@ export class SeriesMetadataTabs extends Component {
         menuItem: 'Links',
         render: () => (
           <Tab.Pane attached={false}>
-            <Divider horizontal>Access online</Divider>
-            <SeriesAccessUrls />
-            <Divider horizontal>Links</Divider>
-            <SeriesUrls />
+            <EmptyMessage
+              show={!(isEmpty(metadata.access_urls) && isEmpty(metadata.urls))}
+              message="There are no links for this series."
+            >
+              <Divider horizontal>Access online</Divider>
+              <SeriesAccessUrls />
+              <Divider horizontal>Links</Divider>
+              <SeriesUrls />
+            </EmptyMessage>
           </Tab.Pane>
         ),
       },

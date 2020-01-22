@@ -9,6 +9,8 @@ import {
   SeriesAlternativeTitles,
   SeriesIdentifiers,
 } from './';
+import { EmptyMessage } from '@components';
+import isEmpty from 'lodash/isEmpty';
 
 export class SeriesMetadataAccordion extends Component {
   state = { activeIndex: 'details' };
@@ -48,7 +50,12 @@ export class SeriesMetadataAccordion extends Component {
           Identifiers
         </Accordion.Title>
         <Accordion.Content active={activeIndex === 'identifiers'}>
-          <SeriesIdentifiers />
+          <EmptyMessage
+            show={!isEmpty(metadata.identifiers)}
+            message="There are no identifiers for this series."
+          >
+            <SeriesIdentifiers />
+          </EmptyMessage>
         </Accordion.Content>
 
         <Accordion.Title
@@ -72,8 +79,13 @@ export class SeriesMetadataAccordion extends Component {
           Notes
         </Accordion.Title>
         <Accordion.Content active={activeIndex === 'notes'}>
-          <Divider horizontal>Librarian's note</Divider>
-          {metadata.note}
+          <EmptyMessage
+            show={!isEmpty(metadata.note)}
+            message="There is no note from the library for this series."
+          >
+            <Divider horizontal>Librarian's note</Divider>
+            {metadata.note}
+          </EmptyMessage>
         </Accordion.Content>
 
         <Accordion.Title
@@ -85,10 +97,15 @@ export class SeriesMetadataAccordion extends Component {
           Links
         </Accordion.Title>
         <Accordion.Content active={activeIndex === 'links'}>
-          <Divider horizontal>Access online</Divider>
-          <SeriesAccessUrls truncate />
-          <Divider horizontal>Links</Divider>
-          <SeriesUrls truncate />
+          <EmptyMessage
+            show={!(isEmpty(metadata.access_urls) && isEmpty(metadata.urls))}
+            message="There are no links for this series."
+          >
+            <Divider horizontal>Access online</Divider>
+            <SeriesAccessUrls />
+            <Divider horizontal>Links</Divider>
+            <SeriesUrls />
+          </EmptyMessage>
         </Accordion.Content>
       </Accordion>
     );

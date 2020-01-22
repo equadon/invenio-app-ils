@@ -12,10 +12,13 @@ import {
   SeriesTitle,
 } from '@pages/frontsite/components/Series';
 import { SeriesAuthors } from '@components/Series';
+import get from 'lodash/get';
+import isEmpty from 'lodash/isEmpty';
 
 export default class SeriesPanelMobile extends Component {
   render() {
     const { isLoading, series } = this.props;
+    const accessUrls = get(series, 'metadata.access_urls', []);
     return (
       <div
         className="series-panel"
@@ -36,14 +39,16 @@ export default class SeriesPanelMobile extends Component {
               </ILSParagraphPlaceholder>
             </Grid.Column>
           </Grid.Row>
-          <Grid.Row>
-            <Grid.Column mobile={16}>
-              <Segment className="highlighted">
-                <Header as="h3">Access online</Header>
-                <SeriesAccessUrls truncate />
-              </Segment>
-            </Grid.Column>
-          </Grid.Row>
+          {!isEmpty(accessUrls) && (
+            <Grid.Row>
+              <Grid.Column mobile={16}>
+                <Segment className="highlighted">
+                  <Header as="h3">Access online</Header>
+                  <SeriesAccessUrls truncate />
+                </Segment>
+              </Grid.Column>
+            </Grid.Row>
+          )}
           <Grid.Row>
             <Grid.Column mobile={16}>
               <ILSParagraphPlaceholder linesNumber={5} isLoading={isLoading}>
