@@ -2,16 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import capitalize from 'lodash/capitalize';
 import get from 'lodash/get';
-import { Table } from 'semantic-ui-react';
+import { Table, Divider } from 'semantic-ui-react';
 import { SeparatedList, InfoPopup } from '@components';
 
 export const SeriesIdentifiers = ({ metadata }) => {
   return (
-    <Table definition>
-      <Table.Body>
-        <SeriesIdentifierRows metadata={metadata} />
-      </Table.Body>
-    </Table>
+    <>
+      <Divider horizontal>Identifiers</Divider>
+      <Table definition>
+        <Table.Body>
+          <SeriesIdentifierRows metadata={metadata} />
+        </Table.Body>
+      </Table>
+    </>
   );
 };
 

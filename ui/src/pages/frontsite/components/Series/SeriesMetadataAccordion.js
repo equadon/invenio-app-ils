@@ -81,7 +81,7 @@ export class SeriesMetadataAccordion extends Component {
         <Accordion.Content active={activeIndex === 'notes'}>
           <EmptyMessage
             show={!isEmpty(metadata.note)}
-            message="There is no note from the library for this series."
+            message="The library did not leave a note for this series."
           >
             <Divider horizontal>Librarian's note</Divider>
             {metadata.note}

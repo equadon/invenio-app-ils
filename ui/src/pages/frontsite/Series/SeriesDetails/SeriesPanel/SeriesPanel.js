@@ -12,14 +12,14 @@ import {
   SeriesTitle,
 } from '@pages/frontsite/components/Series';
 import { SeriesPanelMobile } from './index';
-import { SeriesAuthors } from '@components/Series';
+import { SeriesAuthors, SeriesImage } from '@components/Series';
 import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
 
 export default class SeriesPanel extends Component {
   render() {
     const { isLoading, series } = this.props;
-    const accessUrls = get(series, 'metadata.access_urls', []);
+    const hasAccessUrls = !isEmpty(get(series, 'metadata.access_urls', []));
     return (
       <>
         <Responsive minWidth={Responsive.onlyTablet.minWidth}>
@@ -29,7 +29,14 @@ export default class SeriesPanel extends Component {
           >
             <Grid>
               <Grid.Row>
-                <Grid.Column width={11}>
+                <Grid.Column width={5}>
+                  <SeriesImage
+                    fluid
+                    metadata={series.metadata}
+                    size={undefined}
+                  />
+                </Grid.Column>
+                <Grid.Column width={hasAccessUrls ? 6 : 11}>
                   <ILSHeaderPlaceholder isLoading={isLoading}>
                     <SeriesTitle />
                   </ILSHeaderPlaceholder>
@@ -50,7 +57,7 @@ export default class SeriesPanel extends Component {
                     <SeriesAbstract lines={20} />
                   </ILSParagraphPlaceholder>
                 </Grid.Column>
-                {!isEmpty(accessUrls) && (
+                {hasAccessUrls && (
                   <Grid.Column width={5}>
                     <Segment className="highlighted">
                       <Header as="h3">Access online</Header>

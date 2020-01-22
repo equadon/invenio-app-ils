@@ -50,7 +50,7 @@ export class SeriesMetadataTabs extends Component {
           <Tab.Pane attached={false}>
             <EmptyMessage
               show={!isEmpty(metadata.note)}
-              message="There is no note from the library for this series."
+              message="The library did not leave a note for this series."
             >
               <Divider horizontal>Librarian's note</Divider>
               {metadata.note}
