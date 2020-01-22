@@ -30,11 +30,7 @@ export default class SeriesPanel extends Component {
             <Grid>
               <Grid.Row>
                 <Grid.Column width={5}>
-                  <SeriesImage
-                    fluid
-                    metadata={series.metadata}
-                    size={undefined}
-                  />
+                  <SeriesImage fluid metadata={series.metadata} />
                 </Grid.Column>
                 <Grid.Column width={hasAccessUrls ? 6 : 11}>
                   <ILSHeaderPlaceholder isLoading={isLoading}>

@@ -5,11 +5,11 @@ import { Header } from 'semantic-ui-react';
 export class SeriesTitle extends Component {
   render() {
     const {
-      metadata: { title, mode_of_issuance: moi },
+      metadata: { title },
     } = this.props;
     return (
       <>
-        {moi}
+        SERIES
         <Header as="h2">{title}</Header>
       </>
     );

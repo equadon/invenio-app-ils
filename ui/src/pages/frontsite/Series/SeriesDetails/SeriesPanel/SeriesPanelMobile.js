@@ -11,7 +11,7 @@ import {
   SeriesAccessUrls,
   SeriesTitle,
 } from '@pages/frontsite/components/Series';
-import { SeriesAuthors } from '@components/Series';
+import { SeriesAuthors, SeriesImage } from '@components/Series';
 import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
 
@@ -27,6 +27,7 @@ export default class SeriesPanelMobile extends Component {
         <Grid>
           <Grid.Row>
             <Grid.Column mobile={16} textAlign="center">
+              <SeriesImage metadata={series.metadata} size="medium" />
               <ILSHeaderPlaceholder isLoading={isLoading} center="true">
                 <SeriesTitle />
               </ILSHeaderPlaceholder>
