@@ -8,7 +8,7 @@ import {
   SeriesIdentifierRows as SeriesIdentifierRowsComponent,
 } from './SeriesIdentifiers';
 import { SeriesInfo as SeriesInfoComponent } from './SeriesInfo';
-import { SeriesLiterature as SeriesLiteratureComponent } from './SeriesLiterature';
+import { SeriesLiteratureSearch as SeriesLiteratureSearchComponent } from './SeriesLiteratureSearch';
 import { SeriesMetadataAccordion as SeriesMetadataAccordionComponent } from './SeriesMetadataAccordion';
 import { SeriesMetadataTabs as SeriesMetadataTabsComponent } from './SeriesMetadataTabs';
 import { SeriesTitle as SeriesTitleComponent } from './SeriesTitle';
@@ -57,10 +57,10 @@ export const SeriesInfo = connect(
   null
 )(SeriesInfoComponent);
 
-export const SeriesLiterature = connect(
+export const SeriesLiteratureSearch = connect(
   mapStateToProps,
   null
-)(SeriesLiteratureComponent);
+)(SeriesLiteratureSearchComponent);
 
 export const SeriesMetadataAccordion = connect(
   mapStateToProps,

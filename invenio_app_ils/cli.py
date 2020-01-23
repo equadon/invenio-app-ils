@@ -299,7 +299,7 @@ class DocumentGenerator(Generator):
 
     def generate_document(self, index, **kwargs):
         """Generate document data."""
-        publication_year = str(randint(1900, 2020))
+        publication_year = kwargs.get("publication_year", str(randint(1900, 2020)))
         imprint = random.choice(self.IMPRINTS)
         obj = {
             "pid": self.create_pid(),
@@ -352,15 +352,18 @@ class DocumentGenerator(Generator):
         # Generate periodical issues
         volume = 1
         issue = 1
+        publication_year = randint(1900, 2020)
         for index in range(1, 11):
             objs.append(self.generate_document(
                 index,
                 document_type=self.PERIODICAL_ISSUE,
-                title="Volume {} Issue {}".format(volume, index)
+                title="Volume {} Issue {}".format(volume, index),
+                publication_year=str(publication_year),
             ))
             if issue == 3:
                 volume += 1
                 issue = 1
+                publication_year += 1
             else:
                 issue += 1
 

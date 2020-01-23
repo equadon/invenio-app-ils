@@ -15,11 +15,9 @@ const formatVolume = (result, parentPid) => {
 };
 
 export const LiteratureResultsList = ({ metadata, results }) => {
-  console.log('metadata', metadata);
   return (
     <Item.Group>
       {results.map(result => {
-        console.log('result', result);
         return recordToPidType(result) === 'docid' ? (
           <DocumentListEntry
             key={result.metadata.pid}
@@ -37,4 +35,9 @@ export const LiteratureResultsList = ({ metadata, results }) => {
       })}
     </Item.Group>
   );
+};
+
+LiteratureResultsList.propTypes = {
+  metadata: PropTypes.object.isRequired,
+  results: PropTypes.array.isRequired,
 };

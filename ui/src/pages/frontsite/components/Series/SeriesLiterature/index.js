@@ -1,1 +1,0 @@
-export { SeriesLiterature } from './SeriesLiterature';

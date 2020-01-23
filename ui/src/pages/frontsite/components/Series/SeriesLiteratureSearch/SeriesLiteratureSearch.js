@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Divider, Loader } from 'semantic-ui-react';
+import { Divider, Loader, Responsive } from 'semantic-ui-react';
 import {
   ReactSearchKit,
   InvenioSearchApi,
@@ -23,14 +23,14 @@ import {
 import history from '@history';
 import { LiteratureResultsList } from './LiteratureResultsList';
 
-export class SeriesLiterature extends React.Component {
+export class SeriesLiteratureSearch extends React.Component {
   renderSearchBar = (_, queryString, onInputChange, executeSearch) => {
     return (
       <LiteratureSearchBar
         currentQueryString={queryString}
         onInputChange={onInputChange}
         executeSearch={executeSearch}
-        placeholder={`Search for literature...`}
+        placeholder="Search for literature..."
       />
     );
   };
@@ -59,28 +59,33 @@ export class SeriesLiterature extends React.Component {
         <Divider horizontal>Literature in this series</Divider>
         <ReactSearchKit searchApi={api} history={history}>
           <SearchBar renderElement={this.renderSearchBar} />
-          <ResultsLoader renderElement={this.renderLoader}>
-            <SearchEmptyResults />
+          <Responsive minWidth={Responsive.onlyComputer.minWidth}>
+            <ResultsLoader renderElement={this.renderLoader}>
+              <SearchEmptyResults />
 
-            <Error renderElement={this.renderError} />
+              <Error renderElement={this.renderError} />
 
-            <SearchControls
-              layoutToggle={this.renderResultsLayoutOptions}
-              modelName="literature"
-            />
-            <ResultsList
-              renderElement={results => (
-                <LiteratureResultsList metadata={metadata} results={results} />
-              )}
-            />
-            <SearchFooter />
-          </ResultsLoader>
+              <SearchControls
+                layoutToggle={this.renderResultsLayoutOptions}
+                modelName="literature"
+              />
+              <ResultsList
+                renderElement={results => (
+                  <LiteratureResultsList
+                    metadata={metadata}
+                    results={results}
+                  />
+                )}
+              />
+              <SearchFooter />
+            </ResultsLoader>
+          </Responsive>
         </ReactSearchKit>
       </>
     );
   }
 }
 
-SeriesLiterature.propTypes = {
+SeriesLiteratureSearch.propTypes = {
   metadata: PropTypes.object.isRequired,
 };

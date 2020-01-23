@@ -7,7 +7,7 @@ import { FrontSiteRoutes } from '@routes/urls';
 import { ILSParagraphPlaceholder } from '@components/ILSPlaceholder';
 import { Breadcrumbs } from '@pages/frontsite/components';
 import { SeriesPanel } from './SeriesPanel';
-import { SeriesLiterature } from '@pages/frontsite/components/Series';
+import { SeriesLiteratureSearch } from '@pages/frontsite/components/Series';
 import { SeriesMetadata } from './SeriesMetadata';
 
 export default class SeriesDetails extends React.Component {
@@ -70,7 +70,7 @@ export default class SeriesDetails extends React.Component {
           </Container>
           <Container className="items-locations spaced">
             <ILSParagraphPlaceholder linesNumber={3} isLoading={isLoading}>
-              <SeriesLiterature />
+              <SeriesLiteratureSearch />
             </ILSParagraphPlaceholder>
           </Container>
           <Container className="section" fluid>
