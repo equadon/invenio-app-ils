@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Divider, Table } from 'semantic-ui-react';
+import { Divider, Loader, Item } from 'semantic-ui-react';
 import {
   ReactSearchKit,
   InvenioSearchApi,
   ResultsList,
   SearchBar,
+  Error,
+  ResultsLoader,
 } from 'react-searchkit';
 import { literature as literatureApi } from '@api';
 import history from '@history';
@@ -14,10 +16,19 @@ import _extend from 'lodash/extend';
 import isEmpty from 'lodash/isEmpty';
 import get from 'lodash/get';
 import { recordToPidType } from '@api/utils';
-import { SearchFooter } from '@components/SearchControls';
+import {
+  SearchFooter,
+  SearchEmptyResults,
+  SearchControls,
+} from '@components/SearchControls';
 import { Link } from 'react-router-dom';
 import { FrontSiteRoutes } from '@routes/urls';
-import { SearchBar as LiteratureSearchBar } from '@components';
+import {
+  Error as IlsError,
+  SearchBar as LiteratureSearchBar,
+} from '@components';
+import { DocumentListEntry } from '@pages/frontsite/Documents/DocumentsSearch/DocumentListEntry';
+import { SeriesListEntry } from '@pages/frontsite/Documents/DocumentsSearch/SeriesListEntry';
 
 /**
  * TODO: Document this temporary class and why it's here!!
@@ -124,36 +135,25 @@ const formatVolume = (result, parentPid) => {
   return parent ? parent.volume : '?';
 };
 
-const literatureResults = (metadata, results) => {
+const LiteratureResultsList = ({ metadata, results }) => {
   return (
-    <Table basic>
-      <Table.Header>
-        <Table.Row>
-          <Table.HeaderCell>Volume</Table.HeaderCell>
-          <Table.HeaderCell>Title</Table.HeaderCell>
-          <Table.HeaderCell>Type</Table.HeaderCell>
-          <Table.HeaderCell>Publication Year</Table.HeaderCell>
-        </Table.Row>
-      </Table.Header>
-      <Table.Body>
-        {results.map(result => (
-          <Table.Row key={result.metadata.pid}>
-            <Table.Cell>{formatVolume(result, metadata.pid)}</Table.Cell>
-            <Table.Cell>
-              <Link
-                to={FrontSiteRoutes.documentDetailsFor(result.metadata.pid)}
-              >
-                {result.metadata.title}
-              </Link>
-            </Table.Cell>
-            <Table.Cell>
-              {recordToPidType(result) === 'docid' ? 'Document' : 'Series'}
-            </Table.Cell>
-            <Table.Cell>{result.metadata.publication_year}</Table.Cell>
-          </Table.Row>
-        ))}
-      </Table.Body>
-    </Table>
+    <Item.Group>
+      {results.map(result => {
+        return recordToPidType(result) === 'docid' ? (
+          <DocumentListEntry
+            key={result.metadata.pid}
+            data-test={result.metadata.pid}
+            metadata={result.metadata}
+          />
+        ) : (
+          <SeriesListEntry
+            key={result.metadata.pid}
+            data-test={result.metadata.pid}
+            metadata={result.metadata}
+          />
+        );
+      })}
+    </Item.Group>
   );
 };
 
@@ -166,6 +166,12 @@ export class SeriesLiterature extends Component {
         executeSearch={executeSearch}
         placeholder={`Search for literature...`}
       />
+    );
+  };
+
+  renderLoader = () => {
+    return (
+      <Loader active size="huge" inline="centered" className="full-height" />
     );
   };
 
@@ -183,10 +189,22 @@ export class SeriesLiterature extends Component {
         <Divider horizontal>Literature in this series</Divider>
         <ReactSearchKit searchApi={api} history={history}>
           <SearchBar renderElement={this.renderSearchBar} />
-          <ResultsList
-            renderElement={results => literatureResults(metadata, results)}
-          />
-          <SearchFooter />
+          <ResultsLoader renderElement={this.renderLoader}>
+            <SearchEmptyResults />
+
+            <Error renderElement={this.renderError} />
+
+            <SearchControls
+              layoutToggle={this.renderResultsLayoutOptions}
+              modelName="literature"
+            />
+            <ResultsList
+              renderElement={results => (
+                <LiteratureResultsList metadata={metadata} results={results} />
+              )}
+            />
+            <SearchFooter />
+          </ResultsLoader>
         </ReactSearchKit>
       </>
     );

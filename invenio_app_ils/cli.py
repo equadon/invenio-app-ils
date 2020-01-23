@@ -298,6 +298,9 @@ class DocumentGenerator(Generator):
 
     def generate_document(self, index, **kwargs):
         """Generate document data."""
+        publication_year = str(randint(1900, 2020))
+        imprint = random.choice(self.IMPRINTS)
+        imprint["date"] = "{}-08-02".format(publication_year)
         obj = {
             "pid": self.create_pid(),
             "title": lorem.sentence(),
@@ -321,8 +324,8 @@ class DocumentGenerator(Generator):
             },
             "conference_info": self.CONFERENCE_INFO,
             "number_of_pages": str(random.randint(0, 300)),
-            "imprint": random.choice(self.IMPRINTS),
-            "publication_year": str(randint(1900, 2020)),
+            "imprint": imprint,
+            "publication_year": publication_year,
             "urls": [
                 {
                     "description": "{}".format(lorem.sentence()),
