@@ -63,6 +63,7 @@ export default class DocumentListEntry extends Component {
   };
 
   render() {
+    const { volume } = this.props;
     return (
       <Item>
         <Item.Image
@@ -78,6 +79,7 @@ export default class DocumentListEntry extends Component {
             as={Link}
             to={FrontSiteRoutes.documentDetailsFor(this.metadata.pid)}
           >
+            {volume && `Vol. ${volume} - `}
             {this.metadata.title}
           </Item.Header>
           <Item.Meta>
@@ -121,4 +123,5 @@ export default class DocumentListEntry extends Component {
 
 DocumentListEntry.propTypes = {
   metadata: PropTypes.object.isRequired,
+  volume: PropTypes.string,
 };
