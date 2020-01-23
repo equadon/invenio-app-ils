@@ -21,7 +21,8 @@ import {
   SearchControls,
 } from '@components/SearchControls';
 import history from '@history';
-import { LiteratureResultsList } from './LiteratureResultsList';
+import { SeriesLiteratureResultsList } from './SeriesLiteratureResultsList';
+import { SeriesLiteratureSearchMobile } from './SeriesLiteratureSearchMobile';
 
 export class SeriesLiteratureSearch extends React.Component {
   renderSearchBar = (_, queryString, onInputChange, executeSearch) => {
@@ -59,7 +60,7 @@ export class SeriesLiteratureSearch extends React.Component {
         <Divider horizontal>Literature in this series</Divider>
         <ReactSearchKit searchApi={api} history={history}>
           <SearchBar renderElement={this.renderSearchBar} />
-          <Responsive minWidth={Responsive.onlyComputer.minWidth}>
+          <Responsive minWidth={Responsive.onlyTablet.minWidth}>
             <ResultsLoader renderElement={this.renderLoader}>
               <SearchEmptyResults />
 
@@ -71,7 +72,7 @@ export class SeriesLiteratureSearch extends React.Component {
               />
               <ResultsList
                 renderElement={results => (
-                  <LiteratureResultsList
+                  <SeriesLiteratureResultsList
                     metadata={metadata}
                     results={results}
                   />
@@ -79,6 +80,9 @@ export class SeriesLiteratureSearch extends React.Component {
               />
               <SearchFooter />
             </ResultsLoader>
+          </Responsive>
+          <Responsive maxWidth={Responsive.onlyMobile.maxWidth}>
+            <SeriesLiteratureSearchMobile />
           </Responsive>
         </ReactSearchKit>
       </>

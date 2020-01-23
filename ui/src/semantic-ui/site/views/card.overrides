@@ -56,6 +56,13 @@
         text-transform: uppercase;
       }
     }
+
+    .search-result-image {
+      .ui.floating.label {
+        left: 3em;
+        top: 0.5em;
+      }
+    }
   }
 
   .fs-landing-page-section {

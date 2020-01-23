@@ -23,9 +23,7 @@
       padding: 1em !important;
     }
 
-    .list-entry-image {
-      position: relative;
-
+    .search-result-image {
       .ui.floating.label {
         left: 0;
       }

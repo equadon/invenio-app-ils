@@ -66,10 +66,10 @@ export default class DocumentListEntry extends Component {
     const { volume } = this.props;
     return (
       <Item>
-        <div className="list-entry-image">
+        <div className="search-result-image">
           {volume && (
             <Label floating color="black">
-              Volume&nbsp;{volume}
+              Volume {volume}
             </Label>
           )}
           <Item.Image

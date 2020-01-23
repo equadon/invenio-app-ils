@@ -19,7 +19,7 @@ export class BookCard extends Component {
   };
 
   render() {
-    const { data } = this.props;
+    const { data, volume } = this.props;
     return (
       <Card
         link
@@ -33,12 +33,19 @@ export class BookCard extends Component {
         <Card.Meta className={'discrete'}>
           {data.metadata.document_type}
         </Card.Meta>
-        <Image
-          centered
-          src={getCover(data.metadata.edition)}
-          size={'small'}
-          onError={e => (e.target.style.display = 'none')}
-        />
+        <div className="search-result-image">
+          {volume && (
+            <Label floating color="black">
+              Volume {volume}
+            </Label>
+          )}
+          <Image
+            centered
+            src={getCover(data.metadata.edition)}
+            size={'small'}
+            onError={e => (e.target.style.display = 'none')}
+          />
+        </div>
         <Card.Content>
           <Card.Header>{data.metadata.title}</Card.Header>
           <Card.Meta>
@@ -61,4 +68,5 @@ export class BookCard extends Component {
 
 BookCard.propTypes = {
   data: PropTypes.object.isRequired,
+  volume: PropTypes.string,
 };

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Item, List } from 'semantic-ui-react';
+import { Grid, Item, List, Label } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { FrontSiteRoutes } from '@routes/urls';
@@ -14,15 +14,23 @@ export default class SeriesListEntry extends Component {
   }
 
   render() {
+    const { volume } = this.props;
     return (
       <Item>
-        <Item.Image
-          floated="left"
-          as={Link}
-          to={FrontSiteRoutes.seriesDetailsFor(this.metadata.pid)}
-        >
-          <SeriesImage metadata={this.metadata} />
-        </Item.Image>
+        <div className="search-result-image">
+          {volume && (
+            <Label floating color="black">
+              Volume {volume}
+            </Label>
+          )}
+          <Item.Image
+            floated="left"
+            as={Link}
+            to={FrontSiteRoutes.seriesDetailsFor(this.metadata.pid)}
+          >
+            <SeriesImage metadata={this.metadata} />
+          </Item.Image>
+        </div>
         <Item.Content>
           <Item.Meta>SERIES</Item.Meta>
           <Item.Header
@@ -75,4 +83,5 @@ export default class SeriesListEntry extends Component {
 
 SeriesListEntry.propTypes = {
   metadata: PropTypes.object.isRequired,
+  volume: PropTypes.string,
 };

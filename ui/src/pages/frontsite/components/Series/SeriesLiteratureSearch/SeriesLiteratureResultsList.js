@@ -6,6 +6,23 @@ import { DocumentListEntry } from '@pages/frontsite/Documents/DocumentsSearch/Do
 import { SeriesListEntry } from '@pages/frontsite/Documents/DocumentsSearch/SeriesListEntry';
 import get from 'lodash/get';
 
+export const SeriesVolume = ({ metadata, parentPid, relationType }) => {
+  const relations = get(metadata, `metadata.relations.${relationType}`, []);
+  const parent = relations.find(
+    relation => relation.pid === parentPid && relation.pid_type === 'serid'
+  );
+  return parent ? parent.volume : '?';
+};
+
+SeriesVolume.propTypes = {
+  metadata: PropTypes.object.isRequired,
+  parentPid: PropTypes.shape({
+    value: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+  }),
+  relationType: PropTypes.string.isRequired,
+};
+
 const formatVolume = (result, parentPid) => {
   const serials = get(result, 'metadata.relations.serial', []);
   const parent = serials.find(
@@ -14,7 +31,7 @@ const formatVolume = (result, parentPid) => {
   return parent ? parent.volume : '?';
 };
 
-export const LiteratureResultsList = ({ metadata, results }) => {
+export const SeriesLiteratureResultsList = ({ metadata, results }) => {
   return (
     <Item.Group>
       {results.map(result => {
@@ -37,7 +54,7 @@ export const LiteratureResultsList = ({ metadata, results }) => {
   );
 };
 
-LiteratureResultsList.propTypes = {
+SeriesLiteratureResultsList.propTypes = {
   metadata: PropTypes.object.isRequired,
   results: PropTypes.array.isRequired,
 };

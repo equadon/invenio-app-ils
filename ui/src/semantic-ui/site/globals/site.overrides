@@ -117,6 +117,9 @@ form {
     }
   }
 
+  .search-result-image {
+    position: relative;
+  }
 }
 
 /* BACKOFFICE */
