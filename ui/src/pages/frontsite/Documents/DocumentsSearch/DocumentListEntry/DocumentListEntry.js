@@ -62,24 +62,36 @@ export default class DocumentListEntry extends Component {
     return null;
   };
 
-  render() {
+  renderImage = () => {
     const { volume } = this.props;
+    const image = (
+      <Item.Image
+        src={getCover(this.metadata.edition)}
+        size="small"
+        floated="left"
+        as={Link}
+        to={FrontSiteRoutes.documentDetailsFor(this.metadata.pid)}
+      />
+    );
+
+    if (volume) {
+      return (
+        <div className="search-result-image">
+          <Label floating color="black">
+            Volume {volume}
+          </Label>
+          {image}
+        </div>
+      );
+    }
+
+    return image;
+  };
+
+  render() {
     return (
       <Item>
-        <div className="search-result-image">
-          {volume && (
-            <Label floating color="black">
-              Volume {volume}
-            </Label>
-          )}
-          <Item.Image
-            src={getCover(this.metadata.edition)}
-            size="small"
-            floated="left"
-            as={Link}
-            to={FrontSiteRoutes.documentDetailsFor(this.metadata.pid)}
-          />
-        </div>
+        {this.renderImage()}
         <Item.Content>
           <Item.Meta>{this.metadata.document_type}</Item.Meta>
           <Item.Header

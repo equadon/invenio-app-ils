@@ -13,24 +13,36 @@ export default class SeriesListEntry extends Component {
     this.metadata = props.metadata;
   }
 
-  render() {
+  renderImage = () => {
     const { volume } = this.props;
+    const image = (
+      <Item.Image
+        floated="left"
+        as={Link}
+        to={FrontSiteRoutes.seriesDetailsFor(this.metadata.pid)}
+      >
+        <SeriesImage metadata={this.metadata} />
+      </Item.Image>
+    );
+
+    if (volume) {
+      return (
+        <div className="search-result-image">
+          <Label floating color="black">
+            Volume {volume}
+          </Label>
+          {image}
+        </div>
+      );
+    }
+
+    return image;
+  };
+
+  render() {
     return (
       <Item>
-        <div className="search-result-image">
-          {volume && (
-            <Label floating color="black">
-              Volume {volume}
-            </Label>
-          )}
-          <Item.Image
-            floated="left"
-            as={Link}
-            to={FrontSiteRoutes.seriesDetailsFor(this.metadata.pid)}
-          >
-            <SeriesImage metadata={this.metadata} />
-          </Item.Image>
-        </div>
+        {this.renderImage()}
         <Item.Content>
           <Item.Meta>SERIES</Item.Meta>
           <Item.Header
