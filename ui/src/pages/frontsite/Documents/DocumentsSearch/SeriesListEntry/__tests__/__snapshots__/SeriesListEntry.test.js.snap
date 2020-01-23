@@ -2,42 +2,46 @@
 
 exports[`should render correctly 1`] = `
 <Item>
-  <ItemImage
-    as={
-      Object {
-        "$$typeof": Symbol(react.forward_ref),
-        "displayName": "Link",
-        "propTypes": Object {
-          "innerRef": [Function],
-          "onClick": [Function],
-          "replace": [Function],
-          "target": [Function],
-          "to": [Function],
-        },
-        "render": [Function],
-      }
-    }
-    floated="left"
-    to="/series/serid-1"
+  <div
+    className="search-result-image"
   >
-    <SeriesImage
-      fluid={false}
-      metadata={
+    <ItemImage
+      as={
         Object {
-          "$schema": "https://127.0.0.1:5000/schemas/series/series-v1.0.0.json",
-          "abstract": "This is a multipart monograph",
-          "authors": Array [
-            "Einstein, Albert",
-            "Stachel, John J et al.",
-          ],
-          "mode_of_issuance": "MULTIPART_MONOGRAPH",
-          "pid": "serid-1",
-          "title": "The Gulf: The Making of An American Sea",
+          "$$typeof": Symbol(react.forward_ref),
+          "displayName": "Link",
+          "propTypes": Object {
+            "innerRef": [Function],
+            "onClick": [Function],
+            "replace": [Function],
+            "target": [Function],
+            "to": [Function],
+          },
+          "render": [Function],
         }
       }
-      size="small"
-    />
-  </ItemImage>
+      floated="left"
+      to="/series/serid-1"
+    >
+      <SeriesImage
+        fluid={false}
+        metadata={
+          Object {
+            "$schema": "https://127.0.0.1:5000/schemas/series/series-v1.0.0.json",
+            "abstract": "This is a multipart monograph",
+            "authors": Array [
+              "Einstein, Albert",
+              "Stachel, John J et al.",
+            ],
+            "mode_of_issuance": "MULTIPART_MONOGRAPH",
+            "pid": "serid-1",
+            "title": "The Gulf: The Making of An American Sea",
+          }
+        }
+        size="small"
+      />
+    </ItemImage>
+  </div>
   <ItemContent>
     <ItemMeta>
       SERIES
