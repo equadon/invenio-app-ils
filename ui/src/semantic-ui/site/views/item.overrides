@@ -22,6 +22,14 @@
       background-color: lighten(@danger, 40%) !important;
       padding: 1em !important;
     }
+
+    .list-entry-image {
+      position: relative;
+
+      .ui.floating.label {
+        left: 0;
+      }
+    }
   }
 }
 

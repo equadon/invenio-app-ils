@@ -66,9 +66,9 @@ export default class DocumentListEntry extends Component {
     const { volume } = this.props;
     return (
       <Item>
-        <div style={{ position: 'relative' }}>
+        <div className="list-entry-image">
           {volume && (
-            <Label floating color="black" style={{ left: 0 }}>
+            <Label floating color="black">
               Volume&nbsp;{volume}
             </Label>
           )}
