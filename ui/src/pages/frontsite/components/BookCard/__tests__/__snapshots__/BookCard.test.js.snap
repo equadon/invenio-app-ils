@@ -56,24 +56,20 @@ exports[`BookCard tests should go to book details when clicking on a book 1`] = 
           BOOK
         </div>
       </CardMeta>
-      <div
-        className="search-result-image"
+      <Image
+        as="img"
+        centered={true}
+        onError={[Function]}
+        size="small"
+        src="https://assets.thalia.media/img/46276859-00-00.jpg"
+        ui={true}
       >
-        <Image
-          as="img"
-          centered={true}
+        <img
+          className="ui small centered image"
           onError={[Function]}
-          size="small"
           src="https://assets.thalia.media/img/46276859-00-00.jpg"
-          ui={true}
-        >
-          <img
-            className="ui small centered image"
-            onError={[Function]}
-            src="https://assets.thalia.media/img/46276859-00-00.jpg"
-          />
-        </Image>
-      </div>
+        />
+      </Image>
       <CardContent>
         <div
           className="content"
@@ -252,24 +248,20 @@ exports[`BookCard tests should render the BookCard 1`] = `
           BOOK
         </div>
       </CardMeta>
-      <div
-        className="search-result-image"
+      <Image
+        as="img"
+        centered={true}
+        onError={[Function]}
+        size="small"
+        src="https://assets.thalia.media/img/46276859-00-00.jpg"
+        ui={true}
       >
-        <Image
-          as="img"
-          centered={true}
+        <img
+          className="ui small centered image"
           onError={[Function]}
-          size="small"
           src="https://assets.thalia.media/img/46276859-00-00.jpg"
-          ui={true}
-        >
-          <img
-            className="ui small centered image"
-            onError={[Function]}
-            src="https://assets.thalia.media/img/46276859-00-00.jpg"
-          />
-        </Image>
-      </div>
+        />
+      </Image>
       <CardContent>
         <div
           className="content"

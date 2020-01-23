@@ -8,11 +8,11 @@ import {
   SeriesIdentifierRows as SeriesIdentifierRowsComponent,
 } from './SeriesIdentifiers';
 import { SeriesInfo as SeriesInfoComponent } from './SeriesInfo';
-import { SeriesLiteratureSearch as SeriesLiteratureSearchComponent } from './SeriesLiteratureSearch';
 import { SeriesMetadataAccordion as SeriesMetadataAccordionComponent } from './SeriesMetadataAccordion';
 import { SeriesMetadataTabs as SeriesMetadataTabsComponent } from './SeriesMetadataTabs';
 import { SeriesTitle as SeriesTitleComponent } from './SeriesTitle';
 import { SeriesUrls as SeriesUrlsComponent } from './SeriesUrls';
+export { SeriesLiteratureSearch } from './SeriesLiteratureSearch';
 export { SeriesCard } from './SeriesCard';
 
 const mapStateToProps = state => ({
@@ -56,11 +56,6 @@ export const SeriesInfo = connect(
   mapStateToProps,
   null
 )(SeriesInfoComponent);
-
-export const SeriesLiteratureSearch = connect(
-  mapStateToProps,
-  null
-)(SeriesLiteratureSearchComponent);
 
 export const SeriesMetadataAccordion = connect(
   mapStateToProps,
