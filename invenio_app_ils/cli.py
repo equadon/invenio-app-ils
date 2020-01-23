@@ -10,6 +10,7 @@
 import json
 import os
 import random
+import re
 from datetime import datetime, timedelta
 from random import randint
 
@@ -300,7 +301,6 @@ class DocumentGenerator(Generator):
         """Generate document data."""
         publication_year = str(randint(1900, 2020))
         imprint = random.choice(self.IMPRINTS)
-        imprint["date"] = "{}-08-02".format(publication_year)
         obj = {
             "pid": self.create_pid(),
             "title": lorem.sentence(),
@@ -324,7 +324,10 @@ class DocumentGenerator(Generator):
             },
             "conference_info": self.CONFERENCE_INFO,
             "number_of_pages": str(random.randint(0, 300)),
-            "imprint": imprint,
+            "imprint": {
+                **imprint,
+                "date": "{}-08-02".format(publication_year)
+            },
             "publication_year": publication_year,
             "urls": [
                 {
@@ -347,12 +350,19 @@ class DocumentGenerator(Generator):
         ]
 
         # Generate periodical issues
+        volume = 1
+        issue = 1
         for index in range(1, 11):
             objs.append(self.generate_document(
                 index,
                 document_type=self.PERIODICAL_ISSUE,
-                title="Volume 1 Issue {}".format(index)
+                title="Volume {} Issue {}".format(volume, index)
             ))
+            if issue == 3:
+                volume += 1
+                issue = 1
+            else:
+                issue += 1
 
         self.holder.documents["objs"] = objs
 
@@ -628,12 +638,17 @@ class RecordRelationsGenerator(Generator):
         multipart_relation = Relation.get_relation_by_name(
             "multipart_monograph"
         )
+        re_volume = re.compile(r'Volume (?P<volume>\d+)', re.IGNORECASE)
         for index, child in enumerate(serial_children):
+            m = re_volume.match(child["title"])
+            volume = str(index + 1)
+            if m:
+                volume = m["volume"]
             rr.add(
                 serial_parent,
                 child,
                 relation_type=serial_relation,
-                volume="{}".format(index + 1),
+                volume=volume,
             )
             objs.append(child)
         for index, child in enumerate(multipart_children):
