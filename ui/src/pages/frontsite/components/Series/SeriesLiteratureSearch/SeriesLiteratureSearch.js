@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Divider, Loader, Responsive } from 'semantic-ui-react';
+import { Divider, Loader, Responsive, Container } from 'semantic-ui-react';
 import {
   ReactSearchKit,
   InvenioSearchApi,
@@ -23,6 +23,7 @@ import {
 import history from '@history';
 import { SeriesLiteratureResultsList } from './SeriesLiteratureResultsList';
 import { SeriesLiteratureSearchMobile } from './SeriesLiteratureSearchMobile';
+import { SearchControlsMobile } from '@components/SearchControls/SearchControlsMobile';
 
 export class SeriesLiteratureSearch extends React.Component {
   renderSearchBar = (_, queryString, onInputChange, executeSearch) => {
@@ -59,17 +60,27 @@ export class SeriesLiteratureSearch extends React.Component {
       <>
         <Divider horizontal>Literature in this series</Divider>
         <ReactSearchKit searchApi={api} history={history}>
-          <SearchBar renderElement={this.renderSearchBar} />
+          <Container className="series-details-search-container">
+            <SearchBar renderElement={this.renderSearchBar} />
+          </Container>
           <Responsive minWidth={Responsive.onlyTablet.minWidth}>
             <ResultsLoader renderElement={this.renderLoader}>
               <SearchEmptyResults />
 
               <Error renderElement={this.renderError} />
 
-              <SearchControls
-                layoutToggle={this.renderResultsLayoutOptions}
-                modelName="literature"
-              />
+              <Responsive minWidth={Responsive.onlyComputer.minWidth}>
+                <SearchControls
+                  layoutToggle={this.renderResultsLayoutOptions}
+                  modelName="literature"
+                />
+              </Responsive>
+              <Responsive maxWidth={Responsive.onlyTablet.maxWidth}>
+                <SearchControlsMobile
+                  layoutToggle={this.renderResultsLayoutOptions}
+                  modelName="literature"
+                />
+              </Responsive>
               <ResultsList
                 renderElement={results => (
                   <SeriesLiteratureResultsList

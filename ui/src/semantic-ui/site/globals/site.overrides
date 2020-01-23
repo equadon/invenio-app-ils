@@ -119,6 +119,10 @@ form {
 
   .search-result-image {
     position: relative;
+
+    .ui.floating.label {
+      white-space: nowrap;
+    }
   }
 }
 

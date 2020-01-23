@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Container } from 'semantic-ui-react';
+import { Container, Responsive } from 'semantic-ui-react';
 import { Error, SearchBar } from '@components';
 import { goTo } from '@history';
 import { FrontSiteRoutes } from '@routes/urls';
@@ -68,11 +68,18 @@ export default class SeriesDetails extends React.Component {
             </ILSParagraphPlaceholder>
             <SeriesPanel />
           </Container>
-          <Container className="items-locations spaced">
+          <Responsive minWidth={Responsive.onlyComputer.minWidth}>
+            <Container className="items-locations spaced">
+              <ILSParagraphPlaceholder linesNumber={3} isLoading={isLoading}>
+                <SeriesLiteratureSearch />
+              </ILSParagraphPlaceholder>
+            </Container>
+          </Responsive>
+          <Responsive maxWidth={Responsive.onlyTablet.maxWidth}>
             <ILSParagraphPlaceholder linesNumber={3} isLoading={isLoading}>
               <SeriesLiteratureSearch />
             </ILSParagraphPlaceholder>
-          </Container>
+          </Responsive>
           <Container className="section" fluid>
             <Container>
               <ILSParagraphPlaceholder linesNumber={20} isLoading={isLoading}>
