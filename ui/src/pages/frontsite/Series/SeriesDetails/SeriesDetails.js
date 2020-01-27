@@ -16,9 +16,6 @@ export default class SeriesDetails extends React.Component {
     this.state = {
       searchQuery: '',
     };
-    this.anchors = {
-      literature: React.createRef(),
-    };
   }
 
   componentDidMount() {
@@ -72,7 +69,7 @@ export default class SeriesDetails extends React.Component {
                 currentElement={series.metadata ? series.metadata.title : null}
               />
             </ILSParagraphPlaceholder>
-            <SeriesPanel anchors={this.anchors} />
+            <SeriesPanel />
           </Container>
           <Responsive minWidth={Responsive.onlyComputer.minWidth}>
             <Container className="items-locations spaced">
@@ -83,9 +80,7 @@ export default class SeriesDetails extends React.Component {
           </Responsive>
           <Responsive maxWidth={Responsive.onlyTablet.maxWidth}>
             <ILSParagraphPlaceholder linesNumber={3} isLoading={isLoading}>
-              <div ref={this.anchors.literature}>
-                <SeriesLiteratureSearch metadata={series.metadata} />
-              </div>
+              <SeriesLiteratureSearch metadata={series.metadata} />
             </ILSParagraphPlaceholder>
           </Responsive>
           <Container className="section" fluid>
