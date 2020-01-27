@@ -5,13 +5,28 @@ import { SeriesAllTitles as SeriesAllTitlesComponent } from './SeriesAllTitles';
 import { SeriesAlternativeTitles as SeriesAlternativeTitlesComponent } from './SeriesAlternativeTitles';
 import { SeriesInfo as SeriesInfoComponent } from './SeriesInfo';
 import { SeriesLinks as SeriesLinksComponent } from './SeriesLinks';
-import { SeriesLiterature as SeriesLiteratureComponent } from './SeriesLiterature';
 import { SeriesMetadataAccordion as SeriesMetadataAccordionComponent } from './SeriesMetadataAccordion';
 import { SeriesMetadataTabs as SeriesMetadataTabsComponent } from './SeriesMetadataTabs';
 import { SeriesTitle as SeriesTitleComponent } from './SeriesTitle';
 import { SeriesUrls as SeriesUrlsComponent } from './SeriesUrls';
+import get from 'lodash/get';
 export { SeriesLiteratureSearch } from './SeriesLiteratureSearch';
 export { SeriesCard } from './SeriesCard';
+
+/**
+ * Find volume number of a record.
+ * @param {record} record - Record to find volume for
+ * @param {pidObject} parentPid - Parent PID object that the record belongs to
+ */
+export const findVolume = (record, parentPid) => {
+  const serials = get(record, 'metadata.relations.serial', []);
+  const parent = serials.find(
+    relation =>
+      relation.pid === parentPid.value &&
+      relation.pid_type === parentPid.pid_type
+  );
+  return parent ? parent.volume : '?';
+};
 
 const mapStateToProps = state => ({
   isLoading: state.seriesDetailsFront.isLoading,

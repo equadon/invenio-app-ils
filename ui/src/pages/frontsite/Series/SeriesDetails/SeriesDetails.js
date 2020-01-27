@@ -77,14 +77,14 @@ export default class SeriesDetails extends React.Component {
           <Responsive minWidth={Responsive.onlyComputer.minWidth}>
             <Container className="items-locations spaced">
               <ILSParagraphPlaceholder linesNumber={3} isLoading={isLoading}>
-                <SeriesLiteratureSearch />
+                <SeriesLiteratureSearch metadata={series.metadata} />
               </ILSParagraphPlaceholder>
             </Container>
           </Responsive>
           <Responsive maxWidth={Responsive.onlyTablet.maxWidth}>
             <ILSParagraphPlaceholder linesNumber={3} isLoading={isLoading}>
               <div ref={this.anchors.literature}>
-                <SeriesLiteratureSearch />
+                <SeriesLiteratureSearch metadata={series.metadata} />
               </div>
             </ILSParagraphPlaceholder>
           </Responsive>

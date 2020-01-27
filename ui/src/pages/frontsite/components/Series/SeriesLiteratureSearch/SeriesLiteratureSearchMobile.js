@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Container, Ref, Sticky } from 'semantic-ui-react';
 import { ResultsLoader, Error } from 'react-searchkit';
 import {
@@ -35,7 +36,9 @@ export class SeriesLiteratureSearchMobile extends React.Component {
                 <SearchPagination />
               </Container>
               <Container className="fs-search-body" textAlign="center">
-                <SeriesLiteratureSearchResultsGrid />
+                <SeriesLiteratureSearchResultsGrid
+                  metadata={this.props.metadata}
+                />
                 <Container fluid className="search-results-footer">
                   <SearchFooter />
                 </Container>
@@ -47,3 +50,7 @@ export class SeriesLiteratureSearchMobile extends React.Component {
     );
   }
 }
+
+SeriesLiteratureSearchMobile.propTypes = {
+  metadata: PropTypes.object.isRequired,
+};

@@ -93,7 +93,7 @@ export class SeriesLiteratureSearch extends React.Component {
             </ResultsLoader>
           </Responsive>
           <Responsive maxWidth={Responsive.onlyMobile.maxWidth}>
-            <SeriesLiteratureSearchMobile />
+            <SeriesLiteratureSearchMobile metadata={metadata} />
           </Responsive>
         </ReactSearchKit>
       </>
